@@ -1,0 +1,12 @@
+archive/*
+*_test
+tmp
+TODO
+private
+*~
+.*~
+.*swp
+**/build-*
+**/*.pyc
+**/*.o
+**/__pycache__
