@@ -5,7 +5,7 @@
 #define STEPPER_PIN_2               10
 #define STEPPER_PIN_3               11
 #define STEPPER_PIN_4               12
-#define STEPS_PER_SECOND            100 
+#define STEPS_PER_SECOND            500 
 
 #define FRAME_ON_MS                 100
 #define FRAME_SYNC_PIN              A3
