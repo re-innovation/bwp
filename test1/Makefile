@@ -1,16 +1,7 @@
 CPPFLAGS += -Wno-unused-variable -Wno-deprecated-declarations -Wno-cpp -Wno-write-strings
-#CPPFLAGS += -DDEBUG
-#CPPFLAGS += -DDEBUG7SEG
-#CPPFLAGS += -DDEBUGVIN
-#CPPFLAGS += -DDEBUGLOAD
-#CPPFLAGS += -DDEBUGTIME
-#CPPFLAGS += -DDEBUGMEM
-#CPPFLAGS += -DDEBUGFUNC
-#CPPFLAGS += -DDEBUGMODE
-#CPPFLAGS += -DNOEEPROM
-#CPPFLAGS += -DNO_LOAD_CONTROL
-ARDUINO_LIBS = AccelStepper
-BOARD_TAG = nano328
+CPPFLAGS += -DDEBUG
+ARDUINO_LIBS = Mutila AccelStepper
+BOARD_TAG = nano
+BOARD_SUB = atmega328
 
-include ../arduino_inc.mk
-
+include ../arduino.mk
