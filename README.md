@@ -22,6 +22,6 @@ This method is preferred on Windows and for casual users who just want to build 
 This alternative build system may also be used. It is an alternative to using the Arduino IDE and may be preferred by some users. 
 
 * Intall the Arduino-Makefile system: https://github.com/sudar/Arduino-Makefile
-* Edit the arduino_inc.mk file and set the include line to point at where you installed Arduino-Makefile
+* Edit the arduino.mk file and set the include line to point at where you installed Arduino-Makefile (or set the ARDUINO_MAKEFILE environment variable)
 * In a shell, from the ''firmware'' directory, use the command "make upload" to build and install the code
 
