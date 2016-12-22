@@ -17,6 +17,8 @@
 #define AUDIO_SYNC_PIN              A2
 #define AUDIO_SYNC_THRESH           500
 #define AUDIO_SYNC_ALPHA            0.50
+#define AUDIO_SYNC_MAXLEN           200
+#define AUDIO_SYNC_MINLEN           10
 
 #define LED_PIN                     4
 

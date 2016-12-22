@@ -16,9 +16,16 @@ public:
     bool check();
     bool on();
 
+    bool lastPulseState() { return _lastPulseState; }
+    unsigned long lastPulseLength() { return _lastPulseLength; }
+
 private:
     uint32_t _pulseCount;
     uint32_t _pulseStart;
     uint16_t _thresh;
     bool _state;
+    bool _lastPulseState;
+    unsigned long _lastPulseLength;
+
 };
+
