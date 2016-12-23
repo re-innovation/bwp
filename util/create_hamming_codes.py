@@ -6,6 +6,9 @@
 # This according to the method described here:
 # http://users.cis.fiu.edu/~downeyt/cop3402/hamming.html
 
+import svgwrite
+from svgwrite import cm, mm
+
 def parityAddress(n, bits=12):
     '''Get which bits go to make partity for specified bit
 
@@ -69,7 +72,33 @@ def ham(n, dataBits, outputBits):
 
     return outA
 
+def addHammingCode(dwg, xmm, ymm, value, bits):
+    dwg.add(dwg.text(str(value), (xmm*mm, ymm*mm)))
+    bitmarks = dwg.add(dwg.g(id='bitmarks'))
+    ymm += 2
+    on = True
+
+    # put a black rectangle under the bit marks
+    bitmarks.add(dwg.rect(insert=((xmm-2)*mm, ymm*mm), size=(14*mm, ((5*9)*mm)), fill='black'))
+    ymm += 2
+    for i in range(0, len(bits)):
+        ysize = 4 if bits[i] else 2
+        bitmarks.add(dwg.rect(insert=(xmm*mm, (ymm+2)*mm), size=(10*mm, ysize*mm), fill='white' if on else 'black'))
+        on = not on
+        ymm += ysize
+
+    
 # Make codes for our desired range of inputs
-for i in range(0,21):
-    print(i, ham(i, 5, 9))
+marks_per_row = 8
+dwg = svgwrite.Drawing(filename='codes.svg', size=(210*mm, 297*mm))
+for i in range(0,23):
+    xg = i % marks_per_row
+    yg = int(i/marks_per_row)
+    x = 30 + (xg*20)
+    y = 30 + (yg*60)
+    # print(i, ham(i, 5, 9))
+    addHammingCode(dwg, x, y, i, ham(i, 5, 9))
+
+dwg.save()
+
 
