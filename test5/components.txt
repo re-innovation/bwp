@@ -1,0 +1,21 @@
+
+Shutter
+	open()
+	close()
+
+Mp3Player
+	play(n)
+
+Stepper
+	advance()
+	
+FrameSyncSensor
+	ReadSensor
+		Stepper.advance()
+		Shutter.open()
+		Shutter.close()
+
+Mp3PlayerSyncSensor
+	ReadSensor
+		Mp3Player.play(n)
+
