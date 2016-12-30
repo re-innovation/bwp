@@ -9,13 +9,13 @@ Mp3Player
 Stepper
 	advance()
 	
-FrameSyncSensor
-	ReadSensor
+FrameSync
+	frameDetect
 		Stepper.advance()
 		Shutter.open()
 		Shutter.close()
 
 Mp3PlayerSyncSensor
-	ReadSensor
+	codeDetect
 		Mp3Player.play(n)
 
