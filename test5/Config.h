@@ -8,12 +8,11 @@
 #define STEPPER_STEPS_PER_SEC       300 
 #define STEPPER_MAX_SPEED           1000
 
-#define FRAME_ON_MS                 100
-#define FRAME_SYNC_PIN              A3
-#define FRANE_SYNC_LOW_THRESHOLD    50
-#define FRAME_SYNC_DIFF_THRESHOLD   200
-#define FRAME_SYNC_MIN_FRAME_STEPS  7
-#define FRAME_SYNC_MAX_FRAME_STEPS  13
+#define SHUTTER_OPEN_MS             100
+#define SHUTTER_LED_PIN             4
+#define SHUTTER_SYNC_PIN            A3
+#define SHUTTER_SYNC_DIFF_THRESHOLD 200
+#define SHUTTER_SYNC_MIN_STEPS      7
 
 #define AUDIO_SYNC_PIN              A2
 #define AUDIO_SYNC_THRESH           500
@@ -25,5 +24,4 @@
 #define MP3_TX_PIN                  5
 #define MP3_VOLUME                  15
 
-#define SHUTTER_LED_PIN             4
 

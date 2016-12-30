@@ -26,7 +26,7 @@ void Projector_::begin()
 void Projector_::update()
 {
     if (_shutterOpen) {
-        if (millis() - _shutterStart >= FRAME_ON_MS) {
+        if (millis() - _shutterStart >= SHUTTER_OPEN_MS) {
             closeShutter();
         }
     } else if (_stepper.runSpeed()) {
@@ -37,9 +37,9 @@ void Projector_::update()
 void Projector_::step()
 {
     _stepsSinceFrame++;
-    int syncValue = analogRead(FRAME_SYNC_PIN);
+    int syncValue = analogRead(SHUTTER_SYNC_PIN);
     int diff = syncValue - _lastFrameSensorValue;
-    if ((!_frameSyncFound || _stepsSinceFrame > FRAME_SYNC_MIN_FRAME_STEPS) && diff >= FRAME_SYNC_DIFF_THRESHOLD) {
+    if ((!_frameSyncFound || _stepsSinceFrame > SHUTTER_SYNC_MIN_STEPS) && diff >= SHUTTER_SYNC_DIFF_THRESHOLD) {
         openShutter();
         _stepsSinceFrame = 0;
         _frameSyncFound = true;
