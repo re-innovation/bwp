@@ -39,23 +39,35 @@ void Projector_::step()
     _stepsSinceFrame++;
     int syncValue = analogRead(SHUTTER_SYNC_PIN);
     int diff = syncValue - _lastFrameSensorValue;
+#ifdef DEBUG_VERBOSE
+    Serial.print(F("Projector_::step f="));
+    Serial.print(_stepsSinceFrame);
+    Serial.print(F(" diff="));
+    Serial.println(diff);
+#endif
     if ((!_frameSyncFound || _stepsSinceFrame > SHUTTER_SYNC_MIN_STEPS) && diff >= SHUTTER_SYNC_DIFF_THRESHOLD) {
         openShutter();
-        _stepsSinceFrame = 0;
-        _frameSyncFound = true;
     }
     _lastFrameSensorValue = syncValue;
 }
 
 void Projector_::openShutter()
 {
+#ifdef DEBUG_VERBOSE
+    Serial.println(F("openShutter"));
+#endif
     _shutterStart = millis();
+    _stepsSinceFrame = 0;
+    _frameSyncFound = true;
     _shutterOpen = true;
     digitalWrite(SHUTTER_LED_PIN, HIGH);
 }
 
 void Projector_::closeShutter()
 {
+#ifdef DEBUG_VERBOSE
+    Serial.println(F("closeShutter"));
+#endif
     digitalWrite(SHUTTER_LED_PIN, LOW);
     _shutterOpen = false;
 }

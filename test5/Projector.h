@@ -2,8 +2,8 @@
 
 #include <AccelStepper.h>
 
-/*! \brief model the projector
- * This class, and associated global Projector instance model a projector.
+/*! \brief model/control the projector
+ * This class, and associated global Projector singleton instance, model the projector.
  * The projector has the following components:
  * -# Stepper motor for advancing film
  * -# Shutter (LED controlled via a digital output)
@@ -14,6 +14,10 @@
  * synchronication hole is read by the appropriate sensor. It then halt the stepper,
  * "opens" the shutter for some fixed period of time, "closes" the shutter and 
  * then resumes the stepper.
+ *
+ * It also monitors the optical sensor for reading audio codes, populating a
+ * buffer with code bits as they are read, and triggering audio playback
+ * with a global singleton instance, Mp3Player.
  */
 class Projector_ {
 public:
@@ -36,7 +40,7 @@ public:
 
 private:
     /*! Called when a stepper [half] step is triggered. Used to increment
-     * counters and test for frame sync
+     * counters, test for frame sync, and read the audio marker sensor.
      */
     void step();
 
