@@ -17,11 +17,16 @@
 #define AUDIO_SYNC_PIN              A2
 #define AUDIO_SYNC_THRESH           500
 #define AUDIO_SYNC_ALPHA            0.50
-#define AUDIO_SYNC_MAXLEN           200
-#define AUDIO_SYNC_MINLEN           10
+#define AUDIO_SYNC_MAX_LEN          30
+#define AUDIO_SYNC_SHORT_LEN        10
+#define AUDIO_SYNC_BITS             9
+#define AUDIO_SYNC_INCOMPLETE       -1
+#define AUDIO_SYNC_INVALID          -2
 
 #define MP3_RX_PIN                  6
 #define MP3_TX_PIN                  5
 #define MP3_VOLUME                  15
+
+#define TEST_BUTTON_PIN             3
 
 

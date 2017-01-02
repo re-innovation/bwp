@@ -1,6 +1,10 @@
 #pragma once
 
 #include <AccelStepper.h>
+#ifdef TESTMODE
+#include <DebouncedButton.h>
+#endif
+#include "AudioMarkReader.h"
 
 /*! \brief model/control the projector
  * This class, and associated global Projector singleton instance, model the projector.
@@ -39,10 +43,15 @@ public:
     void update();
 
 private:
-    /*! Called when a stepper [half] step is triggered. Used to increment
-     * counters, test for frame sync, and read the audio marker sensor.
+    /*! Call when a stepper [half] step is triggered - updates state relating
+     * to frame sensing / display.
      */
-    void step();
+    void frameStep();
+
+    /*! Call when a stepper [half] step is triggered - updates state relating
+     * to audio mark sensing / playback.
+     */
+    void audioStep();
 
     /*! Start the shutter open sequence (stop film movement, turn on LED)
      */
@@ -52,8 +61,16 @@ private:
      */
     void closeShutter();
 
+
+    //////////// Data members
     //! Object to control the stepper motor which moves the film sprocket
     AccelStepper _stepper;
+
+#ifdef TESTMODE
+    //! When TESTMODE is defined, steps are triggered by the
+    //! press of a button, not by stepper motor activity.
+    DebouncedButton _testButton;
+#endif
 
     //! How many steps have happened since the last frame was displayed
     uint8_t _stepsSinceFrame;
@@ -70,6 +87,9 @@ private:
 
     //! For timing shutter sequence
     unsigned long _shutterStart;
+
+    //! For monitoring the state of the audio mark sensor
+    AudioMarkReader _audioMarkSensor;
 
 };
 
