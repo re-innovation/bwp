@@ -78,26 +78,31 @@ def addHammingCode(dwg, xmm, ymm, value, bits):
     ymm += 2
     on = True
 
+    # Add a 0 on the end to act as a terminator for the 12th bit, which is dark...
+    bits.append(0)
+
     # put a black rectangle under the bit marks
     bitmarks.add(dwg.rect(insert=((xmm-2)*mm, ymm*mm), size=(14*mm, ((5*9)*mm)), fill='black'))
     ymm += 2
     for i in range(0, len(bits)):
+        dwg.add(dwg.text(str(bits[i]) if i < len(bits)-1 else 'T', ((xmm-4)*mm, (ymm+3.5+bits[i])*mm)))
         ysize = 4 if bits[i] else 2
         bitmarks.add(dwg.rect(insert=(xmm*mm, (ymm+2)*mm), size=(10*mm, ysize*mm), fill='white' if on else 'black'))
         on = not on
         ymm += ysize
 
+
     
 # Make codes for our desired range of inputs
 marks_per_row = 8
-dwg = svgwrite.Drawing(filename='codes.svg', size=(210*mm, 297*mm))
-for i in range(0,23):
+dwg = svgwrite.Drawing(filename='codes.svg', size=(210*mm, 297*mm), style="font-size:2mm; font-family:Arial")
+for i in range(0,16):
     xg = i % marks_per_row
     yg = int(i/marks_per_row)
     x = 30 + (xg*20)
     y = 30 + (yg*60)
     # print(i, ham(i, 5, 9))
-    addHammingCode(dwg, x, y, i, ham(i, 5, 9))
+    addHammingCode(dwg, x, y, i, ham(i, 8, 12))
 
 dwg.save()
 
