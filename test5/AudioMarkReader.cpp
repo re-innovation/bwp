@@ -25,47 +25,50 @@ void AudioMarkReader::update()
     DB(F("AudioMarkReader::update count="));
     DB(_pulseCount);
     bool state = getState();
-    bool change = state != _lastPulseState;
-    uint16_t pulseLength = _pulseCount - _pulseStart;
-    _lastPulseState = state;
-    DB(F(" state="));
-    DB(state);
-    DB(F(" last="));
-    DB(_lastPulseState);
-    DB(F(" ptr="));
-    DB(_bufPtr);
-    DB(F(" buf=\""));
-#ifdef DEBUG
-    for (uint8_t i=0; i<_bufPtr; i++) {
-        DB(_buffer[i]);
-    }
-#endif
-    DBLN(F("\""));
-
-    // Test for timeout & clear buffer if too long since last bit
-    if (pulseLength > AUDIO_SYNC_MAX_LEN && _bufPtr > 0){
-        DBLN(F("AudioMarkReader::update timeout"));
-        resetBuffer();
-        return;
-    }
-
-    // If the state has changed, handle that
-    if (change) {
-        _pulseStart = _pulseCount;
-        if (pulseLength <= AUDIO_SYNC_SHORT_LEN) {
-            DB(F("AudioMarkReader::update short pulse"));
-            appendBitToBuffer(0);
-        } else if (pulseLength <= AUDIO_SYNC_MAX_LEN) {
-            DB(F("AudioMarkReader::update long pulse"));
-            appendBitToBuffer(1);
+    if (state != _lastPulseState) {
+        _lastPulseState = state;
+        if (state) {
+            // rising edge - start of new white stripe
+            _pulseStart = _pulseCount;
+            DBLN(F(" start stripe"));
+        } else {
+            // falling edge - end of white stripe
+            DB(F(" end stripe: "));
+            uint32_t pulseLength = _pulseCount - _pulseStart;
+            if (pulseLength >= AUDIO_SYNC_ZERO_MIN_LEN && pulseLength < AUDIO_SYNC_ONE_MIN_LEN) {
+                appendBitToBuffer(0);
+                DBLN(0);
+            } else if (pulseLength >= AUDIO_SYNC_ONE_MIN_LEN && pulseLength <= AUDIO_SYNC_ONE_MAX_LEN) {
+                appendBitToBuffer(1);
+                DBLN(1);
+            } else {
+                DBLN('?');
+            }
+        }
+    } else {
+        if (_pulseCount - _pulseStart > AUDIO_SYNC_ONE_MAX_LEN && _bufPtr > 0) {
+            DBLN(F(" timeout"));
+            resetBuffer();
+        } else {
+            DBLN(F(" dark wait"));
         }
     }
 }
 
 int AudioMarkReader::get()
 {
+#ifdef DEBUG
+    DB(F("AudioMarkReader::get buf \""));
+    for(uint8_t i=0; i<AUDIO_SYNC_BITS; i++) {
+        if (_bufPtr>i) 
+            DB(_buffer[i]);
+        else
+            DB('_');
+    }
+    DB('"');
+#endif
     if (_bufPtr < AUDIO_SYNC_BITS) {
-        DBLN(F("AudioMarkReader::get incomplete"));
+        DBLN(F(" incomplete"));
         return AUDIO_SYNC_INCOMPLETE;
     }
     uint8_t correction = 0;
