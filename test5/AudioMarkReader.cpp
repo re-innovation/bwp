@@ -79,6 +79,7 @@ int AudioMarkReader::get()
     if (correction >= AUDIO_SYNC_BITS) {
         // More than one error
         DBLN(F("AudioMarkReader::get ERROR"));
+        resetBuffer();
         return(AUDIO_SYNC_INVALID);
     } else if (correction > 0) {
         DBLN(F("AudioMarkReader::get CORRECTION"));
@@ -86,6 +87,7 @@ int AudioMarkReader::get()
     } else {
         DBLN(F("AudioMarkReader::get OK"));
     }
+    // Extract the encoded value
     bitValue = 1;
     uint8_t value = 0;
     for (uint8_t i=0; i<AUDIO_SYNC_BITS; i++) {
@@ -94,6 +96,7 @@ int AudioMarkReader::get()
             bitValue *= 2;
         }
     }
+    resetBuffer();
     return value;
 }
 

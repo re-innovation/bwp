@@ -5,7 +5,7 @@
 #define STEPPER_PIN_2               10
 #define STEPPER_PIN_3               11
 #define STEPPER_PIN_4               12
-#define STEPPER_STEPS_PER_SEC       2 
+#define STEPPER_STEPS_PER_SEC       4 
 #define STEPPER_MAX_SPEED           1000
 
 #define SHUTTER_OPEN_MS             1000
