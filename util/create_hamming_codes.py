@@ -78,8 +78,14 @@ def ham(n, dataBits, outputBits):
 
 def addHammingCode(dwg, xmm, ymm, value, bits):
     # Add a label with the number which is encoded, and the direction markers
-    dwg.add(dwg.text('%d' % value, ((xmm-BORDER_SIZE)*mm, ymm*mm)))
     bitmarks = dwg.add(dwg.g(id='bitmarks'))
+    bitmarks.add(dwg.text('%d' % value, ((xmm-BORDER_SIZE)*mm, ymm*mm)))
+    
+    # draw arrow to show direction of travel
+    bitmarks.add(dwg.line(start=((xmm+5)*mm,(ymm-1)*mm), end=((xmm+5-1.5)*mm, (ymm+1)*mm), stroke='black'))
+    bitmarks.add(dwg.line(start=((xmm+5)*mm,(ymm-1)*mm), end=((xmm+5+1.5)*mm, (ymm+1)*mm), stroke='black'))
+    bitmarks.add(dwg.line(start=((xmm+5+1.5)*mm, (ymm+1)*mm), end=((xmm+5-1.5)*mm, (ymm+1)*mm), stroke='black'))
+
     ymm += BORDER_SIZE
 
     # put a black rectangle under the bit marks
@@ -90,7 +96,7 @@ def addHammingCode(dwg, xmm, ymm, value, bits):
 
     for i in range(0, len(bits)):
         # Put a label on the left side for helping with debugging
-        dwg.add(dwg.text(str(bits[i]), ((xmm-4)*mm, (ymm+1.5+bits[i])*mm)))
+        bitmarks.add(dwg.text(str(bits[i]), ((xmm-4)*mm, (ymm+1.5+bits[i])*mm)))
         # add a white bar with height dependant on bit on/off
         ysize = ZERO_SIZE if bits[i] is 0 else ONE_SIZE
         bitmarks.add(dwg.rect(insert=(xmm*mm, (ymm)*mm), size=(10*mm, ysize*mm), fill='white'))
@@ -102,9 +108,6 @@ def addHammingCode(dwg, xmm, ymm, value, bits):
 # Make codes for our desired range of inputs
 marks_per_row = 8
 dwg = svgwrite.Drawing(filename='codes.svg', size=(210*mm, 297*mm), style="font-size:2mm; font-family:Arial")
-marker = dwg.marker(insert=(5,5), size=(10,10))
-marker.add(dwg.circle((5, 5), r=5, fill='red'))
-dwg.defs.add(marker)
 
 n=0
 for i in range(1,25):
@@ -112,7 +115,6 @@ for i in range(1,25):
     yg = int(n/marks_per_row)
     x = 30 + (xg*20)
     y = 30 + (yg*80)
-    # print(i, ham(i, 5, 9))
     addHammingCode(dwg, x, y, i, ham(i, 8, 12))
     n+=1
 
