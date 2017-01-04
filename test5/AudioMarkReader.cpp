@@ -24,12 +24,13 @@ void AudioMarkReader::update()
     _pulseCount++;
     DB(F("AudioMarkReader::update count="));
     DB(_pulseCount);
+    DB(F(" len="));
+    DB(_pulseCount-_pulseStart);
     bool state = getState();
     if (state != _lastPulseState) {
         _lastPulseState = state;
         if (state) {
             // rising edge - start of new white stripe
-            _pulseStart = _pulseCount;
             DBLN(F(" start stripe"));
         } else {
             // falling edge - end of white stripe
@@ -45,6 +46,7 @@ void AudioMarkReader::update()
                 DBLN('?');
             }
         }
+        _pulseStart = _pulseCount;
     } else {
         if (_pulseCount - _pulseStart > AUDIO_SYNC_ONE_MAX_LEN && _bufPtr > 0) {
             DBLN(F(" timeout"));
