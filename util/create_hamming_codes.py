@@ -9,6 +9,10 @@
 import svgwrite
 from svgwrite import cm, mm
 
+BORDER_SIZE = 1.5
+ZERO_SIZE = BORDER_SIZE
+ONE_SIZE = ZERO_SIZE*2
+
 def parityAddress(n, bits=12):
     '''Get which bits go to make partity for specified bit
 
@@ -73,26 +77,26 @@ def ham(n, dataBits, outputBits):
     return outA
 
 def addHammingCode(dwg, xmm, ymm, value, bits):
-    dwg.add(dwg.text(str(value), (xmm*mm, ymm*mm)))
+    # Add a label with the number which is encoded, and the direction markers
+    dwg.add(dwg.text('%d' % value, ((xmm-BORDER_SIZE)*mm, ymm*mm)))
     bitmarks = dwg.add(dwg.g(id='bitmarks'))
-    ymm += 2
-    on = True
+    ymm += BORDER_SIZE
 
     # put a black rectangle under the bit marks
-    bitmarks.add(dwg.rect(insert=((xmm-2)*mm, ymm*mm), size=(14*mm, ((len(bits)*4+14)*mm)), fill='black'))
+    rect_y = ((len(bits)+1)*BORDER_SIZE) + (len(bits)*ONE_SIZE)
+    bitmarks.add(dwg.rect(insert=((xmm-BORDER_SIZE)*mm, ymm*mm), size=((10+(2*BORDER_SIZE))*mm, (rect_y*mm)), fill='black'))
 
-    ymm += 1
-
-    # If number of bits is even, add a terminator bit (because otherwise we get no color change)
-    if len(bits) % 2 == 0:
-        bits.append(0)
+    ymm += BORDER_SIZE
 
     for i in range(0, len(bits)):
+        # Put a label on the left side for helping with debugging
         dwg.add(dwg.text(str(bits[i]), ((xmm-4)*mm, (ymm+1.5+bits[i])*mm)))
-        ysize = 2*bits[i] + 2
-        bitmarks.add(dwg.rect(insert=(xmm*mm, (ymm)*mm), size=(10*mm, ysize*mm), fill='white' if on else 'black'))
-        on = not on
+        # add a white bar with height dependant on bit on/off
+        ysize = ZERO_SIZE if bits[i] is 0 else ONE_SIZE
+        bitmarks.add(dwg.rect(insert=(xmm*mm, (ymm)*mm), size=(10*mm, ysize*mm), fill='white'))
         ymm += ysize
+        bitmarks.add(dwg.rect(insert=(xmm*mm, (ymm)*mm), size=(10*mm, BORDER_SIZE*mm), fill='black'))
+        ymm += BORDER_SIZE
 
     
 # Make codes for our desired range of inputs
@@ -103,7 +107,7 @@ marker.add(dwg.circle((5, 5), r=5, fill='red'))
 dwg.defs.add(marker)
 
 n=0
-for i in range(0,24):
+for i in range(1,25):
     xg = n % marks_per_row
     yg = int(n/marks_per_row)
     x = 30 + (xg*20)
