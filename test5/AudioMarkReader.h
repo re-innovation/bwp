@@ -20,7 +20,7 @@
  * of the following conditions is true:
  *
  * -# The number of update() calls since the last state transition 
- *    exceeds some threshold. In this case the buffer is reset.
+ *    exceeds some threshold. In this case the buffer is resetBuffer.
  * -# The buffer is full with 9 bits of information in it. The values
  *    in the buffer consitiute a valid message, which is read using
  *    the getTrack() method.
@@ -58,29 +58,39 @@ public:
      *         2.1.2. And the length of the previous state was long,
      *                append 1 to the buffer.
      * 3. If the state has not changed since the last update() and the
-     *    length of the last state is over some threshold, reset the 
+     *    length of the last state is over some threshold, resetBuffer the 
      *    buffer and update counter.
      *
      */
     void update();
 
-    /* Test for complete message
-     * \return AUDIO_SYNC_INCOMPLETE if no valid message is available, 
-     *         (i.e. buffer is not full) or AUDIO_SYNC_INVALID if there is
-     *         an invalid message, else a +ve integer track to play.
-     *
-     * If the current buffer status is incomplete, this method returns
-     * without modifying the buffer.  However, if the buffer is full, it
-     * will be reset before either AUDIO_SYNC_INVALID or a valid value 
-     * are returned.
+    /*! Decode the buffer
+     * \return AUDIO_SYNC_INCOMPLETE if buffer is incomplete
+     *         AUDIO_SYNC_INVALID on error (too many error bits)
+     *         0-255 on successful decode of 12/8 bit hamming code
      */
     int get();
 
 private:
     bool getState() { return average() <= _thresh; }
-    //! Reset the buffer
-    void reset();
-    bool addBit(bool bit);
+    /*! Reset the buffer */
+    void resetBuffer();
+    /*! Append a bit to the buffer of bits read recently
+     * \return true if the bit was appened, else false (i.e. if the buffer if full)
+     */
+    bool appendBitToBuffer(bool bit);
+    /*! Test if bit position in buffer is a hamming parity bit
+     * \param bitPos the index of the bit in the buffer
+     * \return true if the bit position is a partiy bit, else false
+     */ 
+    bool bitIsParityBit(uint8_t bitPos);
+    /*! Calculate Hamming parity for a specified bit in the buffer
+     * \param bitPos the position of the bit in the buffer (zero-indexed)
+     * \return 0 if the bit is not a hamming partiy bit, or the calculate 
+     *         Hamming partity value of the bit if it is a Hamming
+     *         parity bit (either 0 or 1)
+     */
+    uint8_t hammingParity(uint8_t bitPos);
 
     /// Data members
     uint32_t _pulseCount;               //! How many times update() has been called which should be how many stepper steps have

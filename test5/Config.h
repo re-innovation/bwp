@@ -19,7 +19,7 @@
 #define AUDIO_SYNC_ALPHA            0.50
 #define AUDIO_SYNC_MAX_LEN          30
 #define AUDIO_SYNC_SHORT_LEN        10
-#define AUDIO_SYNC_BITS             9
+#define AUDIO_SYNC_BITS             12
 #define AUDIO_SYNC_INCOMPLETE       -1
 #define AUDIO_SYNC_INVALID          -2
 

@@ -15,7 +15,7 @@ void AudioMarkReader::begin()
 {
     EMASampler::begin();
     _lastPulseState = getState();
-    reset();
+    resetBuffer();
 }
 
 void AudioMarkReader::update()
@@ -31,12 +31,21 @@ void AudioMarkReader::update()
     DB(F(" state="));
     DB(state);
     DB(F(" last="));
-    DBLN(_lastPulseState);
+    DB(_lastPulseState);
+    DB(F(" ptr="));
+    DB(_bufPtr);
+    DB(F(" buf=\""));
+#ifdef DEBUG
+    for (uint8_t i=0; i<_bufPtr; i++) {
+        DB(_buffer[i]);
+    }
+#endif
+    DBLN(F("\""));
 
-    // Test for timeout
+    // Test for timeout & clear buffer if too long since last bit
     if (pulseLength > AUDIO_SYNC_MAX_LEN && _bufPtr > 0){
         DBLN(F("AudioMarkReader::update timeout"));
-        reset();
+        resetBuffer();
         return;
     }
 
@@ -45,57 +54,94 @@ void AudioMarkReader::update()
         _pulseStart = _pulseCount;
         if (pulseLength <= AUDIO_SYNC_SHORT_LEN) {
             DB(F("AudioMarkReader::update short pulse"));
-            addBit(0);
+            appendBitToBuffer(0);
         } else if (pulseLength <= AUDIO_SYNC_MAX_LEN) {
             DB(F("AudioMarkReader::update long pulse"));
-            addBit(1);
+            appendBitToBuffer(1);
         }
-    }
-}
-
-bool AudioMarkReader::addBit(bool bit)
-{
-    if (_bufPtr >= AUDIO_SYNC_BITS) {
-        DBLN(F("AudioMarkReader::addBit too many bits"));
-        reset();
-        return false;
-    } else {
-        _buffer[_bufPtr++] = bit;
-#ifdef DEBUG
-        DB(F(", buffer now: "));
-        for(uint8_t i=0; i<_bufPtr; i++) {
-            DB(_buffer[i]);
-        }
-        DBLN(' ');
-#endif
-        return true;
     }
 }
 
 int AudioMarkReader::get()
 {
-    if (_bufPtr != AUDIO_SYNC_BITS) {
+    if (_bufPtr < AUDIO_SYNC_BITS) {
+        DBLN(F("AudioMarkReader::get incomplete"));
         return AUDIO_SYNC_INCOMPLETE;
     }
-    uint16_t v = 0;
-    DBLN(F("AudioMarkReader::get bits: "));
-    for (uint8_t i=0; i<_bufPtr; i++) {
-        v += _buffer[i] << i;
-        DB(_buffer[i]);
+    uint8_t correction = 0;
+    uint8_t bitValue = 1;
+    for (uint8_t i=0; i<AUDIO_SYNC_BITS; i++) {
+        if (bitIsParityBit(i)) {
+            correction += bitValue * hammingParity(i);
+            bitValue *= 2;
+        }
     }
-    DB(F(" = 0x"));
-    DBLN(v);
-    reset();
-    // TODO: validation/error correction of message
-    // if (invalid) {
-    //      return AUDIO_SYNC_INVALID;
-    // }
-    return v;
+    if (correction >= AUDIO_SYNC_BITS) {
+        // More than one error
+        DBLN(F("AudioMarkReader::get ERROR"));
+        return(AUDIO_SYNC_INVALID);
+    } else if (correction > 0) {
+        DBLN(F("AudioMarkReader::get CORRECTION"));
+        _buffer[correction-1] = !_buffer[correction-1];
+    } else {
+        DBLN(F("AudioMarkReader::get OK"));
+    }
+    bitValue = 1;
+    uint8_t value = 0;
+    for (uint8_t i=0; i<AUDIO_SYNC_BITS; i++) {
+        if (!bitIsParityBit(i)) {
+            value += _buffer[i]*bitValue;
+            bitValue *= 2;
+        }
+    }
+    return value;
 }
 
-void AudioMarkReader::reset()
+bool AudioMarkReader::appendBitToBuffer(bool bit) 
 {
-    DBLN(F("AudioMarkReader::reset"));
+    if (_bufPtr >=AUDIO_SYNC_BITS) {
+        return false;
+    } else {
+        _buffer[_bufPtr++] = bit;
+    }
+}
+
+bool AudioMarkReader::bitIsParityBit(uint8_t bitPos) 
+{
+    bitPos++;
+    while (((bitPos % 2) == 0) && bitPos > 1) { 
+        bitPos /= 2;
+    }
+    return (bitPos == 1);
+}
+
+uint8_t AudioMarkReader::hammingParity(uint8_t bitPos)
+{   
+    // don't worry about non-parity bits...
+    if (!bitIsParityBit(bitPos)) {
+        return 0;
+    }
+
+    // Iterate over bits and calulate parity, starting at our parity bit
+    uint8_t parity = 0;
+    uint8_t left = bitPos+1;
+    bool check = true;
+    for (uint8_t i=bitPos; i<AUDIO_SYNC_BITS; i++) {
+        if (left == 0) {
+            left = bitPos+1;
+            check = !check;
+        }
+        if (check) {
+            parity += _buffer[i];
+        }
+        left--;
+    }
+    return parity % 2;
+}
+
+void AudioMarkReader::resetBuffer()
+{
+    DBLN(F("AudioMarkReader::resetBuffer"));
     memset(_buffer, 0, sizeof(uint8_t) * AUDIO_SYNC_BITS);
     _bufPtr = 0;
 }
