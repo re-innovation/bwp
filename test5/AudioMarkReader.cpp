@@ -22,23 +22,19 @@ void AudioMarkReader::update()
 {
     EMASampler::update();
     _pulseCount++;
-    DB(F("AudioMarkReader::update count="));
-    DB(_pulseCount);
-    DB(F(" avg="));
+    DB(F("AMR avg="));
     DB(average());
-    DB(F(" thresh="));
-    DB(_thresh);
-    DB(F(" len="));
+    DB(F(" l="));
     DB(_pulseCount-_pulseStart);
     bool state = getState();
     if (state != _lastPulseState) {
         _lastPulseState = state;
         if (state) {
             // rising edge - start of new white stripe
-            DBLN(F(" start stripe"));
+            DBLN(F(" START"));
         } else {
             // falling edge - end of white stripe
-            DB(F(" end stripe: "));
+            DB(F(" END: "));
             uint32_t pulseLength = _pulseCount - _pulseStart;
             if (pulseLength >= AUDIO_SYNC_ZERO_MIN_LEN && pulseLength < AUDIO_SYNC_ONE_MIN_LEN) {
                 appendBitToBuffer(0);
@@ -53,11 +49,11 @@ void AudioMarkReader::update()
         _pulseStart = _pulseCount;
     } else {
         if (_pulseCount - _pulseStart > AUDIO_SYNC_ONE_MAX_LEN && _bufPtr > 0) {
-            DBLN(F(" timeout"));
+            DBLN(F(" TimeO"));
             resetBuffer();
         } else {
-            DB(state ? F(" light") : F(" dark"));
-            DB(F(" wait "));
+            DB(state ? F(" 0") : F(" 1"));
+            DB(F(" WT "));
         }
     }
 }
@@ -65,7 +61,7 @@ void AudioMarkReader::update()
 int AudioMarkReader::get()
 {
 #ifdef DEBUG
-    DB(F("AudioMarkReader::get buf \""));
+    DB(F("buf \""));
     for(uint8_t i=0; i<AUDIO_SYNC_BITS; i++) {
         if (_bufPtr>i) 
             DB(_buffer[i]);
@@ -75,7 +71,7 @@ int AudioMarkReader::get()
     DB('"');
 #endif
     if (_bufPtr < AUDIO_SYNC_BITS) {
-        DBLN(F(" incomplete"));
+        DBLN('.');
         return AUDIO_SYNC_INCOMPLETE;
     }
     uint8_t correction = 0;
@@ -88,14 +84,14 @@ int AudioMarkReader::get()
     }
     if (correction >= AUDIO_SYNC_BITS) {
         // More than one error
-        DBLN(F("AudioMarkReader::get ERROR"));
+        DBLN(F(" ERR"));
         resetBuffer();
         return(AUDIO_SYNC_INVALID);
     } else if (correction > 0) {
-        DBLN(F("AudioMarkReader::get CORRECTION"));
+        DBLN(F(" CORRECT"));
         _buffer[correction-1] = !_buffer[correction-1];
     } else {
-        DBLN(F("AudioMarkReader::get OK"));
+        DBLN(F(" OK"));
     }
     // Extract the encoded value
     bitValue = 1;
