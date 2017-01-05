@@ -24,6 +24,10 @@ void AudioMarkReader::update()
     _pulseCount++;
     DB(F("AudioMarkReader::update count="));
     DB(_pulseCount);
+    DB(F(" avg="));
+    DB(average());
+    DB(F(" thresh="));
+    DB(_thresh);
     DB(F(" len="));
     DB(_pulseCount-_pulseStart);
     bool state = getState();
@@ -52,7 +56,8 @@ void AudioMarkReader::update()
             DBLN(F(" timeout"));
             resetBuffer();
         } else {
-            DBLN(F(" dark wait"));
+            DB(state ? F(" light") : F(" dark"));
+            DB(F(" wait "));
         }
     }
 }
