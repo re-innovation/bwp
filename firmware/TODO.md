@@ -1,0 +1,9 @@
+-   Frame offset - trigger n half-steps after detecting frame hole
+    -   Prototype use Config.h value, then: [done]
+    -   Load value from EEPROM at startup
+-   Brownout control 
+    -   reset audio
+    -   stop feed
+-   Buttons:
+    -   Manual feed button (slowish forward motion for loading film)
+    -   Frame offset adjust (press once to change, save to EEPROM)
