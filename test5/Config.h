@@ -5,17 +5,17 @@
 #define STEPPER_PIN_2               10
 #define STEPPER_PIN_3               11
 #define STEPPER_PIN_4               12
-#define STEPPER_STEPS_PER_SEC       400
+#define STEPPER_STEPS_PER_SEC       300
 #define STEPPER_MAX_SPEED           1000
 
-#define SHUTTER_OPEN_MS             100
+#define SHUTTER_OPEN_MS             80
 #define SHUTTER_LED_PIN             4
 #define SHUTTER_SYNC_PIN            A3
 #define SHUTTER_SYNC_DIFF_THRESHOLD 300
 #define SHUTTER_SYNC_MIN_STEPS      7
 
 #define AUDIO_SYNC_PIN              A2
-#define AUDIO_SYNC_THRESH           375
+#define AUDIO_SYNC_THRESH           390
 #define AUDIO_SYNC_ALPHA            1.0
 #define AUDIO_SYNC_MAX_LEN          30
 #define AUDIO_SYNC_ZERO_MIN_LEN     3
