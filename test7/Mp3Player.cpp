@@ -17,6 +17,7 @@ void Mp3Player_::begin()
 {
     _serial.begin(9600);
     _mp3.sendCmd(DFPlayerMini::Reset);
+    delay(80);
     _mp3.sendCmd(DFPlayerMini::SetVolume, MP3_VOLUME);
 }
 
