@@ -9,7 +9,7 @@
 import svgwrite
 from svgwrite import cm, mm
 
-BORDER_SIZE = 1.5
+BORDER_SIZE = 2
 ZERO_SIZE = BORDER_SIZE
 ONE_SIZE = ZERO_SIZE*2
 
