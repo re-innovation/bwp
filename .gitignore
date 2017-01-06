@@ -10,3 +10,5 @@ private
 **/*.pyc
 **/*.o
 **/__pycache__
+test6/*.o
+test6/hammingTest
