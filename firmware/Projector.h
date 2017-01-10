@@ -42,7 +42,15 @@ public:
      */
     void update();
 
+    /*! Stop the shutter open sequence (turn off LED, resume film movement)
+     */
+    void closeShutter();
+
 private:
+    /*! Start the shutter open sequence (stop film movement, turn on LED)
+     */
+    void openShutter();
+
     /*! Call when a stepper [half] step is triggered - updates state relating
      * to frame sensing / display.
      */
@@ -52,15 +60,6 @@ private:
      * to audio mark sensing / playback.
      */
     void audioStep();
-
-    /*! Start the shutter open sequence (stop film movement, turn on LED)
-     */
-    void openShutter();
-
-    /*! Stop the shutter open sequence (turn off LED, resume film movement)
-     */
-    void closeShutter();
-
 
     //////////// Data members
     //! Object to control the stepper motor which moves the film sprocket

@@ -14,7 +14,6 @@ NormalMode_ NormalMode(VoltageSampler, VIN_THRESH_LOW, VIN_THRESH_HIGH);
 NormalMode_::NormalMode_(EMAVDivSampler& vSampler, const float vThreshLow, const float vThreshHigh) : 
     BrownoutMode(vSampler, vThreshLow, vThreshHigh)
 {
-    setUpdatePeriod(100);
 }
 
 void NormalMode_::modeStart()
@@ -32,6 +31,7 @@ void NormalMode_::enterBrownout()
 {
     // Typical use: save state to EEPROM etc...
     Serial.println(F("NormalMode::enterBrownout()"));
+    Projector.closeShutter();
 }
 
 void NormalMode_::exitBrownout()
@@ -42,8 +42,9 @@ void NormalMode_::exitBrownout()
 
 void NormalMode_::modeUpdate()
 {
-    DB(F("NormalMode::modeUpdate() volts="));
-    DBLN(_vSampler.averageVolts());
+    if (!brownedOut()) {
+        Projector.update();
+    }
 }
 
 bool NormalMode_::isFinished()
