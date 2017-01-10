@@ -114,7 +114,7 @@ for i in range(1,25):
     xg = n % marks_per_row
     yg = int(n/marks_per_row)
     x = 30 + (xg*20)
-    y = 30 + (yg*80)
+    y = 20 + (yg*85)
     addHammingCode(dwg, x, y, i, ham(i, 8, 12))
     n+=1
 
