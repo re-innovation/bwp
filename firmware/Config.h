@@ -26,6 +26,8 @@
 #define AUDIO_SYNC_INCOMPLETE       -1
 #define AUDIO_SYNC_INVALID          -2
 
+#define HEARTBEAT_LED_PIN           13
+
 #define MP3_RX_PIN                  6
 #define MP3_TX_PIN                  5
 #define MP3_BUSY_PIN                10

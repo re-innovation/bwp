@@ -1,19 +1,32 @@
 #include <Arduino.h>
+#include <Mode.h>
 
-// Import global objects which go up to make our projector
 #include "Projector.h"
+#include "ProjectorHeartbeat.h"
 #include "Mp3Player.h"
+#include "DiagnosticMode.h"
+
+Mode* CurrentMode = &DiagnosticMode;
+
+void switchMode(Mode* newMode)
+{
+    CurrentMode->stop();
+    CurrentMode = newMode;
+    CurrentMode->start();
+}
 
 void setup()
 {
     Serial.begin(115200);
-    Projector.begin();
+    ProjectorHeartbeat.begin();
     Mp3Player.begin();
+    CurrentMode->start();
     Serial.println(F("E:setup()"));
 }
 
 void loop()
 {
-    Projector.update();
+    ProjectorHeartbeat.update();
+    CurrentMode->update();
 }
 
