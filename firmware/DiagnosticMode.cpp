@@ -19,7 +19,6 @@ void DiagnosticMode_::modeStart()
 void DiagnosticMode_::modeStop()
 {
     Serial.println(F("DiagnosticMode::modeStop()"));
-    ProjectorHeartbeat.setMode(Heartbeat::Normal);
 }
 
 void DiagnosticMode_::modeUpdate()

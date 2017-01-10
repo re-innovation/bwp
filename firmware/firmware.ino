@@ -1,12 +1,14 @@
 #include <Arduino.h>
 #include <Mode.h>
 
+#include "ModeButton.h"
 #include "Projector.h"
 #include "ProjectorHeartbeat.h"
 #include "Mp3Player.h"
 #include "DiagnosticMode.h"
+#include "NormalMode.h"
 
-Mode* CurrentMode = &DiagnosticMode;
+Mode* CurrentMode = &NormalMode;
 
 void switchMode(Mode* newMode)
 {
@@ -18,6 +20,7 @@ void switchMode(Mode* newMode)
 void setup()
 {
     Serial.begin(115200);
+    ModeButton.begin();
     ProjectorHeartbeat.begin();
     Mp3Player.begin();
     CurrentMode->start();
@@ -26,6 +29,7 @@ void setup()
 
 void loop()
 {
+    ModeButton.update();
     ProjectorHeartbeat.update();
     CurrentMode->update();
 }

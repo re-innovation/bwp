@@ -28,6 +28,15 @@
 
 #define HEARTBEAT_LED_PIN           13
 
+#define VIN_MONITOR_PIN             A4
+#define VIN_R1                      10
+#define VIN_R2                      100
+#define VIN_REF                     5
+#define VIN_PERIOD_MS               10
+#define VIN_EMA_ALPHA               0.5
+#define VIN_THRESH_LOW              5.0
+#define VIN_THRESH_HIGH             10.0
+
 #define MP3_RX_PIN                  6
 #define MP3_TX_PIN                  5
 #define MP3_BUSY_PIN                10
@@ -43,4 +52,5 @@
 #define MP3_TRACK_TOTAL_RUNTIME     217
 
 #define TEST_BUTTON_PIN             3
+#define MODE_BUTTON_PIN             7
 
