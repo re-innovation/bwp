@@ -7,3 +7,8 @@
 -   Buttons:
     -   Manual feed button (slowish forward motion for loading film)
     -   Frame offset adjust (press once to change, save to EEPROM)
+-   Metrics:
+    -   Write into EEPROM:
+        -   Number of uses
+        -   Total duration
+        -   Audio readout of numbers...
