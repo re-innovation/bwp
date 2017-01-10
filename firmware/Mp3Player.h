@@ -2,6 +2,7 @@
 
 #include <DFPlayerMini.h>
 #include <SoftwareSerial.h>
+#include <stdint.h>
 
 class Mp3Player_ {
 public:
@@ -9,6 +10,11 @@ public:
 
     void begin();
     void play(uint16_t trackNumber);
+    bool busy();
+    void sayDigit(uint8_t d);
+    void sayInteger(long n);
+    void sayDuration(long n);
+    void waitUntilIdle();
 
 private:
     SoftwareSerial _serial;
