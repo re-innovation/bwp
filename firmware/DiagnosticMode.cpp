@@ -1,6 +1,7 @@
 #include <Arduino.h>
 #include "DiagnosticMode.h"
 #include "ProjectorHeartbeat.h"
+#include "ModeButton.h"
 
 
 // Our global instance of the mode...
@@ -8,6 +9,7 @@ DiagnosticMode_ DiagnosticMode;
 
 DiagnosticMode_::DiagnosticMode_()
 {
+    setUpdatePeriod(100);
 }
 
 void DiagnosticMode_::modeStart()
@@ -28,5 +30,6 @@ void DiagnosticMode_::modeUpdate()
 
 bool DiagnosticMode_::isFinished()
 {
+    return ModeButton.tapped() != 0;
 }
 

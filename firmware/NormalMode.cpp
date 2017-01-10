@@ -4,6 +4,7 @@
 #include "NormalMode.h"
 #include "ProjectorHeartbeat.h"
 #include "ModeButton.h"
+#include "Projector.h"
 
 EMAVDivSampler VoltageSampler(VIN_MONITOR_PIN, VIN_R1, VIN_R2, VIN_REF, VIN_PERIOD_MS, VIN_EMA_ALPHA);
 
@@ -42,14 +43,12 @@ void NormalMode_::exitBrownout()
 void NormalMode_::modeUpdate()
 {
     DB(F("NormalMode::modeUpdate() volts="));
-    DB(_vSampler.averageVolts());
-    DB(F(" button="));
-    DBLN(ModeButton.tapped());
+    DBLN(_vSampler.averageVolts());
 }
 
 bool NormalMode_::isFinished()
 {
-    return false;
+    return ModeButton.tapped() != 0;
 }
 
 
