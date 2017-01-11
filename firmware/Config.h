@@ -44,12 +44,15 @@
 #define MP3_TRACK_ZERO              200
 #define MP3_TRACK_POINT             210
 #define MP3_TRACK_MINUS             211
-#define MP3_TRACK_HOURS             212
-#define MP3_TRACK_MINUTES           213
-#define MP3_TRACK_SECONDS           214
-#define MP3_TRACK_NUMBER_OF_USES    215
-#define MP3_TRACK_AVERAGE_RUNTIME   216
-#define MP3_TRACK_TOTAL_RUNTIME     217
+#define MP3_TRACK_HOUR              212
+#define MP3_TRACK_HOURS             213
+#define MP3_TRACK_MINUTE            214
+#define MP3_TRACK_MINUTES           215
+#define MP3_TRACK_SECOND            216
+#define MP3_TRACK_SECONDS           217
+#define MP3_TRACK_NUMBER_OF_USES    218
+#define MP3_TRACK_AVERAGE_RUNTIME   219
+#define MP3_TRACK_TOTAL_RUNTIME     220
 
 #define TEST_BUTTON_PIN             3
 #define MODE_BUTTON_PIN             7
