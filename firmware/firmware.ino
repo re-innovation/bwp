@@ -2,12 +2,13 @@
 #include <Mode.h>
 
 #include "ModeButton.h"
+#include "SetButton.h"
 #include "ProjectorHeartbeat.h"
 #include "Mp3Player.h"
 #include "Projector.h"
 
-#include "DiagnosticMode.h"
 #include "NormalMode.h"
+#include "DiagnosticMode.h"
 
 Mode* CurrentMode = &NormalMode;
 
@@ -22,10 +23,11 @@ void setup()
 {
     Serial.begin(115200);
     ModeButton.begin();
+    SetButton.begin();
     ProjectorHeartbeat.begin();
     Mp3Player.begin();
     Projector.begin();
-    
+
     CurrentMode->start();
     Serial.println(F("E:setup()"));
 }
@@ -33,6 +35,7 @@ void setup()
 void loop()
 {
     ModeButton.update();
+    SetButton.update();
     ProjectorHeartbeat.update();
     CurrentMode->update();
     Mp3Player.update();
