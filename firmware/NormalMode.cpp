@@ -5,6 +5,7 @@
 #include "ProjectorHeartbeat.h"
 #include "ModeButton.h"
 #include "Projector.h"
+#include "Mp3Player.h"
 
 EMAVDivSampler VoltageSampler(VIN_MONITOR_PIN, VIN_R1, VIN_R2, VIN_REF, VIN_PERIOD_MS, VIN_EMA_ALPHA);
 
@@ -25,6 +26,7 @@ void NormalMode_::modeStart()
 void NormalMode_::modeStop()
 {
     DBLN(F("NormalMode::modeStop"));
+    Mp3Player.stop();
 }
 
 void NormalMode_::enterBrownout()
@@ -32,6 +34,7 @@ void NormalMode_::enterBrownout()
     // Typical use: save state to EEPROM etc...
     Serial.println(F("NormalMode::enterBrownout()"));
     Projector.closeShutter();
+    Mp3Player.stop();
 }
 
 void NormalMode_::exitBrownout()
