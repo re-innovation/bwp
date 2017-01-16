@@ -34,6 +34,8 @@ void Projector_::begin()
 #ifdef TESTMODE
     _testButton.begin();
 #endif
+    _shutter = true;
+    _muted = true;
 }
 
 void Projector_::update()
@@ -73,7 +75,7 @@ void Projector_::frameStep()
 
     // open the shutter _frameOffset steps after fram hole detected
     if (_frameOffsetCounter >= 0) {
-        if (_frameOffsetCounter++ == _frameOffset) {
+        if (_frameOffsetCounter++ == _frameOffset && _shutter) {
             openShutter();
             _frameOffsetCounter = -1;
         }
@@ -89,7 +91,7 @@ void Projector_::audioStep()
     // The value will be 0 if there is no track to play, else
     // a positive integer if a mark has been ready successfully
     int track = _audioMarkSensor.get();
-    if (track >= 0) {
+    if (track >= 0 && ! _muted) {
         DB(F("Projector_::audioStep playing track "));
         DBLN(track);
         Mp3Player.play(track);

@@ -46,6 +46,24 @@ public:
      */
     void closeShutter();
 
+    /*! Get the current frame offset value */
+    int8_t frameOffset() { return _frameOffset; }
+
+    /*! Set the frame offset value */
+    void setFrameOffset(int8_t o) { _frameOffset = o; }
+
+    /*! Get the current mute state */
+    bool muted() { return _muted; }
+
+    /*! Get the current mute state */
+    void setMute(bool muted) { _muted = muted; }
+
+    /*! Get the current shutter mode */
+    bool shutter() { return _shutter; }
+
+    /*! Get the current shutter mode */
+    void setShutter(bool on) { _shutter = on; }
+
 private:
     /*! Start the shutter open sequence (stop film movement, turn on LED)
      */
@@ -92,6 +110,9 @@ private:
 
     int8_t _frameOffsetCounter;
     int8_t _frameOffset;
+
+    bool _muted;
+    bool _shutter;
 
 };
 
