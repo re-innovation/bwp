@@ -13,7 +13,7 @@
 #define SHUTTER_SYNC_PIN            A3
 #define SHUTTER_SYNC_DIFF_THRESHOLD 300
 #define SHUTTER_SYNC_MIN_STEPS      7
-#define SHUTTER_SYNC_OFFSET         8 
+#define SHUTTER_SYNC_MAX_OFFSET     25
 
 #define AUDIO_SYNC_PIN              A2
 #define AUDIO_SYNC_THRESH           390
@@ -44,7 +44,9 @@
 #define MP3_TRACK_NUMBER_OF_USES    190
 #define MP3_TRACK_AVERAGE_RUNTIME   191
 #define MP3_TRACK_TOTAL_RUNTIME     192
+#define MP3_TRACK_MANUAL_FEED       193
+#define MP3_TRACK_FRAME_OFFSET      194
 
-#define TEST_BUTTON_PIN             3
+#define SET_BUTTON_PIN              3
 #define MODE_BUTTON_PIN             7
 
