@@ -9,17 +9,13 @@ Projector_ Projector;
 
 Projector_::Projector_() :
     _stepper(AccelStepper::HALF4WIRE, STEPPER_PIN_1, STEPPER_PIN_3, STEPPER_PIN_2, STEPPER_PIN_4),
-#ifdef TESTMODE
-    _testButton(TEST_BUTTON_PIN),
-#endif
     _stepsSinceFrame(0),
     _lastFrameSensorValue(512),
     _frameSyncFound(false),
     _shutterOpen(false),
     _shutterStart(0),
     _audioMarkSensor(AUDIO_SYNC_PIN, AUDIO_SYNC_ALPHA, AUDIO_SYNC_THRESH),
-    _frameOffsetCounter(-1),
-    _frameOffset(SHUTTER_SYNC_OFFSET)
+    _frameOffsetCounter(-1)
 {
 }
 
@@ -31,28 +27,21 @@ void Projector_::begin()
     closeShutter();
     _audioMarkSensor.begin();
     _frameOffsetCounter = -1;
-#ifdef TESTMODE
-    _testButton.begin();
-#endif
     _shutter = true;
     _muted = true;
+
+    // TODO: _frameOffset from EEPROM
+    _frameOffset = 0;
 }
 
 void Projector_::update()
 {
-#ifdef TESTMODE
-    _testButton.update();
-#endif
 
     if (_shutterOpen) {
         if (millis() - _shutterStart >= SHUTTER_OPEN_MS) {
             closeShutter();
         }
-#ifdef TESTMODE
-    } else if (_testButton.tapped()) {
-#else
     } else if (_stepper.runSpeed()) {
-#endif
         frameStep();
         audioStep();
     }

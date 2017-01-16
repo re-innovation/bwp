@@ -1,9 +1,6 @@
 #pragma once
 
 #include <AccelStepper.h>
-#ifdef TESTMODE
-#include <DebouncedButton.h>
-#endif
 #include "AudioMarkReader.h"
 
 /*! \brief model/control the projector
@@ -82,12 +79,6 @@ private:
     //////////// Data members
     //! Object to control the stepper motor which moves the film sprocket
     AccelStepper _stepper;
-
-#ifdef TESTMODE
-    //! When TESTMODE is defined, steps are triggered by the
-    //! press of a button, not by stepper motor activity.
-    DebouncedButton _testButton;
-#endif
 
     //! How many steps have happened since the last frame was displayed
     uint8_t _stepsSinceFrame;
