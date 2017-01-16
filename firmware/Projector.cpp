@@ -94,7 +94,6 @@ void Projector_::audioStep()
         DBLN(track);
         Mp3Player.play(track);
     }
-
 }
 
 void Projector_::openShutter()

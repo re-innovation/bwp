@@ -1,6 +1,6 @@
 #pragma once
 
-#include <DFPlayerMini.h>
+#include <DFPReader.h>
 #include <SoftwareSerial.h>
 #include <stdint.h>
 
@@ -9,16 +9,16 @@ public:
     Mp3Player_();
 
     void begin();
+    void update();
+    //! Immediate play
     void play(uint16_t trackNumber);
+    void stop();
     bool busy();
-    void sayDigit(uint8_t d);
-    void sayInteger(long n);
-    void sayDuration(long n);
-    void waitUntilIdle();
+    void readNumber(double n, uint8_t dp);
 
 private:
     SoftwareSerial _serial;
-    DFPlayerMini _mp3;
+    DFPReader _mp3;
 
 };
 

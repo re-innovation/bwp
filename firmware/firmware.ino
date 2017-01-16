@@ -35,6 +35,7 @@ void loop()
     ModeButton.update();
     ProjectorHeartbeat.update();
     CurrentMode->update();
+    Mp3Player.update();
     if (CurrentMode->isFinished()) {
         if (CurrentMode == &NormalMode) {
             switchMode(&DiagnosticMode);

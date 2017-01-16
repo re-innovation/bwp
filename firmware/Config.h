@@ -37,33 +37,13 @@
 #define VIN_THRESH_LOW              5.0
 #define VIN_THRESH_HIGH             10.0
 
-#define MP3_RX_PIN                  6
 #define MP3_TX_PIN                  5
+#define MP3_RX_PIN                  6
 #define MP3_BUSY_PIN                10
 #define MP3_VOLUME                  10
-#define MP3_TRACK_ZERO              200
-#define MP3_TRACK_TEN               210
-#define MP3_TRACK_TWENTY            220
-#define MP3_TRACK_THIRTY            221
-#define MP3_TRACK_FOURTY            222
-#define MP3_TRACK_FIFTY             223
-#define MP3_TRACK_SIXTY             224
-#define MP3_TRACK_SEVENTY           225
-#define MP3_TRACK_EIGHTY            226
-#define MP3_TRACK_NINETY            227
-#define MP3_TRACK_HUNDRED           228
-#define MP3_TRACK_THOUSAND          229
-#define MP3_TRACK_POINT             231
-#define MP3_TRACK_MINUS             232
-#define MP3_TRACK_HOUR              233
-#define MP3_TRACK_HOURS             234
-#define MP3_TRACK_MINUTE            235
-#define MP3_TRACK_MINUTES           236
-#define MP3_TRACK_SECOND            237
-#define MP3_TRACK_SECONDS           238
-#define MP3_TRACK_NUMBER_OF_USES    239
-#define MP3_TRACK_AVERAGE_RUNTIME   240
-#define MP3_TRACK_TOTAL_RUNTIME     241
+#define MP3_TRACK_NUMBER_OF_USES    190
+#define MP3_TRACK_AVERAGE_RUNTIME   191
+#define MP3_TRACK_TOTAL_RUNTIME     192
 
 #define TEST_BUTTON_PIN             3
 #define MODE_BUTTON_PIN             7
