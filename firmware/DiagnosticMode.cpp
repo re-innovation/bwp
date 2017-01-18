@@ -3,6 +3,7 @@
 #include "ProjectorHeartbeat.h"
 #include "ModeButton.h"
 #include "DiagnosticFrameSyncMode.h"
+#include "DiagnosticManualFeedMode.h"
 
 // Our global instance of the mode...
 DiagnosticMode_ DiagnosticMode;
@@ -17,6 +18,7 @@ void DiagnosticMode_::modeStart()
     ProjectorHeartbeat.setMode(Heartbeat::Quick);
     subMode = &DiagnosticFrameSyncMode;
     subMode->start();
+    _done = false;
 }
 
 void DiagnosticMode_::modeStop()
@@ -27,12 +29,22 @@ void DiagnosticMode_::modeStop()
 
 void DiagnosticMode_::modeUpdate()
 {
+    // Handle mode changes
+    if (subMode->isFinished()) {
+        if (subMode == &DiagnosticFrameSyncMode) {
+            switchSubMode(&DiagnosticManualFeedMode);
+        } else if (subMode == &DiagnosticManualFeedMode) {
+            _done = true;
+        }
+    }
+
+    // Give timeslice to current sub-mode
     subMode->update();
 }
 
 bool DiagnosticMode_::isFinished()
 {
-    return ModeButton.tapped() != 0;
+    return _done;
 }
 
 void DiagnosticMode_::switchSubMode(Mode* mode)

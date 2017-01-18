@@ -4,9 +4,11 @@
 -   Brownout control 
     -   reset audio [done]
     -   stop feed [done]
+    -   save runtime / usage count to EEPROM
+        -   do not increment usage count if already saved this run
 -   Buttons:
-    -   Manual feed button (slowish forward motion for loading film)
-    -   Frame offset adjust (press once to change, save to EEPROM)
+    -   Manual feed button (slowish forward motion for loading film) [part done - need customizable speed]
+    -   Frame offset adjust (press once to change, save to EEPROM) [part done - need EEPROM save]
 -   Metrics:
     -   Write into EEPROM:
         -   Number of uses

@@ -20,6 +20,8 @@ NormalMode_::NormalMode_(EMAVDivSampler& vSampler, const float vThreshLow, const
 void NormalMode_::modeStart()
 {
     DBLN(F("NormalMode::modeStart"));
+    Projector.setMute(false);
+    Projector.setShutter(true);
     ProjectorHeartbeat.setMode(Heartbeat::Normal);
 }
 
