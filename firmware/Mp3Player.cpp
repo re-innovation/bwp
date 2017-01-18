@@ -16,6 +16,7 @@ Mp3Player_::Mp3Player_() :
 void Mp3Player_::begin()
 {
     _serial.begin(9600);
+    _mp3.begin();
     _mp3.sendCmd(DFPlayerMini::SetVolume, MP3_VOLUME);
 }
 
