@@ -7,7 +7,8 @@
 #define STEPPER_PIN_2               7
 #define STEPPER_PIN_3               6
 #define STEPPER_PIN_4               5
-#define STEPPER_STEPS_PER_SEC       800
+//#define STEPPER_STEPS_PER_SEC       800
+#define STEPPER_STEPS_PER_SEC       30
 #define STEPPER_MAX_SPEED           1000
 
 #define SHUTTER_OPEN_MS             75
@@ -55,7 +56,7 @@
 #define MP3_TRACK_VOLUME_ADJUST     195
 #define MP3_TRACK_VOLUME_TRACK      9
 
-#define MODE_BUTTON_PIN             A5
-#define SET_BUTTON_PIN              A6
+#define SW1_PIN             A5
+#define SW2_PIN              A6
 #define SW3_PIN                     A7
 
