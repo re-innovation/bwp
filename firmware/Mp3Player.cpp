@@ -17,7 +17,9 @@ void Mp3Player_::begin()
 {
     _serial.begin(9600);
     _mp3.begin();
-    _mp3.sendCmd(DFPlayerMini::SetVolume, MP3_VOLUME);
+    // TODO: load volume from EEPROM
+    _volume = MP3_VOLUME;
+    _mp3.sendCmd(DFPlayerMini::SetVolume, _volume);
 }
 
 void Mp3Player_::update()

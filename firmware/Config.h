@@ -46,6 +46,8 @@
 #define MP3_TRACK_TOTAL_RUNTIME     192
 #define MP3_TRACK_MANUAL_FEED       193
 #define MP3_TRACK_FRAME_OFFSET      194
+#define MP3_TRACK_VOLUME_ADJUST     195
+#define MP3_TRACK_VOLUME_TRACK      9
 
 #define SET_BUTTON_PIN              3
 #define MODE_BUTTON_PIN             7

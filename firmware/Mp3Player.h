@@ -15,10 +15,13 @@ public:
     void stop();
     bool busy();
     void readNumber(double n, uint8_t dp);
+    uint8_t volume() { return _volume; }
+    void setVolume(uint8_t v) { _volume = v; }
 
 private:
     SoftwareSerial _serial;
     DFPReader _mp3;
+    uint8_t _volume;
 
 };
 
