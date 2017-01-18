@@ -4,6 +4,7 @@
 #include "SetButton.h"
 #include "Projector.h"
 #include "MutilaDebug.h"
+#include "Mp3Player.h"
 
 // Our global instance of the mode...
 DiagnosticFrameSyncMode_ DiagnosticFrameSyncMode;
@@ -16,6 +17,7 @@ void DiagnosticFrameSyncMode_::modeStart()
 {
     Projector.setMute(true);
     Projector.setShutter(true);
+    Mp3Player.play(MP3_TRACK_FRAME_OFFSET);
     DB(F("DiagnosticFrameSyncMode::modeStart, offset="));
     DBLN(Projector.frameOffset());
 }
@@ -23,11 +25,11 @@ void DiagnosticFrameSyncMode_::modeStart()
 void DiagnosticFrameSyncMode_::modeStop()
 {
     Serial.println(F("DiagnosticFrameSyncMode::modeStop()"));
+    // TODO: save to EEPROM
 }
 
 void DiagnosticFrameSyncMode_::modeUpdate()
 {
-    Serial.println(F("DiagnosticFrameSyncMode::modeUpdate()"));
     Projector.update();
     if (SetButton.tapped()) {
         int8_t offset = Projector.frameOffset();
