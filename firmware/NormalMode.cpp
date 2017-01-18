@@ -3,7 +3,7 @@
 #include <EMAVDivSampler.h>
 #include "NormalMode.h"
 #include "ProjectorHeartbeat.h"
-#include "ModeButton.h"
+#include "SW1.h"
 #include "Projector.h"
 #include "Mp3Player.h"
 
@@ -54,7 +54,7 @@ void NormalMode_::modeUpdate()
 
 bool NormalMode_::isFinished()
 {
-    return ModeButton.tapped() != 0;
+    return SW1.tapped() != 0;
 }
 
 

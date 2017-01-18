@@ -1,7 +1,7 @@
 #include <Arduino.h>
 #include "DiagnosticManualFeedMode.h"
-#include "ModeButton.h"
-#include "SetButton.h"
+#include "SW1.h"
+#include "SW2.h"
 #include "Projector.h"
 #include "MutilaDebug.h"
 #include "Mp3Player.h"
@@ -28,13 +28,13 @@ void DiagnosticManualFeedMode_::modeStop()
 
 void DiagnosticManualFeedMode_::modeUpdate()
 {
-    if (SetButton.held()) {
+    if (SW2.held()) {
         Projector.update();
     }
 }
 
 bool DiagnosticManualFeedMode_::isFinished()
 {
-    return ModeButton.tapped() != 0;
+    return SW1.tapped() != 0;
 }
 

@@ -1,7 +1,7 @@
 #include <Arduino.h>
 #include "DiagnosticFrameSyncMode.h"
-#include "ModeButton.h"
-#include "SetButton.h"
+#include "SW1.h"
+#include "SW2.h"
 #include "Projector.h"
 #include "MutilaDebug.h"
 #include "Mp3Player.h"
@@ -31,7 +31,7 @@ void DiagnosticFrameSyncMode_::modeStop()
 void DiagnosticFrameSyncMode_::modeUpdate()
 {
     Projector.update();
-    if (SetButton.tapped()) {
+    if (SW2.tapped()) {
         int8_t offset = Projector.frameOffset();
         offset = (offset+1) % SHUTTER_SYNC_MAX_OFFSET;
         DB(F("setting frame offset to "));
@@ -42,6 +42,6 @@ void DiagnosticFrameSyncMode_::modeUpdate()
 
 bool DiagnosticFrameSyncMode_::isFinished()
 {
-    return ModeButton.tapped() != 0;
+    return SW1.tapped() != 0;
 }
 

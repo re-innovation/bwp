@@ -5,10 +5,10 @@
 #define STEPPER_PIN_2               10
 #define STEPPER_PIN_3               11
 #define STEPPER_PIN_4               12
-#define STEPPER_STEPS_PER_SEC       400
+#define STEPPER_STEPS_PER_SEC       800
 #define STEPPER_MAX_SPEED           1000
 
-#define SHUTTER_OPEN_MS             50
+#define SHUTTER_OPEN_MS             75
 #define SHUTTER_LED_PIN             4
 #define SHUTTER_SYNC_PIN            A3
 #define SHUTTER_SYNC_DIFF_THRESHOLD 300
@@ -28,8 +28,8 @@
 
 #define HEARTBEAT_LED_PIN           13
 
-#define VIN_MONITOR_PIN             A4
-#define VIN_R1                      10
+#define VIN_MONITOR_PIN             A5
+#define VIN_R1                      100
 #define VIN_R2                      100
 #define VIN_REF                     5
 #define VIN_PERIOD_MS               10

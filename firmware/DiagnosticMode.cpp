@@ -1,7 +1,7 @@
 #include <Arduino.h>
 #include "DiagnosticMode.h"
 #include "ProjectorHeartbeat.h"
-#include "ModeButton.h"
+#include "SW1.h"
 #include "DiagnosticFrameSyncMode.h"
 #include "DiagnosticManualFeedMode.h"
 

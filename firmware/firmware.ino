@@ -1,8 +1,8 @@
 #include <Arduino.h>
 #include <Mode.h>
 
-#include "ModeButton.h"
-#include "SetButton.h"
+#include "SW1.h"
+#include "SW2.h"
 #include "ProjectorHeartbeat.h"
 #include "Mp3Player.h"
 #include "Projector.h"
@@ -22,8 +22,8 @@ void switchMode(Mode* newMode)
 void setup()
 {
     Serial.begin(115200);
-    ModeButton.begin();
-    SetButton.begin();
+    SW1.begin();
+    SW2.begin();
     ProjectorHeartbeat.begin();
     Mp3Player.begin();
     Projector.begin();
@@ -34,8 +34,8 @@ void setup()
 
 void loop()
 {
-    ModeButton.update();
-    SetButton.update();
+    SW1.update();
+    SW2.update();
     ProjectorHeartbeat.update();
     CurrentMode->update();
     Mp3Player.update();

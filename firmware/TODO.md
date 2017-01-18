@@ -6,6 +6,7 @@
     -   stop feed [done]
     -   save runtime / usage count to EEPROM
         -   do not increment usage count if already saved this run
+-   Volume setting mode
 -   Buttons:
     -   Manual feed button (slowish forward motion for loading film) [part done - need customizable speed]
     -   Frame offset adjust (press once to change, save to EEPROM) [part done - need EEPROM save]
@@ -14,3 +15,7 @@
         -   Number of uses
         -   Total duration
         -   Audio readout of numbers...
+
+resistor values for vin monitor:
+- pin A5
+- Resistors = 100k (both)
