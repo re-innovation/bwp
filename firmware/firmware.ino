@@ -3,6 +3,7 @@
 
 #include "SW1.h"
 #include "SW2.h"
+#include "SW3.h"
 #include "ProjectorHeartbeat.h"
 #include "Mp3Player.h"
 #include "Projector.h"
@@ -24,6 +25,7 @@ void setup()
     Serial.begin(115200);
     SW1.begin();
     SW2.begin();
+    SW3.begin();
     ProjectorHeartbeat.begin();
     Mp3Player.begin();
     Projector.begin();
@@ -36,6 +38,7 @@ void loop()
 {
     SW1.update();
     SW2.update();
+    SW3.update();
     ProjectorHeartbeat.update();
     CurrentMode->update();
     Mp3Player.update();
