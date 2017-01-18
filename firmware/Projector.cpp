@@ -28,7 +28,7 @@ void Projector_::begin()
     _audioMarkSensor.begin();
     _frameOffsetCounter = -1;
     _shutter = true;
-    _muted = true;
+    _muted = false;
 
     // TODO: _frameOffset from EEPROM
     _frameOffset = 0;
