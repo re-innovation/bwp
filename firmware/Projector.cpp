@@ -23,7 +23,7 @@ void Projector_::begin()
 {
     _stepper.setMaxSpeed(STEPPER_MAX_SPEED);
     _stepper.setSpeed(STEPPER_STEPS_PER_SEC);
-    pinMode(SHUTTER_LED_PIN, OUTPUT);
+    pinMode(SHUTTER_LED_B_PIN, OUTPUT);
     closeShutter();
     _audioMarkSensor.begin();
     _frameOffsetCounter = -1;
@@ -94,13 +94,13 @@ void Projector_::openShutter()
     _stepsSinceFrame = 0;
     _frameSyncFound = true;
     _shutterOpen = true;
-    digitalWrite(SHUTTER_LED_PIN, HIGH);
+    digitalWrite(SHUTTER_LED_B_PIN, HIGH);
 }
 
 void Projector_::closeShutter()
 {
     DBLN(F("closeShutter"));
-    digitalWrite(SHUTTER_LED_PIN, LOW);
+    digitalWrite(SHUTTER_LED_B_PIN, LOW);
     _shutterOpen = false;
 }
 
