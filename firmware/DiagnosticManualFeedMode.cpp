@@ -2,6 +2,7 @@
 #include "DiagnosticManualFeedMode.h"
 #include "SW1.h"
 #include "SW2.h"
+#include "SW3.h"
 #include "Projector.h"
 #include "MutilaDebug.h"
 #include "Mp3Player.h"
@@ -23,12 +24,12 @@ void DiagnosticManualFeedMode_::modeStart()
 
 void DiagnosticManualFeedMode_::modeStop()
 {
-    Serial.println(F("DiagnosticManualFeedMode::modeStop()"));
+    DBLN(F("DiagnosticManualFeedMode::modeStop()"));
 }
 
 void DiagnosticManualFeedMode_::modeUpdate()
 {
-    if (SW2.held()) {
+    if (SW2.on()) {
         Projector.update();
     }
 }
