@@ -1,7 +1,6 @@
 #include <Arduino.h>
 #include "DiagnosticManualFeedMode.h"
 #include "SW1.h"
-#include "SW2.h"
 #include "SW3.h"
 #include "Projector.h"
 #include "MutilaDebug.h"
@@ -29,7 +28,7 @@ void DiagnosticManualFeedMode_::modeStop()
 
 void DiagnosticManualFeedMode_::modeUpdate()
 {
-    if (SW2.on()) {
+    if (SW3.on()) {
         Projector.update();
     }
 }
