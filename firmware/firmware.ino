@@ -28,12 +28,9 @@ void setup()
     SW2.begin();
     SW3.begin();
     ProjectorHeartbeat.begin();
-    delay(100);
-    Mp3Player.begin();
-    delay(100);
     Projector.begin();
-    delay(100);
 
+    Mp3Player.begin();
     if (!Mp3Player.check()) {
         DBLN(F("Mp3Player comms ERROR"));
     }
