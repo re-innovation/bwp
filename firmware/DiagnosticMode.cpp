@@ -15,7 +15,7 @@ DiagnosticMode_::DiagnosticMode_()
 
 void DiagnosticMode_::modeStart()
 {
-    Serial.println(F("DiagnosticMode::modeStart()"));
+    DBLN(F("DiagnosticMode::modeStart()"));
     ProjectorHeartbeat.setMode(Heartbeat::Quick);
     subMode = &DiagnosticFrameSyncMode;
     subMode->start();
@@ -24,7 +24,7 @@ void DiagnosticMode_::modeStart()
 
 void DiagnosticMode_::modeStop()
 {
-    Serial.println(F("DiagnosticMode::modeStop()"));
+    DBLN(F("DiagnosticMode::modeStop()"));
     subMode->stop();
 }
 
