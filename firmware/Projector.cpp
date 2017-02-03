@@ -64,7 +64,7 @@ void Projector_::frameStep()
 
     // open the shutter _frameOffset steps after fram hole detected
     if (_frameOffsetCounter >= 0) {
-        if (_frameOffsetCounter++ == _frameOffset && _shutter) {
+        if (_frameOffsetCounter++ == _frameOffset && _shutter || _frameOffsetCounter == 128) {
             openShutter();
             _frameOffsetCounter = -1;
         }
@@ -94,12 +94,16 @@ void Projector_::openShutter()
     _stepsSinceFrame = 0;
     _frameSyncFound = true;
     _shutterOpen = true;
+    digitalWrite(SHUTTER_LED_R_PIN, HIGH);
+    digitalWrite(SHUTTER_LED_G_PIN, HIGH);
     digitalWrite(SHUTTER_LED_B_PIN, HIGH);
 }
 
 void Projector_::closeShutter()
 {
     DBLN(F("closeShutter"));
+    digitalWrite(SHUTTER_LED_R_PIN, LOW);
+    digitalWrite(SHUTTER_LED_G_PIN, LOW);
     digitalWrite(SHUTTER_LED_B_PIN, LOW);
     _shutterOpen = false;
 }
