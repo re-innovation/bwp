@@ -13,10 +13,12 @@ public:
     uint8_t volume() { return _volume; }
     void setVolume(uint8_t v);
     void enable(bool enabled);
+    void update();
 
 private:
     SoftwareSerial _serial;
     uint8_t _volume;
+    unsigned long _enabledAt;
 
 };
 

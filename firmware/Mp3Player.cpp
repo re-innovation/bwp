@@ -9,29 +9,26 @@ Mp3Player_ Mp3Player;
 
 Mp3Player_::Mp3Player_() :
     DFPReader(_serial, DFPlayerMini::PlayTf, MP3_BUSY_PIN),
-    _serial(MP3_TX_PIN, MP3_RX_PIN)
+    _serial(MP3_TX_PIN, MP3_RX_PIN),
+    _enabledAt(0)
 {
 }
 
 void Mp3Player_::begin()
 {
+    DB(F("Mp3Player_::begin"));
     _serial.begin(9600);
-    delay(200);
     DFPReader::begin();
-    // TODO: handle amp power control 
     pinMode(MP3_POWER_PIN, OUTPUT);
+    _volume = MP3_VOLUME;
+    // Turn on the amp
     enable(true);
-    
-    // TODO: load volume from EEPROM
-    setVolume(MP3_VOLUME);
 }
 
 void Mp3Player_::play(uint16_t trackNumber)
 {
-#ifdef MP3DEBUG
-    Serial.print(F("Mp3Player_::play track="));
-    Serial.println(trackNumber);
-#endif
+    DB(F("Mp3Player_::play track="));
+    DBLN(trackNumber);
     if (reading()) {
         stop();
     }
@@ -45,12 +42,33 @@ void Mp3Player_::stop()
 
 void Mp3Player_::setVolume(uint8_t v)
 {
+    DB(F("Mp3Player_::setVolume to "));
+    DBLN(v);
     _volume = v;
     sendCmd(DFPlayerMini::SetVolume, v);
 }
 
 void Mp3Player_::enable(bool enabled)
 {
-    digitalWrite(MP3_POWER_PIN, enabled ? HIGH : LOW);
+    DB(F("Mp3Player_::enable to "));
+    DBLN(enabled);
+    digitalWrite(MP3_POWER_PIN, enabled);
+    if (enabled) {
+        _enabledAt = millis()+1;
+    }
+}
+
+void Mp3Player_::update()
+{
+    // the DFPlayerMini has a quirk - if you set the volume less than
+    // a second after powering on the device, it doesn't "stick", so we
+    // will set the volume if the device was powered on about a second ago
+    if (_enabledAt != 0) {
+        if (millis() > _enabledAt + 1000) {
+            setVolume(_volume);
+            _enabledAt = 0;
+        }
+    }
+    DFPReader::update();
 }
 
