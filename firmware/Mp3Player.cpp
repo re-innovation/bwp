@@ -8,23 +8,22 @@
 Mp3Player_ Mp3Player;
 
 Mp3Player_::Mp3Player_() :
-    _serial(MP3_TX_PIN, MP3_RX_PIN),
-    _mp3(_serial, DFPlayerMini::PlayTf, MP3_BUSY_PIN)
+    DFPReader(_serial, DFPlayerMini::PlayTf, MP3_BUSY_PIN),
+    _serial(MP3_TX_PIN, MP3_RX_PIN)
 {
 }
 
 void Mp3Player_::begin()
 {
     _serial.begin(9600);
-    _mp3.begin();
+    delay(200);
+    DFPReader::begin();
+    // TODO: handle amp power control 
+    pinMode(MP3_POWER_PIN, OUTPUT);
+    enable(true);
+    
     // TODO: load volume from EEPROM
-    _volume = MP3_VOLUME;
-    _mp3.sendCmd(DFPlayerMini::SetVolume, _volume);
-}
-
-void Mp3Player_::update()
-{
-    _mp3.update();
+    setVolume(MP3_VOLUME);
 }
 
 void Mp3Player_::play(uint16_t trackNumber)
@@ -33,24 +32,25 @@ void Mp3Player_::play(uint16_t trackNumber)
     Serial.print(F("Mp3Player_::play track="));
     Serial.println(trackNumber);
 #endif
-    if (busy()) {
+    if (reading()) {
         stop();
     }
-    _mp3.sendCmd(DFPlayerMini::PlayTf, trackNumber);
+    sendCmd(DFPlayerMini::PlayTf, trackNumber);
 }
 
 void Mp3Player_::stop()
 {
-    _mp3.resetReaderBuf();
+    resetReaderBuf();
 }
 
-bool Mp3Player_::busy()
+void Mp3Player_::setVolume(uint8_t v)
 {
-    return !_mp3.reading();
+    _volume = v;
+    sendCmd(DFPlayerMini::SetVolume, v);
 }
 
-void Mp3Player_::readNumber(double n, uint8_t dp)
+void Mp3Player_::enable(bool enabled)
 {
-    readNumber(n, dp);
+    digitalWrite(MP3_POWER_PIN, enabled ? HIGH : LOW);
 }
 
