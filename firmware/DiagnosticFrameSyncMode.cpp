@@ -2,6 +2,7 @@
 #include "DiagnosticFrameSyncMode.h"
 #include "SW1.h"
 #include "SW2.h"
+#include "SW3.h"
 #include "Projector.h"
 #include "MutilaDebug.h"
 #include "Mp3Player.h"
@@ -24,14 +25,14 @@ void DiagnosticFrameSyncMode_::modeStart()
 
 void DiagnosticFrameSyncMode_::modeStop()
 {
-    Serial.println(F("DiagnosticFrameSyncMode::modeStop()"));
+    DBLN(F("DiagnosticFrameSyncMode::modeStop()"));
     // TODO: save to EEPROM
 }
 
 void DiagnosticFrameSyncMode_::modeUpdate()
 {
     Projector.update();
-    if (SW2.tapped()) {
+    if (SW3.tapped()) {
         int8_t offset = Projector.frameOffset();
         offset = (offset+1) % SHUTTER_SYNC_MAX_OFFSET;
         DB(F("setting frame offset to "));
