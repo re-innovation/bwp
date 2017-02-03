@@ -7,10 +7,10 @@
 #define STEPPER_PIN_2               7
 #define STEPPER_PIN_3               6
 #define STEPPER_PIN_4               5
-#define STEPPER_STEPS_PER_SEC       800
+#define STEPPER_STEPS_PER_SEC       50
 #define STEPPER_MAX_SPEED           1000
 
-#define SHUTTER_OPEN_MS             100
+#define SHUTTER_OPEN_MS             200
 #define SHUTTER_LED_R_PIN           9
 #define SHUTTER_LED_G_PIN           10
 #define SHUTTER_LED_B_PIN           11
@@ -47,7 +47,7 @@
 #define MP3_RX_PIN                  13
 #define MP3_BUSY_PIN                A0
 #define MP3_POWER_PIN               3
-#define MP3_VOLUME                  10
+#define MP3_VOLUME                  3
 #define MP3_TRACK_NUMBER_OF_USES    190
 #define MP3_TRACK_AVERAGE_RUNTIME   191
 #define MP3_TRACK_TOTAL_RUNTIME     192
