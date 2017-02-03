@@ -52,10 +52,12 @@ void Projector_::frameStep()
     _stepsSinceFrame++;
     int syncValue = analogRead(SHUTTER_SYNC_PIN);
     int diff = syncValue - _lastFrameSensorValue;
-    //DB(F("Projector_::frameStep f="));
-    //DB(_stepsSinceFrame);
-    //DB(F(" diff="));
-    //DBLN(diff);
+    DB(F("Projector_::frameStep f="));
+    DB(_stepsSinceFrame);
+    DB(F(" sv="));
+    DB(syncValue);
+    DB(F(" diff="));
+    DBLN(diff);
     if ((!_frameSyncFound || _stepsSinceFrame > SHUTTER_SYNC_MIN_STEPS) && diff >= SHUTTER_SYNC_DIFF_THRESHOLD) {
         // Start the frame offset counter
         _frameOffsetCounter = 0;
