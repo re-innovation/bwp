@@ -7,11 +7,10 @@
 #define STEPPER_PIN_2               7
 #define STEPPER_PIN_3               6
 #define STEPPER_PIN_4               5
-//#define STEPPER_STEPS_PER_SEC       800
-#define STEPPER_STEPS_PER_SEC       30
+#define STEPPER_STEPS_PER_SEC       800
 #define STEPPER_MAX_SPEED           1000
 
-#define SHUTTER_OPEN_MS             75
+#define SHUTTER_OPEN_MS             100
 #define SHUTTER_LED_R_PIN           9
 #define SHUTTER_LED_G_PIN           10
 #define SHUTTER_LED_B_PIN           11
@@ -33,7 +32,6 @@
 
 #define HEARTBEAT_LED_PIN           4
 
-#define VIN_INTERNAL_PIN            A2
 #define VIN_MONITOR_PIN             A1
 #define VIN_R1                      10
 #define VIN_R2                      680
@@ -42,6 +40,8 @@
 #define VIN_EMA_ALPHA               0.5
 #define VIN_THRESH_LOW              7.0
 #define VIN_THRESH_HIGH             10.0
+
+#define VIN_INTERNAL_PIN            A2
 
 #define MP3_TX_PIN                  12
 #define MP3_RX_PIN                  13
@@ -54,7 +54,7 @@
 #define MP3_TRACK_MANUAL_FEED       193
 #define MP3_TRACK_FRAME_OFFSET      194
 #define MP3_TRACK_VOLUME_ADJUST     195
-#define MP3_TRACK_VOLUME_TRACK      9
+#define MP3_TRACK_VOLUME_TRACK      1
 
 #define SW1_PIN                     A5
 #define SW2_PIN                     A6
