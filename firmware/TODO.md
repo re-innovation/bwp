@@ -1,23 +1,28 @@
 To Do
 =====
 
--   Frame offset - trigger n half-steps after detecting frame hole
-    -   Load value from EEPROM at startup (use a setting object)
+High Priority (while having access to prototype)
+------------------------------------------------
+
+-   Investigate frame sync skips
+    -   trigger n half-steps after detecting frame hole
+-   Test audiomark sensor with prototype 
+
+
+Lower Priority (can be done w/o prototype)
+------------------------------------------
+
 -   Brownout control 
     -   save runtime / usage count to EEPROM (use a setting object)
         -   do not increment usage count if already saved this run
--   Volume setting mode: 
-    -   investigate control of headphone output, otherwise:
-    -   volume in hardware
--   Modes:
-    -   Manual feed mode: use different speed from projector more
 -   Metrics read-out:
     -   Write into EEPROM:
         -   Number of uses
         -   Total duration
         -   Audio readout of numbers...
--   Fix: DEBUG disables audio for some reason
--   Make Mp3Player inherit from DFPReader so we can call members directly - saves a little memory
+-   Save to EEPROM on setting changes
+-   Modes:
+    -   Manual feed mode: use different speed from projector more
 
 Testing
 =======
@@ -38,3 +43,4 @@ Done
     -   stop feed [done]
 -   Manual feed mode [done]
 -   Volume setting mode [done]
+-   Make Mp3Player inherit from DFPReader so we can call members directly - saves a little memory
