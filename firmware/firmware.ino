@@ -1,4 +1,5 @@
 #include <Arduino.h>
+#include <MutilaDebug.h>
 #include <Mode.h>
 
 #include "SW1.h"
@@ -27,11 +28,18 @@ void setup()
     SW2.begin();
     SW3.begin();
     ProjectorHeartbeat.begin();
+    delay(100);
     Mp3Player.begin();
+    delay(100);
     Projector.begin();
+    delay(100);
+
+    if (!Mp3Player.check()) {
+        DBLN(F("Mp3Player comms ERROR"));
+    }
 
     CurrentMode->start();
-    Serial.println(F("E:setup()"));
+    DBLN(F("E:setup()"));
 }
 
 void loop()
