@@ -2,6 +2,7 @@
 #include "DiagnosticVolumeAdjustMode.h"
 #include "SW1.h"
 #include "SW2.h"
+#include "SW3.h"
 #include "MutilaDebug.h"
 #include "Mp3Player.h"
 #include "Config.h"
@@ -22,16 +23,24 @@ void DiagnosticVolumeAdjustMode_::modeStart()
 
 void DiagnosticVolumeAdjustMode_::modeStop()
 {
-    Serial.println(F("DiagnosticVolumeAdjustMode::modeStop()"));
+    DBLN(F("DiagnosticVolumeAdjustMode::modeStop()"));
     // TODO: save to EEPROM
 }
 
 void DiagnosticVolumeAdjustMode_::modeUpdate()
 {
-    if (SW2.tapped()) {
-        uint8_t volume = Mp3Player.volume();
-        // loop through volumes between 0 and 30
+    uint8_t volume = Mp3Player.volume();
+    if (SW3.tapped()) {
         volume = (volume+1) % 31;
+    }
+    if (SW2.tapped()) {
+        volume = (volume-1);
+        // we are using unsigned, so < 0 will cause 255
+        if (volume > 30) {
+            volume = 30;
+        }
+    }
+    if (volume != Mp3Player.volume()) {
         DB(F("setting volume to "));
         DBLN(volume);
         Mp3Player.setVolume(volume);
