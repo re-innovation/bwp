@@ -15,7 +15,7 @@ public:
     void save();   //!< saves values to EEPROM
 
     // Accessors
-    unsigned long getUseCount() { return _useCount; }
+    unsigned long getUseCount() { return _useCount + (_useCounted ? 0 : 1); }
     unsigned long getUseSecondaThisRun();
     unsigned long getUseSeconds() { return _useSeconds + getUseSecondaThisRun(); }
     uint16_t volume() { return _volume; }

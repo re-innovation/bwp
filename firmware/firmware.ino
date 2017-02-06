@@ -13,7 +13,7 @@
 #include "NormalMode.h"
 #include "DiagnosticMode.h"
 
-Mode* CurrentMode = &DiagnosticMode;
+Mode* CurrentMode = &NormalMode;
 
 void switchMode(Mode* newMode)
 {

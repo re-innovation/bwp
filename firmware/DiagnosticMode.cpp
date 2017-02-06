@@ -5,6 +5,8 @@
 #include "DiagnosticFrameSyncMode.h"
 #include "DiagnosticManualFeedMode.h"
 #include "DiagnosticVolumeAdjustMode.h"
+#include "DiagnosticStatUsesMode.h"
+#include "DiagnosticStatSecondsMode.h"
 
 // Our global instance of the mode...
 DiagnosticMode_ DiagnosticMode;
@@ -37,6 +39,10 @@ void DiagnosticMode_::modeUpdate()
         } else if (subMode == &DiagnosticFrameSyncMode) {
             switchSubMode(&DiagnosticVolumeAdjustMode);
         } else if (subMode == &DiagnosticVolumeAdjustMode) {
+            switchSubMode(&DiagnosticStatUsesMode);
+        } else if (subMode == &DiagnosticStatUsesMode) {
+            switchSubMode(&DiagnosticStatSecondsMode);
+        } else if (subMode == &DiagnosticStatSecondsMode) {
             _done = true;
         }
     }
