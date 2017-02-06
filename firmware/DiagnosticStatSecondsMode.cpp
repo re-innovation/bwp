@@ -25,6 +25,7 @@ void DiagnosticStatSecondsMode_::modeStart()
 void DiagnosticStatSecondsMode_::modeStop()
 {
     DBLN(F("DiagnosticStatSecondsMode::modeStop()"));
+    Mp3Player.stop();
 }
 
 bool DiagnosticStatSecondsMode_::isFinished()

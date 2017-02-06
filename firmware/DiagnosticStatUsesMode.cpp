@@ -23,6 +23,7 @@ void DiagnosticStatUsesMode_::modeStart()
 void DiagnosticStatUsesMode_::modeStop()
 {
     DBLN(F("DiagnosticStatUsesMode::modeStop()"));
+    Mp3Player.stop();
 }
 
 bool DiagnosticStatUsesMode_::isFinished()
