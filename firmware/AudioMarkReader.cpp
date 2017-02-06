@@ -113,6 +113,7 @@ bool AudioMarkReader::appendBitToBuffer(bool bit)
         return false;
     } else {
         _buffer[_bufPtr++] = bit;
+        return true;
     }
 }
 
