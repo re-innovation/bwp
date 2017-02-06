@@ -16,13 +16,13 @@ Mp3Player_::Mp3Player_() :
 
 void Mp3Player_::begin()
 {
-    DB(F("Mp3Player_::begin"));
+    DBLN(F("Mp3Player_::begin"));
     _serial.begin(9600);
-    DFPReader::begin();
     pinMode(MP3_POWER_PIN, OUTPUT);
+    enable(true);
+    DFPReader::begin();
     _volume = MP3_VOLUME;
     // Turn on the amp
-    enable(true);
 }
 
 void Mp3Player_::play(uint16_t trackNumber)
