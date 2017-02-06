@@ -47,7 +47,7 @@
 #define MP3_RX_PIN                  13
 #define MP3_BUSY_PIN                A0
 #define MP3_POWER_PIN               3
-#define MP3_VOLUME                  10
+#define MP3_VOLUME                  13
 #define MP3_TRACK_NUMBER_OF_USES    190
 #define MP3_TRACK_AVERAGE_RUNTIME   191
 #define MP3_TRACK_TOTAL_RUNTIME     192
