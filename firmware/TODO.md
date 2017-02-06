@@ -6,15 +6,14 @@ High Priority (while having access to prototype)
 
 -   Investigate frame sync skips
     -   trigger n half-steps after detecting frame hole
--   Test audiomark sensor with prototype 
-
+-   Audiomark reading fails to process last bit
+-   Audio doesn't work unless MUTILADEBUG is turned on
+-   Implement EEPROM save / load
+-   Implement metrics
 
 Lower Priority (can be done w/o prototype)
 ------------------------------------------
 
--   Brownout control 
-    -   save runtime / usage count to EEPROM (use a setting object)
-        -   do not increment usage count if already saved this run
 -   Metrics read-out:
     -   Write into EEPROM:
         -   Number of uses
@@ -23,6 +22,8 @@ Lower Priority (can be done w/o prototype)
 -   Save to EEPROM on setting changes
 -   Modes:
     -   Manual feed mode: use different speed from projector more
+-   Mp3 only works in MUTILADEBUG mode, or rarely with no debug...
+-   12th 0 or 1 is not appending to audio code!
 
 Testing
 =======
