@@ -17,7 +17,7 @@ void DiagnosticMode_::modeStart()
 {
     DBLN(F("DiagnosticMode::modeStart()"));
     ProjectorHeartbeat.setMode(Heartbeat::Quick);
-    subMode = &DiagnosticFrameSyncMode;
+    subMode = &DiagnosticManualFeedMode;
     subMode->start();
     _done = false;
 }
@@ -32,9 +32,9 @@ void DiagnosticMode_::modeUpdate()
 {
     // Handle mode changes
     if (subMode->isFinished()) {
-        if (subMode == &DiagnosticFrameSyncMode) {
-            switchSubMode(&DiagnosticManualFeedMode);
-        } else if (subMode == &DiagnosticManualFeedMode) {
+        if (subMode == &DiagnosticManualFeedMode) {
+            switchSubMode(&DiagnosticFrameSyncMode);
+        } else if (subMode == &DiagnosticFrameSyncMode) {
             switchSubMode(&DiagnosticVolumeAdjustMode);
         } else if (subMode == &DiagnosticVolumeAdjustMode) {
             _done = true;
