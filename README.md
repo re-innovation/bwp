@@ -6,6 +6,7 @@
 ** Windows & Mac users may find a download link here: https://www.arduino.cc/en/Main/Software
 ** Major Linux distros carry it in their software repositories, or the link above may be used
 ** Install ''AccelStepper'' library.
+** Install ''Mutila'' library, link: https://github.com/matthewg42/Mutila 
 
 ## Building Using the Arduino IDE
 

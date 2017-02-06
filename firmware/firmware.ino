@@ -2,8 +2,6 @@
 #include <EEPROM.h>
 #include <SoftwareSerial.h>
 #include <AccelStepper.h>
-#include <EEPROM.h>
-#include <SoftwareSerial.h>
 #include <MutilaDebug.h>
 #include <Mode.h>
 
