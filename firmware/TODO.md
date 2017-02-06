@@ -4,12 +4,8 @@ To Do
 High Priority (while having access to prototype)
 ------------------------------------------------
 
--   Investigate frame sync skips
-    -   trigger n half-steps after detecting frame hole
--   Audiomark reading fails to process last bit
--   Audio doesn't work unless MUTILADEBUG is turned on
--   Implement EEPROM save / load
--   Implement metrics
+-   Frame offset should be persistent
+-   Different speed for manual feed
 
 Lower Priority (can be done w/o prototype)
 ------------------------------------------
@@ -45,3 +41,9 @@ Done
 -   Manual feed mode [done]
 -   Volume setting mode [done]
 -   Make Mp3Player inherit from DFPReader so we can call members directly - saves a little memory
+-   Implement EEPROM save / load
+-   Implement metrics
+-   Investigate frame sync skips
+    -   trigger n half-steps after detecting frame hole
+-   Audio doesn't work unless MUTILADEBUG is turned on (was inappropriate pinMode setting in SW3!)
+-   Set best value for audio sensor
