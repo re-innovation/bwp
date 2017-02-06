@@ -3,10 +3,6 @@
 #include "AudioMarkReader.h"
 #include "Config.h"
 
-#define DBV(...) {;}
-
-#define DBVLN(...) {;}
-
 AudioMarkReader::AudioMarkReader(uint8_t pin, float alpha, uint16_t thresh) :
     EMASampler(pin, 0, alpha),
     _pulseCount(0),
@@ -26,38 +22,38 @@ void AudioMarkReader::update()
 {
     EMASampler::update();
     _pulseCount++;
-    DBV(F("AMR avg="));
-    DBV(average());
-    DBV(F(" l="));
-    DBV(_pulseCount-_pulseStart);
+    DB(F("AMR avg="));
+    DB(average());
+    DB(F(" l="));
+    DB(_pulseCount-_pulseStart);
     bool state = getState();
     if (state != _lastPulseState) {
         _lastPulseState = state;
         if (state) {
             // rising edge - start of new white stripe
-            DBVLN(F(" START"));
+            DBLN(F(" START"));
         } else {
             // falling edge - end of white stripe
-            DBV(F(" END: "));
+            DB(F(" END: "));
             uint32_t pulseLength = _pulseCount - _pulseStart;
             if (pulseLength >= AUDIO_SYNC_ZERO_MIN_LEN && pulseLength < AUDIO_SYNC_ONE_MIN_LEN) {
                 appendBitToBuffer(0);
-                DBVLN(0);
+                DBLN(0);
             } else if (pulseLength >= AUDIO_SYNC_ONE_MIN_LEN && pulseLength <= AUDIO_SYNC_ONE_MAX_LEN) {
                 appendBitToBuffer(1);
-                DBVLN(1);
+                DBLN(1);
             } else {
-                DBVLN('?');
+                DBLN('?');
             }
         }
         _pulseStart = _pulseCount;
     } else {
         if (_pulseCount - _pulseStart > AUDIO_SYNC_ONE_MAX_LEN && _bufPtr > 0) {
-            DBVLN(F(" TimeO"));
+            DBLN(F(" TimeO"));
             resetBuffer();
         } else {
-            DBV(state ? F(" 0") : F(" 1"));
-            DBV(F(" WT "));
+            DB(state ? F(" 0") : F(" 1"));
+            DB(F(" WT "));
         }
     }
 }
@@ -65,18 +61,18 @@ void AudioMarkReader::update()
 int AudioMarkReader::get()
 {
 #ifdef DEBUG
-    DBV(F("buf \""));
+    DB(F("buf \""));
     for(uint8_t i=0; i<AUDIO_SYNC_BITS; i++) {
         if (_bufPtr>i) {
-            DBV(_buffer[i]);
+            DB(_buffer[i]);
         } else {
-            DBV('_');
+            DB('_');
         }
     }
-    DBV('"');
+    DB('"');
 #endif
     if (_bufPtr < AUDIO_SYNC_BITS) {
-        DBVLN('.');
+        DBLN('.');
         return AUDIO_SYNC_INCOMPLETE;
     }
     uint8_t correction = 0;
@@ -89,14 +85,14 @@ int AudioMarkReader::get()
     }
     if (correction >= AUDIO_SYNC_BITS) {
         // More than one error
-        DBVLN(F(" ERR"));
+        DBLN(F(" ERR"));
         resetBuffer();
         return(AUDIO_SYNC_INVALID);
     } else if (correction > 0) {
-        DBVLN(F(" CORRECT"));
+        DBLN(F(" CORRECT"));
         _buffer[correction-1] = !_buffer[correction-1];
     } else {
-        DBVLN(F(" OK"));
+        DBLN(F(" OK"));
     }
     // Extract the encoded value
     bitValue = 1;
@@ -155,7 +151,7 @@ uint8_t AudioMarkReader::hammingParity(uint8_t bitPos)
 
 void AudioMarkReader::resetBuffer()
 {
-    DBVLN(F("AudioMarkReader::resetBuffer"));
+    DBLN(F("AudioMarkReader::resetBuffer"));
     memset(_buffer, 0, sizeof(uint8_t) * AUDIO_SYNC_BITS);
     _bufPtr = 0;
 }
