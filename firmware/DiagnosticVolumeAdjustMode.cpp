@@ -6,6 +6,7 @@
 #include "MutilaDebug.h"
 #include "Mp3Player.h"
 #include "Config.h"
+#include "Settings.h"
 
 // Our global instance of the mode...
 DiagnosticVolumeAdjustMode_ DiagnosticVolumeAdjustMode;
@@ -24,7 +25,7 @@ void DiagnosticVolumeAdjustMode_::modeStart()
 void DiagnosticVolumeAdjustMode_::modeStop()
 {
     DBLN(F("DiagnosticVolumeAdjustMode::modeStop()"));
-    // TODO: save to EEPROM
+    Settings.save();
 }
 
 void DiagnosticVolumeAdjustMode_::modeUpdate()

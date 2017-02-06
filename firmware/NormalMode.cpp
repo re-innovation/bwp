@@ -6,6 +6,7 @@
 #include "SW1.h"
 #include "Projector.h"
 #include "Mp3Player.h"
+#include "Settings.h"
 
 EMAVDivSampler VoltageSampler(VIN_MONITOR_PIN, VIN_R1, VIN_R2, VIN_REF, VIN_PERIOD_MS, VIN_EMA_ALPHA);
 
@@ -29,6 +30,7 @@ void NormalMode_::modeStop()
 {
     DBLN(F("NormalMode::modeStop"));
     Mp3Player.stop();
+    Settings.stop();
 }
 
 void NormalMode_::enterBrownout()
@@ -37,12 +39,15 @@ void NormalMode_::enterBrownout()
     Serial.println(F("NormalMode::enterBrownout()"));
     Projector.closeShutter();
     Mp3Player.stop();
+    Settings.stop();
+    Settings.save();
 }
 
 void NormalMode_::exitBrownout()
 {
     // Typical use: restore state from EEPROM
     Serial.println(F("NormalMode::exitBrownout()"));
+    Settings.run();
 }
 
 void NormalMode_::modeUpdate()

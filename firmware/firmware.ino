@@ -8,6 +8,7 @@
 #include "ProjectorHeartbeat.h"
 #include "Mp3Player.h"
 #include "Projector.h"
+#include "Settings.h"
 
 #include "NormalMode.h"
 #include "DiagnosticMode.h"
@@ -25,10 +26,14 @@ void setup()
 {
     Serial.begin(115200);
 
+    // Settings must be first because Mp3Player takes the volume from it.
+    Settings.begin();
+
     Mp3Player.begin();
     if (!Mp3Player.check()) {
-        DBLN(F("Mp3Player comms ERROR"));
+        Serial.println(F("WARNING: Mp3Player.check() failed"));
     }
+
 
     SW1.begin();
     SW2.begin();

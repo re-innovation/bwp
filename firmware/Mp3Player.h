@@ -10,14 +10,13 @@ public:
     void begin();
     void play(uint16_t trackNumber);
     void stop();
-    uint8_t volume() { return _volume; }
+    uint16_t volume();
     void setVolume(uint8_t v);
     void enable(bool enabled);
     void update();
 
 private:
     SoftwareSerial _serial;
-    uint8_t _volume;
     unsigned long _enabledAt;
 
 };
