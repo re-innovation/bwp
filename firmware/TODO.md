@@ -4,22 +4,7 @@ To Do
 High Priority (while having access to prototype)
 ------------------------------------------------
 
--   Frame offset should be persistent
 -   Different speed for manual feed
-
-Lower Priority (can be done w/o prototype)
-------------------------------------------
-
--   Metrics read-out:
-    -   Write into EEPROM:
-        -   Number of uses
-        -   Total duration
-        -   Audio readout of numbers...
--   Save to EEPROM on setting changes
--   Modes:
-    -   Manual feed mode: use different speed from projector more
--   Mp3 only works in MUTILADEBUG mode, or rarely with no debug...
--   12th 0 or 1 is not appending to audio code!
 
 Testing
 =======
@@ -47,3 +32,4 @@ Done
     -   trigger n half-steps after detecting frame hole
 -   Audio doesn't work unless MUTILADEBUG is turned on (was inappropriate pinMode setting in SW3!)
 -   Set best value for audio sensor
+-   Frame offset should be persistent

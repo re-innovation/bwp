@@ -3,6 +3,7 @@
 #include "Mp3Player.h"
 #include "Projector.h"
 #include "Config.h"
+#include "Settings.h"
 
 // Arduino library class style global object
 Projector_ Projector;
@@ -29,9 +30,6 @@ void Projector_::begin()
     _frameOffsetCounter = -1;
     _shutter = true;
     _muted = false;
-
-    // TODO: _frameOffset from EEPROM
-    _frameOffset = 0;
 }
 
 void Projector_::update()
@@ -68,7 +66,7 @@ void Projector_::frameStep()
 
     // open the shutter _frameOffset steps after fram hole detected
     if (_frameOffsetCounter >= 0) {
-        if (_frameOffsetCounter++ == _frameOffset && _shutter || _frameOffsetCounter == 128) {
+        if (_frameOffsetCounter++ == Settings.frameOffset() && _shutter || _frameOffsetCounter == 128) {
             openShutter();
             _frameOffsetCounter = -1;
         }

@@ -6,6 +6,7 @@
 #include "Projector.h"
 #include "MutilaDebug.h"
 #include "Mp3Player.h"
+#include "Settings.h"
 
 // Our global instance of the mode...
 DiagnosticFrameSyncMode_ DiagnosticFrameSyncMode;
@@ -20,24 +21,26 @@ void DiagnosticFrameSyncMode_::modeStart()
     Projector.setShutter(true);
     Mp3Player.play(MP3_TRACK_FRAME_OFFSET);
     DB(F("DiagnosticFrameSyncMode::modeStart, offset="));
-    DBLN(Projector.frameOffset());
+    DBLN(Settings.frameOffset());
 }
 
 void DiagnosticFrameSyncMode_::modeStop()
 {
     DBLN(F("DiagnosticFrameSyncMode::modeStop()"));
-    // TODO: save to EEPROM
+    Settings.save();
 }
 
 void DiagnosticFrameSyncMode_::modeUpdate()
 {
     Projector.update();
     if (SW3.tapped()) {
-        int8_t offset = Projector.frameOffset();
+        int8_t offset = Settings.frameOffset();
         offset = (offset+1) % SHUTTER_SYNC_MAX_OFFSET;
+        Mp3Player.stop();
+        Mp3Player.readNumber(offset);
         DB(F("setting frame offset to "));
         DBLN(offset);
-        Projector.setFrameOffset(offset);
+        Settings.setFrameOffset(offset);
     }
 }
 

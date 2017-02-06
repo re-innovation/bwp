@@ -45,6 +45,7 @@ void Settings_::checkMagic()
         _useCount = 0;
         _useSeconds = 0;
         _volume = 15;
+        _frameOffset = 0;
         magic = EEPROM_MAGIC;
         EEPROM.put(EEPROM_ADDRESS_MAGIC, magic);
         save();
@@ -56,12 +57,15 @@ void Settings_::load()
     EEPROM.get(EEPROM_ADDRESS_USE_COUNT, _useCount);
     EEPROM.get(EEPROM_ADDRESS_USE_SECONDS, _useSeconds);
     EEPROM.get(EEPROM_ADDRESS_VOLUME, _volume);
+    EEPROM.get(EEPROM_ADDRESS_FRAME_OFFSET, _frameOffset);
     DB(F("Settings::load() uses="));
     DB(_useCount);
     DB(F(" seconds="));
     DB(_useSeconds);
     DB(F(" volume="));
-    DBLN(_volume);
+    DB(_volume);
+    DB(F(" frameOffset="));
+    DBLN(_frameOffset);
 }
 
 void Settings_::save()
@@ -73,11 +77,14 @@ void Settings_::save()
     DB(tmp);
     DB(F(" volume="));
     DBLN(_volume);
+    DB(F(" frameOffset="));
+    DBLN(_frameOffset);
     // Note: EEPROM.put uses EEPROM.update(), which only writes a
     // value if it is different from the value already saved to EEPROM
     EEPROM.put(EEPROM_ADDRESS_USE_COUNT, _useCount);
     EEPROM.put(EEPROM_ADDRESS_USE_SECONDS, tmp);
     EEPROM.put(EEPROM_ADDRESS_VOLUME, _volume);
+    EEPROM.put(EEPROM_ADDRESS_FRAME_OFFSET, _frameOffset);
 }
 
 unsigned long Settings_::getUseSecondaThisRun() 

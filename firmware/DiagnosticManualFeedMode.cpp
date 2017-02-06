@@ -17,7 +17,7 @@ void DiagnosticManualFeedMode_::modeStart()
 {
     Projector.setMute(true);
     Projector.setShutter(false);
-    Projector.closeShutter();
+    Projector.openShutter();
     Mp3Player.play(MP3_TRACK_MANUAL_FEED);
     DBLN(F("DiagnosticManualFeedMode::modeStart"));
 }

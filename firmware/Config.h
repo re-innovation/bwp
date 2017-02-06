@@ -7,10 +7,10 @@
 #define STEPPER_PIN_2               7
 #define STEPPER_PIN_3               6
 #define STEPPER_PIN_4               5
-#define STEPPER_STEPS_PER_SEC       50
+#define STEPPER_STEPS_PER_SEC       550
 #define STEPPER_MAX_SPEED           1000
 
-#define SHUTTER_OPEN_MS             100
+#define SHUTTER_OPEN_MS             50
 #define SHUTTER_LED_R_PIN           9
 #define SHUTTER_LED_G_PIN           10
 #define SHUTTER_LED_B_PIN           11
@@ -18,6 +18,8 @@
 #define SHUTTER_SYNC_DIFF_THRESHOLD 200
 #define SHUTTER_SYNC_MIN_STEPS      17
 #define SHUTTER_SYNC_MAX_OFFSET     25
+
+#define MANUAL_FEED_STEPS_PER_SEC   200
 
 #define AUDIO_SYNC_PIN              A4
 #define AUDIO_SYNC_THRESH           400
@@ -66,5 +68,6 @@
 #define EEPROM_ADDRESS_USE_COUNT    (EEPROM_ADDRESS_MAGIC+sizeof(unsigned long))
 #define EEPROM_ADDRESS_USE_SECONDS  (EEPROM_ADDRESS_USE_COUNT+sizeof(unsigned long))
 #define EEPROM_ADDRESS_VOLUME       (EEPROM_ADDRESS_USE_SECONDS+sizeof(unsigned long))
+#define EEPROM_ADDRESS_FRAME_OFFSET (EEPROM_ADDRESS_VOLUME+sizeof(uint16_t))
 
 

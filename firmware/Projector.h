@@ -39,15 +39,13 @@ public:
      */
     void update();
 
+    /*! Start the shutter open sequence (stop film movement, turn on LED)
+     */
+    void openShutter();
+
     /*! Stop the shutter open sequence (turn off LED, resume film movement)
      */
     void closeShutter();
-
-    /*! Get the current frame offset value */
-    int8_t frameOffset() { return _frameOffset; }
-
-    /*! Set the frame offset value */
-    void setFrameOffset(int8_t o) { _frameOffset = o; }
 
     /*! Get the current mute state */
     bool muted() { return _muted; }
@@ -62,10 +60,6 @@ public:
     void setShutter(bool on) { _shutter = on; }
 
 private:
-    /*! Start the shutter open sequence (stop film movement, turn on LED)
-     */
-    void openShutter();
-
     /*! Call when a stepper [half] step is triggered - updates state relating
      * to frame sensing / display.
      */
@@ -100,7 +94,6 @@ private:
     AudioMarkReader _audioMarkSensor;
 
     int8_t _frameOffsetCounter;
-    int8_t _frameOffset;
 
     bool _muted;
     bool _shutter;
