@@ -12,7 +12,7 @@
 #include "NormalMode.h"
 #include "DiagnosticMode.h"
 
-Mode* CurrentMode = &NormalMode;
+Mode* CurrentMode = &DiagnosticMode;
 
 void switchMode(Mode* newMode)
 {
@@ -24,16 +24,17 @@ void switchMode(Mode* newMode)
 void setup()
 {
     Serial.begin(115200);
-    SW1.begin();
-    SW2.begin();
-    SW3.begin();
-    ProjectorHeartbeat.begin();
-    Projector.begin();
 
     Mp3Player.begin();
     if (!Mp3Player.check()) {
         DBLN(F("Mp3Player comms ERROR"));
     }
+
+    SW1.begin();
+    SW2.begin();
+    SW3.begin();
+    ProjectorHeartbeat.begin();
+    Projector.begin();
 
     CurrentMode->start();
     DBLN(F("E:setup()"));
