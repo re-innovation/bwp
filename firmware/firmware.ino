@@ -26,6 +26,9 @@ void setup()
 {
     Serial.begin(115200);
 
+    // We use an external reference for the VIN measurements
+    analogReference(EXTERNAL);
+
     // Settings must be first because Mp3Player takes the volume from it.
     Settings.begin();
 

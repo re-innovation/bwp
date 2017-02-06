@@ -35,10 +35,10 @@
 #define VIN_MONITOR_PIN             A1
 #define VIN_R1                      10
 #define VIN_R2                      680
-#define VIN_REF                     5
+#define VIN_REF                     3.3
 #define VIN_PERIOD_MS               10
 #define VIN_EMA_ALPHA               0.5
-#define VIN_THRESH_LOW              7.0
+#define VIN_THRESH_LOW              8.0
 #define VIN_THRESH_HIGH             10.0
 
 #define VIN_INTERNAL_PIN            A2
