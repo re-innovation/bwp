@@ -38,6 +38,7 @@ void NormalMode_::enterBrownout()
     // Typical use: save state to EEPROM etc...
     Serial.println(F("NormalMode::enterBrownout()"));
     Projector.closeShutter();
+    Projector.setStepperEnabled(false);
     Mp3Player.stop();
     Settings.stop();
     Settings.save();
@@ -46,6 +47,7 @@ void NormalMode_::enterBrownout()
 void NormalMode_::exitBrownout()
 {
     // Typical use: restore state from EEPROM
+    Projector.setStepperEnabled(true);
     Serial.println(F("NormalMode::exitBrownout()"));
     Settings.run();
 }
