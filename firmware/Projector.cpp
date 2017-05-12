@@ -85,6 +85,7 @@ void Projector_::audioStep()
     if (track >= 0 && ! _muted) {
         DB(F("Projector_::audioStep playing track "));
         DBLN(track);
+        Mp3Player.setVolume(Settings.volume());
         Mp3Player.play(track);
     }
 }

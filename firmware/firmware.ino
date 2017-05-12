@@ -4,6 +4,7 @@
 #include <AccelStepper.h>
 #include <MutilaDebug.h>
 #include <Mode.h>
+#include <avr/wdt.h>
 
 #include "SW1.h"
 #include "SW2.h"
@@ -15,6 +16,8 @@
 
 #include "NormalMode.h"
 #include "DiagnosticMode.h"
+
+
 
 Mode* CurrentMode = &NormalMode;
 
@@ -45,20 +48,31 @@ void setup()
     SW2.begin();
     SW3.begin();
     ProjectorHeartbeat.begin();
+    ProjectorHeartbeat.setMode(Heartbeat::Slow);
     Projector.begin();
 
     CurrentMode->start();
+
+    // Enable watchdog timer
+    wdt_enable(WDTO_500MS);
+
     DBLN(F("E:setup()"));
 }
 
 void loop()
 {
+    // Feed the watchdog
+    wdt_reset();
+
+    // Give timeslice to various components
     SW1.update();
     SW2.update();
     SW3.update();
     ProjectorHeartbeat.update();
     CurrentMode->update();
     Mp3Player.update();
+
+    // Mode selection
     if (CurrentMode->isFinished()) {
         if (CurrentMode == &NormalMode) {
             switchMode(&DiagnosticMode);
