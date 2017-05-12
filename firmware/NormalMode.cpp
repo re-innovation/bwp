@@ -46,11 +46,14 @@ void NormalMode_::enterBrownout()
 
 void NormalMode_::exitBrownout()
 {
-    // Typical use: restore state from EEPROM
-    Projector.setStepperEnabled(true);
-    Mp3Player.setVolume(Settings.volume());
     Serial.println(F("NormalMode::exitBrownout()"));
+    // Typical use: restore state from EEPROM
     Settings.run();
+    Projector.setStepperEnabled(true);
+    // Wait for mp3 player to init
+    delay(100);
+    // And set volume...
+    Mp3Player.setVolume(Settings.volume());
 }
 
 void NormalMode_::modeUpdate()
