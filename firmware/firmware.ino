@@ -48,7 +48,7 @@ void setup()
     SW2.begin();
     SW3.begin();
     ProjectorHeartbeat.begin();
-    ProjectorHeartbeat.setMode(Heartbeat::Slow);
+    ProjectorHeartbeat.setMode(Heartbeat::Slower);
     Projector.begin();
 
     CurrentMode->start();
