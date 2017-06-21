@@ -59,3 +59,10 @@ This alternative build system may also be used. It is an alternative to using th
 * Edit the arduino.mk file and set the include line to point at where you installed Arduino-Makefile (or set the ARDUINO_MAKEFILE environment variable)
 * In a shell, from the *firmware* directory, use the command "make upload" to build and install the code
 
+
+****************
+Uploading Sounds
+****************
+
+Sounds must be within a folder called "mp3" on the SD card.
+Sounds are numbers 0001 to 9999.
