@@ -59,6 +59,9 @@ public:
     /*! Get the current shutter mode */
     void setShutter(bool on) { _shutter = on; }
 
+    /*! Disable (set to LOW) / enable stepper outputs */
+    void setStepperEnabled(bool enabled) { if (enabled) _stepper.enableOutputs(); else _stepper.disableOutputs(); }
+
 private:
     /*! Call when a stepper [half] step is triggered - updates state relating
      * to frame sensing / display.

@@ -8,6 +8,8 @@
 #include "DiagnosticStatUsesMode.h"
 #include "DiagnosticStatSecondsMode.h"
 #include "DiagnosticStatAvgSecondsMode.h"
+#include "Mp3Player.h"
+#include "Settings.h"
 
 // Our global instance of the mode...
 DiagnosticMode_ DiagnosticMode;
@@ -20,6 +22,7 @@ void DiagnosticMode_::modeStart()
 {
     DBLN(F("DiagnosticMode::modeStart()"));
     ProjectorHeartbeat.setMode(Heartbeat::Quick);
+    Mp3Player.setVolume(Settings.volume());
     subMode = &DiagnosticManualFeedMode;
     subMode->start();
     _done = false;
