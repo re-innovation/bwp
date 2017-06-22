@@ -12,6 +12,7 @@ Projector_::Projector_() :
     _stepper(AccelStepper::HALF4WIRE, STEPPER_PIN_1, STEPPER_PIN_3, STEPPER_PIN_2, STEPPER_PIN_4),
     _stepsSinceFrame(0),
     _lastFrameSensorValue(512),
+    _lastFrameSensorValue2(512),
     _frameSyncFound(false),
     _shutterOpen(false),
     _shutterStart(0),
@@ -49,19 +50,18 @@ void Projector_::frameStep()
 {
     _stepsSinceFrame++;
     int syncValue = analogRead(SHUTTER_SYNC_PIN);
-    int diff = syncValue - _lastFrameSensorValue;
-    /*
+    int diff = syncValue - _lastFrameSensorValue2;
     DB(F("Projector_::frameStep f="));
     DB(_stepsSinceFrame);
     DB(F(" sv="));
     DB(syncValue);
     DB(F(" diff="));
     DBLN(diff);
-    */
-    if ((!_frameSyncFound || _stepsSinceFrame > SHUTTER_SYNC_MIN_STEPS) && diff >= SHUTTER_SYNC_DIFF_THRESHOLD) {
+    if ((!_frameSyncFound || _stepsSinceFrame > SHUTTER_SYNC_MIN_STEPS) && diff >= SHUTTER_SYNC_DIFF_THRESHOLD && _lastFrameSensorValue2 < SHUTTER_SYNC_LOW_TRIGGER) {
         // Start the frame offset counter
         _frameOffsetCounter = 0;
     }
+    _lastFrameSensorValue2 = _lastFrameSensorValue;
     _lastFrameSensorValue = syncValue;
 
     // open the shutter _frameOffset steps after fram hole detected

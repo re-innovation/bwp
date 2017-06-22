@@ -10,14 +10,15 @@
 #define STEPPER_STEPS_PER_SEC       550
 #define STEPPER_MAX_SPEED           1000
 
-#define SHUTTER_OPEN_MS             50
+#define SHUTTER_OPEN_MS             125
 #define SHUTTER_LED_R_PIN           9
 #define SHUTTER_LED_G_PIN           10
 #define SHUTTER_LED_B_PIN           11
 #define SHUTTER_SYNC_PIN            A3
-#define SHUTTER_SYNC_DIFF_THRESHOLD 200
+#define SHUTTER_SYNC_DIFF_THRESHOLD 250
 #define SHUTTER_SYNC_MIN_STEPS      17
 #define SHUTTER_SYNC_MAX_OFFSET     25
+#define SHUTTER_SYNC_LOW_TRIGGER    50
 
 #define MANUAL_FEED_STEPS_PER_SEC   200
 
