@@ -7,7 +7,8 @@ AudioMarkReader::AudioMarkReader(uint8_t pin, float alpha, uint16_t thresh) :
     EMASampler(pin, 0, alpha),
     _pulseCount(0),
     _pulseStart(0),
-    _thresh(thresh)
+    _thresh(thresh),
+    _partialReadFlag(false)
 {
 }
 
@@ -50,6 +51,9 @@ void AudioMarkReader::update()
     } else {
         if (_pulseCount - _pulseStart > AUDIO_SYNC_ONE_MAX_LEN && _bufPtr > 0) {
             DBLN(F(" TimeO"));
+            if (_bufPtr > 6) {
+                _partialReadFlag = true;
+            }
             resetBuffer();
         } else {
             DB(state ? F(" 0") : F(" 1"));
@@ -104,6 +108,12 @@ int AudioMarkReader::get()
         }
     }
     resetBuffer();
+
+    if (_partialReadFlag) {
+        _partialReadFlag = false;
+        return AUDIO_SYNC_INVALID;
+    }
+
     return value;
 }
 
