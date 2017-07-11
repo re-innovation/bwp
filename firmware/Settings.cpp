@@ -62,8 +62,6 @@ void Settings_::load()
     EEPROM.get(EEPROM_ADDRESS_FRAME_OFFSET, _frameOffset);
     EEPROM.get(EEPROM_ADDRESS_AUDIO_COUNT, _audioCount);
     EEPROM.get(EEPROM_ADDRESS_LAST_AUDIO, _lastAudio);
-    if (_audioCount > MP3_AUDIO_MARKS_MAX) { _audioCount = 0; }
-    if (_lastAudio > _audioCount) { _lastAudio = 0; }
     DB(F("Settings::load() uses="));
     DB(_useCount);
     DB(F(" seconds="));
