@@ -47,6 +47,7 @@ void Settings_::checkMagic()
         _volume = 15;
         _frameOffset = 0;
         _audioCount = 0;
+        _lastAudio = 0;
         magic = EEPROM_MAGIC;
         EEPROM.put(EEPROM_ADDRESS_MAGIC, magic);
         save();
@@ -60,6 +61,7 @@ void Settings_::load()
     EEPROM.get(EEPROM_ADDRESS_VOLUME, _volume);
     EEPROM.get(EEPROM_ADDRESS_FRAME_OFFSET, _frameOffset);
     EEPROM.get(EEPROM_ADDRESS_AUDIO_COUNT, _audioCount);
+    EEPROM.get(EEPROM_ADDRESS_LAST_AUDIO, _lastAudio);
     DB(F("Settings::load() uses="));
     DB(_useCount);
     DB(F(" seconds="));
@@ -69,7 +71,9 @@ void Settings_::load()
     DB(F(" frameOffset="));
     DB(_frameOffset);
     DB(F(" audioCount="));
-    DBLN(_audioCount);
+    DB(_audioCount);
+    DB(F(" lastAudio="));
+    DBLN(_lastAudio);
 }
 
 void Settings_::save()
@@ -84,7 +88,9 @@ void Settings_::save()
     DB(F(" frameOffset="));
     DB(_frameOffset);
     DB(F(" audioCount="));
-    DBLN(_audioCount);
+    DB(_audioCount);
+    DB(F(" lastAudio="));
+    DBLN(_lastAudio);
     // Note: EEPROM.put uses EEPROM.update(), which only writes a
     // value if it is different from the value already saved to EEPROM
     EEPROM.put(EEPROM_ADDRESS_USE_COUNT, _useCount);
@@ -92,6 +98,7 @@ void Settings_::save()
     EEPROM.put(EEPROM_ADDRESS_VOLUME, _volume);
     EEPROM.put(EEPROM_ADDRESS_FRAME_OFFSET, _frameOffset);
     EEPROM.put(EEPROM_ADDRESS_AUDIO_COUNT, _audioCount);
+    EEPROM.put(EEPROM_ADDRESS_LAST_AUDIO, _lastAudio);
 }
 
 unsigned long Settings_::getUseSecondaThisRun() 
