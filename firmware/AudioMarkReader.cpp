@@ -79,6 +79,11 @@ int AudioMarkReader::get()
     }
     DB('"');
 #endif
+    if (_partialReadFlag) {
+        _partialReadFlag = false;
+        return AUDIO_SYNC_INVALID;
+    }
+
     if (_bufPtr < AUDIO_SYNC_BITS) {
         DBLN('.');
         return AUDIO_SYNC_INCOMPLETE;
@@ -95,10 +100,8 @@ int AudioMarkReader::get()
         // More than one error
         DBLN(F(" ERR"));
         resetBuffer();
-        _partialReadFlag = false;
         return(AUDIO_SYNC_INVALID);
     } else if (correction > 0) {
-        _partialReadFlag = false;
         DBLN(F(" CORRECT"));
         _buffer[correction-1] = !_buffer[correction-1];
     } else {
@@ -114,11 +117,6 @@ int AudioMarkReader::get()
         }
     }
     resetBuffer();
-
-    if (_partialReadFlag) {
-        _partialReadFlag = false;
-        return AUDIO_SYNC_INVALID;
-    }
 
     return value;
 }

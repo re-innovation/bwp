@@ -67,7 +67,7 @@
 
 #define EEPROM_ADDRESS_MAGIC        0
 // If we don't see this in the magic address, zero the setting and set magic...
-#define EEPROM_MAGIC                0x00000038
+#define EEPROM_MAGIC                0x00000039
 #define EEPROM_ADDRESS_USE_COUNT    (EEPROM_ADDRESS_MAGIC+sizeof(unsigned long))
 #define EEPROM_ADDRESS_USE_SECONDS  (EEPROM_ADDRESS_USE_COUNT+sizeof(unsigned long))
 #define EEPROM_ADDRESS_VOLUME       (EEPROM_ADDRESS_USE_SECONDS+sizeof(unsigned long))

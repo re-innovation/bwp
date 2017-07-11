@@ -110,6 +110,7 @@ void Projector_::audioStep()
         if (_muted) {
             DBLN(F(" [muted]"));
         } else {
+            DBLN();
             Mp3Player.setVolume(Settings.volume());
             Mp3Player.play(track);
         }
