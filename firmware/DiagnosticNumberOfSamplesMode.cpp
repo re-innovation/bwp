@@ -32,7 +32,7 @@ void DiagnosticNumberOfSamplesMode_::modeUpdate()
 {
     uint8_t count = Settings.audioCount();
     if (SW3.tapped()) {
-        count = (count+1) % 10;
+        count = (count+1) % (MP3_AUDIO_MARKS_MAX+1);
     }
     if (SW2.tapped()) {
         count = 0;

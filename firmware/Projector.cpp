@@ -81,12 +81,29 @@ void Projector_::audioStep()
     // Gets the audio track to play if there is one.
     // The value will be 0 if there is no track to play, else
     // a positive integer if a mark has been ready successfully
+    // a negative integer indicates a partial, but failed read
     int track = _audioMarkSensor.get();
+
+    // If we got a partial read, work out which track to play based
+    // on the last played track and audio settings...
+    if (track == AUDIO_SYNC_INVALID && Settings.lastAudio() != 0 && Settings.audioCount() > 0) {
+        DB(F("Projector_::audioStep bad read, playing next track "));
+        int track = Settings.lastAudio() + 1;
+        if (track > Settings.audioCount()) { 
+            track = 1;
+        }
+        DBLN(track);
+    }
+
     if (track >= 0 && ! _muted) {
+        // we have a track to play
+        // set Settings/lastAudio to keep us in sync in case
+        // of partial reads
         DB(F("Projector_::audioStep playing track "));
         DBLN(track);
         Mp3Player.setVolume(Settings.volume());
         Mp3Player.play(track);
+        Settings.setLastAudio(track);
     }
 }
 

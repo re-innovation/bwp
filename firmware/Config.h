@@ -59,6 +59,7 @@
 #define MP3_TRACK_VOLUME_ADJUST     195
 #define MP3_TRACK_AUDIO_MARK_COUNT  196
 #define MP3_TRACK_VOLUME_TRACK      1
+#define MP3_AUDIO_MARKS_MAX         10
 
 #define SW1_PIN                     A5
 #define SW2_PIN                     A6
