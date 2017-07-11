@@ -50,9 +50,13 @@ void AudioMarkReader::update()
         _pulseStart = _pulseCount;
     } else {
         if (_pulseCount - _pulseStart > AUDIO_SYNC_ONE_MAX_LEN && _bufPtr > 0) {
-            DBLN(F(" TimeO"));
-            if (_bufPtr > 6) {
+            DB(F(" TimeO _bufPtr="));
+            DB(_bufPtr);
+            if (_bufPtr >= 6) {
+                DBLN(F(" PARTIAL"));
                 _partialReadFlag = true;
+            } else {
+                DBLN(F("no partial"));
             }
             resetBuffer();
         } else {
@@ -91,8 +95,10 @@ int AudioMarkReader::get()
         // More than one error
         DBLN(F(" ERR"));
         resetBuffer();
+        _partialReadFlag = false;
         return(AUDIO_SYNC_INVALID);
     } else if (correction > 0) {
+        _partialReadFlag = false;
         DBLN(F(" CORRECT"));
         _buffer[correction-1] = !_buffer[correction-1];
     } else {
