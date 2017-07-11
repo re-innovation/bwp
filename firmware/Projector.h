@@ -82,6 +82,7 @@ private:
 
     //! The previously read value from the frame hole sensor
     int _lastFrameSensorValue;
+    int _lastFrameSensorValue2;
 
     //! Special flag to say if we've never found a sync - in this case
     //! we are more permissive about detecting a hole the first time...
