@@ -57,6 +57,7 @@
 #define MP3_TRACK_MANUAL_FEED       193
 #define MP3_TRACK_FRAME_OFFSET      194
 #define MP3_TRACK_VOLUME_ADJUST     195
+#define MP3_TRACK_AUDIO_MARK_COUNT  196
 #define MP3_TRACK_VOLUME_TRACK      1
 
 #define SW1_PIN                     A5
@@ -70,5 +71,6 @@
 #define EEPROM_ADDRESS_USE_SECONDS  (EEPROM_ADDRESS_USE_COUNT+sizeof(unsigned long))
 #define EEPROM_ADDRESS_VOLUME       (EEPROM_ADDRESS_USE_SECONDS+sizeof(unsigned long))
 #define EEPROM_ADDRESS_FRAME_OFFSET (EEPROM_ADDRESS_VOLUME+sizeof(uint16_t))
+#define EEPROM_ADDRESS_AUDIO_COUNT  (EEPROM_ADDRESS_FRAME_OFFSET+sizeof(uint8_t))
 
 
