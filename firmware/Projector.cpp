@@ -87,30 +87,32 @@ void Projector_::audioStep()
     // If we got a partial read, work out which track to play based
     // on the last played track and audio settings...
     if (track == AUDIO_SYNC_INVALID) {
-        DB(F("Projector_::audioStep bad read, last="));
-        DB(Settings.lastAudio());
-        DB(F(" count="));
-        DB(Settings.audioCount());
-        DB(F(" next="));
+        Serial.print(millis() / 1000);
+        Serial.print(F(" Projector::audioStep bad read, last="));
+        Serial.print(Settings.lastAudio());
+        Serial.print(F(" count="));
+        Serial.print(Settings.audioCount());
+        Serial.print(F(" next="));
 
         if (Settings.lastAudio() > 0 && Settings.audioCount() > 0) {
             track = Settings.lastAudio() + 1;
             if (track > Settings.audioCount()) { 
                 track = 1;
             }
-            DBLN(track);
+            Serial.println(track);
         } else { 
-            DBLN('?');
+            Serial.println('?');
         }
     }
 
     if (track >= 0) {
-        DB(F("Projector_::audioStep playing track "));
-        DB(track);
+        Serial.print(millis()/1000);
+        Serial.print(F(" Projector::audioStep playing track "));
+        Serial.print(track);
         if (_muted) {
-            DBLN(F(" [muted]"));
+            Serial.println(F(" [muted]"));
         } else {
-            DBLN();
+            Serial.println();
             Mp3Player.setVolume(Settings.volume());
             Mp3Player.play(track);
         }
