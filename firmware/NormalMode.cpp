@@ -41,6 +41,7 @@ void NormalMode_::enterBrownout()
     Projector.closeShutter();
     Projector.setStepperEnabled(false);
     Mp3Player.stop();
+    Mp3Player.enable(false);
     Settings.stop();
     Settings.save();
 }
@@ -51,6 +52,7 @@ void NormalMode_::exitBrownout()
     ProjectorHeartbeat.setMode(Heartbeat::Normal);
     // Typical use: restore state from EEPROM
     Settings.run();
+    Mp3Player.enable(true);
     Projector.setStepperEnabled(true);
 }
 
