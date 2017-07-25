@@ -65,7 +65,7 @@ void NormalMode_::modeUpdate()
 
 bool NormalMode_::isFinished()
 {
-    return SW1.tapped() != 0;
+    return SW1.tapped() != 0 && !brownedOut();
 }
 
 
