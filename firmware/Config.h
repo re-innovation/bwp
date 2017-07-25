@@ -28,7 +28,7 @@
 #define AUDIO_SYNC_MAX_LEN          35
 #define AUDIO_SYNC_ZERO_MIN_LEN     2
 #define AUDIO_SYNC_ONE_MIN_LEN      18
-#define AUDIO_SYNC_ONE_MAX_LEN      27
+#define AUDIO_SYNC_ONE_MAX_LEN      100
 #define AUDIO_SYNC_BITS             12
 #define AUDIO_SYNC_INCOMPLETE       -1
 #define AUDIO_SYNC_INVALID          -2
@@ -57,7 +57,9 @@
 #define MP3_TRACK_MANUAL_FEED       193
 #define MP3_TRACK_FRAME_OFFSET      194
 #define MP3_TRACK_VOLUME_ADJUST     195
+#define MP3_TRACK_AUDIO_MARK_COUNT  196
 #define MP3_TRACK_VOLUME_TRACK      1
+#define MP3_AUDIO_MARKS_MAX         10
 
 #define SW1_PIN                     A5
 #define SW2_PIN                     A6
@@ -65,10 +67,12 @@
 
 #define EEPROM_ADDRESS_MAGIC        0
 // If we don't see this in the magic address, zero the setting and set magic...
-#define EEPROM_MAGIC                0x00000038
+#define EEPROM_MAGIC                0x00000042
 #define EEPROM_ADDRESS_USE_COUNT    (EEPROM_ADDRESS_MAGIC+sizeof(unsigned long))
 #define EEPROM_ADDRESS_USE_SECONDS  (EEPROM_ADDRESS_USE_COUNT+sizeof(unsigned long))
 #define EEPROM_ADDRESS_VOLUME       (EEPROM_ADDRESS_USE_SECONDS+sizeof(unsigned long))
 #define EEPROM_ADDRESS_FRAME_OFFSET (EEPROM_ADDRESS_VOLUME+sizeof(uint16_t))
+#define EEPROM_ADDRESS_AUDIO_COUNT  (EEPROM_ADDRESS_FRAME_OFFSET+sizeof(uint8_t))
+#define EEPROM_ADDRESS_LAST_AUDIO   (EEPROM_ADDRESS_AUDIO_COUNT+sizeof(uint8_t))
 
 

@@ -58,7 +58,7 @@ void Mp3Player_::enable(bool enabled)
 {
     DB(F("Mp3Player_::enable to "));
     DBLN(enabled);
-    digitalWrite(MP3_POWER_PIN, enabled);
+    digitalWrite(MP3_POWER_PIN, enabled ? HIGH : LOW);
     if (enabled) {
         _enabledAt = millis()+1;
     }

@@ -1,35 +1,32 @@
 To Do
 =====
 
-High Priority (while having access to prototype)
-------------------------------------------------
+We have problems because the film is slipping and the sensor position is difficult to fine-tune to
+get good data.  The result is frequent mis-reads of the audio marks.  Probably more than 50% of the
+time the reads are failing, which is a pity, because it was working so well with the prototype
+hardware...
 
--   Different speed for manual feed
+Anyhow, as a possible fix for this, I propose the following:
 
-Testing
-=======
+1. The firmware should know the sequence of marks - the constraint will be that the marks are in
+   numeric order, with a known number of marks, set as a setting which can be set and stored in
+   EEPROM.
 
--   With new prototype:
-    -   Levels:
-        -   Graph / select levels for frame sensor
-        -   Graph / select levels for audio sensor
-    -   Investigate frame skips
+2. On startup, the firmware waits until it gets a successful read, and then keeps track of the last
+   mark read.  On getting a partial (but failed) read, it plays the next sample in sequence.
 
-Done
-====
+3. Subsequency successful reads explicitly set the mark counter so it is re-synced.
 
--   Frame offset - trigger n half-steps after detecting frame hole
-    -   Prototype use Config.h value, then: [done]
--   Brownout control 
-    -   reset audio [done]
-    -   stop feed [done]
--   Manual feed mode [done]
--   Volume setting mode [done]
--   Make Mp3Player inherit from DFPReader so we can call members directly - saves a little memory
--   Implement EEPROM save / load
--   Implement metrics
--   Investigate frame sync skips
-    -   trigger n half-steps after detecting frame hole
--   Audio doesn't work unless MUTILADEBUG is turned on (was inappropriate pinMode setting in SW3!)
--   Set best value for audio sensor
--   Frame offset should be persistent
+Risks
+-----
+
+1. No successful reads means we don't know where we are in the sequence
+
+
+Options / queries
+-----------------
+
+* Should the sequence nmber we written to EEPROM on brownout? Yes means high EEPROM wear, no means
+  must get a successful read before any audio played
+
+
