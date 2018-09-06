@@ -2,6 +2,16 @@
 BWP
 ===
 
+This is the code and the design files for a low power LED projector unit which utilises real film.
+It is quite complex and probably best explained via this link and video:
+
+https://www.re-innovation.co.uk/portfolio/kinetiscopes-a-lost-paradise/
+
+This repository has the full code (done by Matthew Mouse Gates) and the full design files (done by Matthew Little).
+
+The desgin files have been produced using Corel Draw, but have been also saved as .dxf and .svg files. 
+
+
 ********
 Controls
 ********
