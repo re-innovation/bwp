@@ -1,0 +1,1608 @@
+EESchema Schematic File Version 2
+LIBS:HandCrankProjector_PCB-rescue
+LIBS:power
+LIBS:device
+LIBS:transistors
+LIBS:conn
+LIBS:linear
+LIBS:regul
+LIBS:74xx
+LIBS:cmos4000
+LIBS:adc-dac
+LIBS:memory
+LIBS:xilinx
+LIBS:microcontrollers
+LIBS:dsp
+LIBS:analog_switches
+LIBS:motorola
+LIBS:texas
+LIBS:intel
+LIBS:audio
+LIBS:interface
+LIBS:digital-audio
+LIBS:philips
+LIBS:display
+LIBS:cypress
+LIBS:siliconi
+LIBS:opto
+LIBS:atmel
+LIBS:contrib
+LIBS:valves
+LIBS:matts_components
+LIBS:uln-udn
+LIBS:arduino
+LIBS:w_connectors
+LIBS:HandCrankProjector_PCB-cache
+EELAYER 25 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title "Hand Crank Projector Controller"
+Date "2016-12-18"
+Rev "1"
+Comp "Ben Wigley"
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+NoConn ~ 6350 7300
+Text Notes 6200 7500 0    60   ~ 0
+PCB Size
+$Comp
+L R-RESCUE-HandCrankProjector_PCB R1
+U 1 1 551B24DC
+P 4450 6600
+F 0 "R1" V 4530 6600 40  0000 C CNN
+F 1 "330" V 4457 6601 40  0000 C CNN
+F 2 "REInnovationFootprint:TH_Resistor_1" V 4380 6600 30  0001 C CNN
+F 3 "~" H 4450 6600 30  0000 C CNN
+F 4 "Value" H 4450 6600 60  0001 C CNN "Description"
+F 5 "Value" H 4450 6600 60  0001 C CNN "Notes"
+F 6 "Value" H 4450 6600 60  0001 C CNN "Manufacturer"
+F 7 "Value" H 4450 6600 60  0001 C CNN "Manufacturer Part No"
+F 8 "Value" H 4450 6600 60  0001 C CNN "Supplier 1"
+F 9 "Value" H 4450 6600 60  0001 C CNN "Supplier 1 Part No"
+F 10 "Value" H 4450 6600 60  0001 C CNN "Supplier 2"
+F 11 "Value" H 4450 6600 60  0001 C CNN "Supplier 2 Part No"
+	1    4450 6600
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND-RESCUE-HandCrankProjector_PCB #PWR01
+U 1 1 551B255D
+P 4450 7100
+F 0 "#PWR01" H 4450 7100 30  0001 C CNN
+F 1 "GND" H 4450 7030 30  0001 C CNN
+F 2 "" H 4450 7100 60  0000 C CNN
+F 3 "" H 4450 7100 60  0000 C CNN
+	1    4450 7100
+	1    0    0    -1  
+$EndComp
+$Comp
+L CP1-RESCUE-HandCrankProjector_PCB C3
+U 1 1 551B33BA
+P 5550 1100
+F 0 "C3" H 5600 1200 50  0000 L CNN
+F 1 "1F" H 5600 1000 50  0000 L CNN
+F 2 "REInnovationFootprint:C_1F_SuperCap" H 5550 1100 60  0001 C CNN
+F 3 "~" H 5550 1100 60  0000 C CNN
+F 4 "Value" H 5550 1100 60  0001 C CNN "Description"
+F 5 "Value" H 5550 1100 60  0001 C CNN "Notes"
+F 6 "Value" H 5550 1100 60  0001 C CNN "Manufacturer"
+F 7 "Value" H 5550 1100 60  0001 C CNN "Manufacturer Part No"
+F 8 "Value" H 5550 1100 60  0001 C CNN "Supplier 1"
+F 9 "Value" H 5550 1100 60  0001 C CNN "Supplier 1 Part No"
+F 10 "Value" H 5550 1100 60  0001 C CNN "Supplier 2"
+F 11 "Value" H 5550 1100 60  0001 C CNN "Supplier 2 Part No"
+	1    5550 1100
+	-1   0    0    1   
+$EndComp
+$Comp
+L CONN_2-RESCUE-StepperMotorController_12_v2 P4
+U 1 1 551B37F8
+P 950 6250
+F 0 "P4" V 900 6250 40  0000 C CNN
+F 1 "EXT_V" V 1000 6250 40  0000 C CNN
+F 2 "REInnovationFootprint:SIL-2_screw_terminal" H 950 6250 60  0001 C CNN
+F 3 "" H 950 6250 60  0000 C CNN
+	1    950  6250
+	-1   0    0    1   
+$EndComp
+$Comp
+L +5V #PWR02
+U 1 1 551D3773
+P 8100 1200
+F 0 "#PWR02" H 8100 1290 20  0001 C CNN
+F 1 "+5V" H 8100 1290 30  0000 C CNN
+F 2 "" H 8100 1200 60  0000 C CNN
+F 3 "" H 8100 1200 60  0000 C CNN
+	1    8100 1200
+	1    0    0    -1  
+$EndComp
+$Comp
+L Arduino_Nano_Header J1
+U 1 1 551D3DF3
+P 4550 1600
+F 0 "J1" H 4550 2400 60  0000 C CNN
+F 1 "ARDUINO_NANO_HEADER" H 4550 800 60  0000 C CNN
+F 2 "REInnovationFootprint:NANO_DIP_30_600" H 4550 1600 60  0001 C CNN
+F 3 "" H 4550 1600 60  0000 C CNN
+	1    4550 1600
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND-RESCUE-HandCrankProjector_PCB #PWR03
+U 1 1 551D4012
+P 5800 900
+F 0 "#PWR03" H 5800 900 30  0001 C CNN
+F 1 "GND" H 5800 830 30  0001 C CNN
+F 2 "" H 5800 900 60  0000 C CNN
+F 3 "" H 5800 900 60  0000 C CNN
+	1    5800 900 
+	1    0    0    -1  
+$EndComp
+$Comp
+L +5V #PWR04
+U 1 1 551D4021
+P 2200 800
+F 0 "#PWR04" H 2200 890 20  0001 C CNN
+F 1 "+5V" H 2200 890 30  0000 C CNN
+F 2 "" H 2200 800 60  0000 C CNN
+F 3 "" H 2200 800 60  0000 C CNN
+	1    2200 800 
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4450 6350 4450 6250
+Wire Wire Line
+	4450 6850 4450 7100
+Wire Wire Line
+	4900 1200 5200 1200
+Wire Wire Line
+	5200 1200 5200 1350
+Wire Wire Line
+	5200 1350 5850 1350
+Wire Wire Line
+	5550 1350 5550 1300
+Wire Wire Line
+	4900 1000 5150 1000
+Wire Wire Line
+	5150 1000 5150 850 
+Wire Wire Line
+	5150 850  5800 850 
+Wire Wire Line
+	5550 850  5550 900 
+Wire Wire Line
+	5800 850  5800 900 
+Connection ~ 5550 850 
+Connection ~ 5550 1350
+$Comp
+L CONN_2-RESCUE-StepperMotorController_12_v2 P1
+U 1 1 551EBCD3
+P 900 3750
+F 0 "P1" V 850 3750 40  0000 C CNN
+F 1 "SW1" V 950 3750 40  0000 C CNN
+F 2 "REInnovationFootprint:SIL-2_large_hole" H 900 3750 60  0001 C CNN
+F 3 "" H 900 3750 60  0000 C CNN
+	1    900  3750
+	-1   0    0    1   
+$EndComp
+$Comp
+L CONN_2-RESCUE-StepperMotorController_12_v2 P2
+U 1 1 551EBD0C
+P 900 4150
+F 0 "P2" V 850 4150 40  0000 C CNN
+F 1 "SW2" V 950 4150 40  0000 C CNN
+F 2 "REInnovationFootprint:SIL-2_large_hole" H 900 4150 60  0001 C CNN
+F 3 "" H 900 4150 60  0000 C CNN
+	1    900  4150
+	-1   0    0    1   
+$EndComp
+$Comp
+L CONN_2-RESCUE-StepperMotorController_12_v2 P3
+U 1 1 551EBD1B
+P 900 4550
+F 0 "P3" V 850 4550 40  0000 C CNN
+F 1 "SW3" V 950 4550 40  0000 C CNN
+F 2 "REInnovationFootprint:SIL-2_large_hole" H 900 4550 60  0001 C CNN
+F 3 "" H 900 4550 60  0000 C CNN
+	1    900  4550
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	1250 3850 1450 3850
+Wire Wire Line
+	1450 3850 1450 4800
+Wire Wire Line
+	1250 4650 1450 4650
+Connection ~ 1450 4650
+Wire Wire Line
+	1250 4250 1450 4250
+Connection ~ 1450 4250
+$Comp
+L GND-RESCUE-HandCrankProjector_PCB #PWR05
+U 1 1 551EBD74
+P 1450 4800
+F 0 "#PWR05" H 1450 4800 30  0001 C CNN
+F 1 "GND" H 1450 4730 30  0001 C CNN
+F 2 "" H 1450 4800 60  0000 C CNN
+F 3 "" H 1450 4800 60  0000 C CNN
+	1    1450 4800
+	1    0    0    -1  
+$EndComp
+NoConn ~ 4200 1100
+$Comp
+L GND-RESCUE-HandCrankProjector_PCB #PWR06
+U 1 1 55A283C0
+P 4100 1200
+F 0 "#PWR06" H 4100 1200 30  0001 C CNN
+F 1 "GND" H 4100 1130 30  0001 C CNN
+F 2 "" H 4100 1200 60  0000 C CNN
+F 3 "" H 4100 1200 60  0000 C CNN
+	1    4100 1200
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4100 1200 4100 1150
+Wire Wire Line
+	4100 1150 4150 1150
+Wire Wire Line
+	4150 1150 4150 1200
+Wire Wire Line
+	4150 1200 4200 1200
+Wire Wire Line
+	3800 1000 4200 1000
+Wire Wire Line
+	3800 900  4200 900 
+$Comp
+L CONN_4 P5
+U 1 1 55A28B66
+P 900 3000
+F 0 "P5" V 850 3000 50  0000 C CNN
+F 1 "SERIAL" V 950 3000 50  0000 C CNN
+F 2 "matts_components:SIL-4_Grove_SIL" H 900 3000 60  0001 C CNN
+F 3 "" H 900 3000 60  0000 C CNN
+	1    900  3000
+	-1   0    0    1   
+$EndComp
+$Comp
+L GND-RESCUE-HandCrankProjector_PCB #PWR07
+U 1 1 55A2A5A7
+P 1350 3250
+F 0 "#PWR07" H 1350 3250 30  0001 C CNN
+F 1 "GND" H 1350 3180 30  0001 C CNN
+F 2 "" H 1350 3250 60  0000 C CNN
+F 3 "" H 1350 3250 60  0000 C CNN
+	1    1350 3250
+	1    0    0    -1  
+$EndComp
+$Comp
+L +5V #PWR08
+U 1 1 55A2A5B6
+P 1350 2750
+F 0 "#PWR08" H 1350 2840 20  0001 C CNN
+F 1 "+5V" H 1350 2840 30  0000 C CNN
+F 2 "" H 1350 2750 60  0000 C CNN
+F 3 "" H 1350 2750 60  0000 C CNN
+	1    1350 2750
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1250 2850 1350 2850
+Wire Wire Line
+	1350 2850 1350 2750
+Wire Wire Line
+	1350 3250 1350 3150
+Wire Wire Line
+	1350 3150 1250 3150
+Wire Wire Line
+	1450 2950 1250 2950
+$Comp
+L CONN_1 MH1
+U 1 1 516547CF
+P 6500 7300
+F 0 "MH1" H 6580 7300 40  0000 L CNN
+F 1 "CONN_1" H 6500 7355 30  0001 C CNN
+F 2 "REInnovationFootprint:PCB_75x100mm" H 6500 7300 60  0001 C CNN
+F 3 "" H 6500 7300 60  0001 C CNN
+	1    6500 7300
+	1    0    0    -1  
+$EndComp
+$Comp
+L DIODE D2
+U 1 1 55C8DA5E
+P 1800 800
+F 0 "D2" H 1800 900 40  0000 C CNN
+F 1 "1N4001" H 1800 700 40  0000 C CNN
+F 2 "REInnovationFootprint:TH_Diode_1" H 1800 800 60  0001 C CNN
+F 3 "" H 1800 800 60  0000 C CNN
+	1    1800 800 
+	1    0    0    -1  
+$EndComp
+$Comp
+L CONN_2-RESCUE-StepperMotorController_12_v2 P19
+U 1 1 55C90FE3
+P 1000 900
+F 0 "P19" V 950 900 40  0000 C CNN
+F 1 "POWER" V 1050 900 40  0000 C CNN
+F 2 "REInnovationFootprint:SIL-2_screw_terminal" H 1000 900 60  0001 C CNN
+F 3 "" H 1000 900 60  0000 C CNN
+F 4 "Value" H 1000 900 60  0001 C CNN "Description"
+F 5 "Value" H 1000 900 60  0001 C CNN "Notes"
+F 6 "Value" H 1000 900 60  0001 C CNN "Manufacturer"
+F 7 "Value" H 1000 900 60  0001 C CNN "Manufacturer Part No"
+F 8 "Value" H 1000 900 60  0001 C CNN "Supplier 1"
+F 9 "Value" H 1000 900 60  0001 C CNN "Supplier 1 Part No"
+F 10 "Value" H 1000 900 60  0001 C CNN "Supplier 2"
+F 11 "Value" H 1000 900 60  0001 C CNN "Supplier 2 Part No"
+	1    1000 900 
+	-1   0    0    1   
+$EndComp
+$Comp
+L R-RESCUE-HandCrankProjector_PCB R4
+U 1 1 55CB5CF0
+P 1700 6650
+F 0 "R4" V 1780 6650 40  0000 C CNN
+F 1 "10k" V 1707 6651 40  0000 C CNN
+F 2 "REInnovationFootprint:TH_Resistor_1" V 1630 6650 30  0001 C CNN
+F 3 "~" H 1700 6650 30  0000 C CNN
+F 4 "Value" H 1700 6650 60  0001 C CNN "Description"
+F 5 "Value" H 1700 6650 60  0001 C CNN "Notes"
+F 6 "Value" H 1700 6650 60  0001 C CNN "Manufacturer"
+F 7 "Value" H 1700 6650 60  0001 C CNN "Manufacturer Part No"
+F 8 "Value" H 1700 6650 60  0001 C CNN "Supplier 1"
+F 9 "Value" H 1700 6650 60  0001 C CNN "Supplier 1 Part No"
+F 10 "Value" H 1700 6650 60  0001 C CNN "Supplier 2"
+F 11 "Value" H 1700 6650 60  0001 C CNN "Supplier 2 Part No"
+	1    1700 6650
+	1    0    0    -1  
+$EndComp
+$Comp
+L R-RESCUE-HandCrankProjector_PCB R2
+U 1 1 55CB6599
+P 1700 5900
+F 0 "R2" V 1780 5900 40  0000 C CNN
+F 1 "560k" V 1707 5901 40  0000 C CNN
+F 2 "REInnovationFootprint:TH_Resistor_1" V 1630 5900 30  0001 C CNN
+F 3 "~" H 1700 5900 30  0000 C CNN
+F 4 "Value" H 1700 5900 60  0001 C CNN "Description"
+F 5 "Value" H 1700 5900 60  0001 C CNN "Notes"
+F 6 "Value" H 1700 5900 60  0001 C CNN "Manufacturer"
+F 7 "Value" H 1700 5900 60  0001 C CNN "Manufacturer Part No"
+F 8 "Value" H 1700 5900 60  0001 C CNN "Supplier 1"
+F 9 "Value" H 1700 5900 60  0001 C CNN "Supplier 1 Part No"
+F 10 "Value" H 1700 5900 60  0001 C CNN "Supplier 2"
+F 11 "Value" H 1700 5900 60  0001 C CNN "Supplier 2 Part No"
+	1    1700 5900
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND-RESCUE-HandCrankProjector_PCB #PWR09
+U 1 1 55CB6C0E
+P 1700 7050
+F 0 "#PWR09" H 1700 7050 30  0001 C CNN
+F 1 "GND" H 1700 6980 30  0001 C CNN
+F 2 "" H 1700 7050 60  0000 C CNN
+F 3 "" H 1700 7050 60  0000 C CNN
+	1    1700 7050
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1700 6900 1700 7050
+Wire Wire Line
+	1400 6950 2050 6950
+Wire Wire Line
+	2050 6950 2050 6850
+Connection ~ 1700 6950
+Wire Wire Line
+	2050 6450 2050 6250
+Wire Wire Line
+	1700 6150 1700 6400
+Connection ~ 1700 6250
+Wire Wire Line
+	1700 5650 1700 5550
+Connection ~ 2050 6250
+Wire Wire Line
+	1700 6250 2200 6250
+$Comp
+L R-RESCUE-HandCrankProjector_PCB R7
+U 1 1 5830D9E4
+P 3100 6700
+F 0 "R7" V 3180 6700 40  0000 C CNN
+F 1 "100k" V 3107 6701 40  0000 C CNN
+F 2 "REInnovationFootprint:TH_Resistor_1" V 3030 6700 30  0001 C CNN
+F 3 "~" H 3100 6700 30  0000 C CNN
+F 4 "Value" H 3100 6700 60  0001 C CNN "Description"
+F 5 "Value" H 3100 6700 60  0001 C CNN "Notes"
+F 6 "Value" H 3100 6700 60  0001 C CNN "Manufacturer"
+F 7 "Value" H 3100 6700 60  0001 C CNN "Manufacturer Part No"
+F 8 "Value" H 3100 6700 60  0001 C CNN "Supplier 1"
+F 9 "Value" H 3100 6700 60  0001 C CNN "Supplier 1 Part No"
+F 10 "Value" H 3100 6700 60  0001 C CNN "Supplier 2"
+F 11 "Value" H 3100 6700 60  0001 C CNN "Supplier 2 Part No"
+	1    3100 6700
+	1    0    0    -1  
+$EndComp
+$Comp
+L R-RESCUE-HandCrankProjector_PCB R6
+U 1 1 5830D9F2
+P 3100 5950
+F 0 "R6" V 3180 5950 40  0000 C CNN
+F 1 "100k" V 3107 5951 40  0000 C CNN
+F 2 "REInnovationFootprint:TH_Resistor_1" V 3030 5950 30  0001 C CNN
+F 3 "~" H 3100 5950 30  0000 C CNN
+F 4 "Value" H 3100 5950 60  0001 C CNN "Description"
+F 5 "Value" H 3100 5950 60  0001 C CNN "Notes"
+F 6 "Value" H 3100 5950 60  0001 C CNN "Manufacturer"
+F 7 "Value" H 3100 5950 60  0001 C CNN "Manufacturer Part No"
+F 8 "Value" H 3100 5950 60  0001 C CNN "Supplier 1"
+F 9 "Value" H 3100 5950 60  0001 C CNN "Supplier 1 Part No"
+F 10 "Value" H 3100 5950 60  0001 C CNN "Supplier 2"
+F 11 "Value" H 3100 5950 60  0001 C CNN "Supplier 2 Part No"
+	1    3100 5950
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND-RESCUE-HandCrankProjector_PCB #PWR010
+U 1 1 5830D9F8
+P 3100 7100
+F 0 "#PWR010" H 3100 7100 30  0001 C CNN
+F 1 "GND" H 3100 7030 30  0001 C CNN
+F 2 "" H 3100 7100 60  0000 C CNN
+F 3 "" H 3100 7100 60  0000 C CNN
+	1    3100 7100
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3100 6950 3100 7100
+Wire Wire Line
+	3100 7000 3450 7000
+Wire Wire Line
+	3450 7000 3450 6900
+Connection ~ 3100 7000
+Wire Wire Line
+	3450 6500 3450 6300
+Wire Wire Line
+	3100 6200 3100 6450
+Connection ~ 3100 6300
+Wire Wire Line
+	3100 5700 3100 5600
+Connection ~ 3450 6300
+Wire Wire Line
+	3100 6300 3600 6300
+Wire Wire Line
+	7700 750  8350 750 
+Wire Wire Line
+	7700 850  8350 850 
+Wire Wire Line
+	7700 950  8350 950 
+Wire Wire Line
+	7700 1050 8350 1050
+Wire Wire Line
+	1300 6150 1400 6150
+Wire Wire Line
+	1400 6150 1400 5550
+Wire Wire Line
+	1400 5550 1700 5550
+Wire Wire Line
+	1300 6350 1400 6350
+Wire Wire Line
+	1400 6350 1400 6950
+Text Label 2200 6250 0    60   ~ 0
+EXT_V
+Text Label 3600 6300 0    60   ~ 0
+PWR_V
+$Comp
+L +5V #PWR011
+U 1 1 5830FE82
+P 3100 5600
+F 0 "#PWR011" H 3100 5690 20  0001 C CNN
+F 1 "+5V" H 3100 5690 30  0000 C CNN
+F 2 "" H 3100 5600 60  0000 C CNN
+F 3 "" H 3100 5600 60  0000 C CNN
+	1    3100 5600
+	1    0    0    -1  
+$EndComp
+Text Label 4500 5700 0    60   ~ 0
+LED
+Wire Wire Line
+	4500 5700 4450 5700
+Wire Wire Line
+	4450 5700 4450 5850
+Text Label 1550 3650 0    60   ~ 0
+SW1
+Text Label 1550 4050 0    60   ~ 0
+SW2
+Text Label 1550 4450 0    60   ~ 0
+SW3
+Wire Wire Line
+	1250 4450 1900 4450
+Wire Wire Line
+	1250 4050 1900 4050
+Wire Wire Line
+	1250 3650 1900 3650
+Text Label 3800 900  0    60   ~ 0
+Tx
+Text Label 3800 1000 0    60   ~ 0
+Rx
+Text Label 7700 750  0    60   ~ 0
+STEP1
+Text Label 7700 850  0    60   ~ 0
+STEP2
+Text Label 7700 950  0    60   ~ 0
+STEP3
+Text Label 7700 1050 0    60   ~ 0
+STEP4
+Wire Wire Line
+	3700 2000 4200 2000
+Wire Wire Line
+	3700 2100 4200 2100
+Wire Wire Line
+	3700 2200 4200 2200
+Wire Wire Line
+	3700 2300 4200 2300
+Text Label 3700 1600 0    60   ~ 0
+STEP1
+Text Label 3700 1700 0    60   ~ 0
+STEP2
+Text Label 3700 1800 0    60   ~ 0
+STEP3
+Text Label 3700 1900 0    60   ~ 0
+STEP4
+Text Label 3950 1500 0    60   ~ 0
+LED
+Text Label 1450 2950 0    60   ~ 0
+Tx
+Text Label 1450 3050 0    60   ~ 0
+Rx
+Wire Wire Line
+	1450 3050 1250 3050
+$Comp
+L MOD1021 U1
+U 1 1 583127F9
+P 6050 3700
+F 0 "U1" H 6200 4300 70  0000 C CNN
+F 1 "DFPlayer" H 6050 3100 70  0000 C CNN
+F 2 "REInnovationFootprint:TH_DFPlayer_Mini" H 6050 3600 60  0001 C CNN
+F 3 "" H 6050 3600 60  0000 C CNN
+	1    6050 3700
+	1    0    0    -1  
+$EndComp
+Text Label 4050 3300 0    60   ~ 0
+MP3_Tx
+Text Label 4050 3500 0    60   ~ 0
+MP3_Rx
+$Comp
+L GND #PWR012
+U 1 1 58312EE0
+P 5000 5100
+F 0 "#PWR012" H 5000 4850 50  0001 C CNN
+F 1 "GND" H 5000 4950 50  0000 C CNN
+F 2 "" H 5000 5100 50  0000 C CNN
+F 3 "" H 5000 5100 50  0000 C CNN
+	1    5000 5100
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6750 3950 7000 3950
+Wire Wire Line
+	5350 3950 5000 3950
+$Comp
+L CONN_01X02 P8
+U 1 1 5831309C
+P 4500 4000
+F 0 "P8" H 4500 4150 50  0000 C CNN
+F 1 "SPK" V 4600 4000 50  0000 C CNN
+F 2 "REInnovationFootprint:SIL-2_screw_terminal" H 4500 4000 50  0001 C CNN
+F 3 "" H 4500 4000 50  0000 C CNN
+	1    4500 4000
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	5350 3850 4850 3850
+Wire Wire Line
+	4850 3850 4850 3950
+Wire Wire Line
+	4850 3950 4700 3950
+Wire Wire Line
+	4700 4050 4850 4050
+Wire Wire Line
+	4850 4050 4850 4300
+Wire Wire Line
+	4850 4300 5200 4300
+Wire Wire Line
+	5200 4300 5200 4050
+Wire Wire Line
+	5200 4050 5350 4050
+Text Label 6850 3350 0    60   ~ 0
+MP3_BUSY
+Wire Wire Line
+	6850 3350 6750 3350
+$Comp
+L R R9
+U 1 1 583135FB
+P 4600 3300
+F 0 "R9" V 4680 3300 50  0000 C CNN
+F 1 "1k" V 4600 3300 50  0000 C CNN
+F 2 "REInnovationFootprint:TH_Resistor_1" V 4530 3300 50  0001 C CNN
+F 3 "" H 4600 3300 50  0000 C CNN
+	1    4600 3300
+	0    1    1    0   
+$EndComp
+$Comp
+L R R10
+U 1 1 58313753
+P 4600 3500
+F 0 "R10" V 4680 3500 50  0000 C CNN
+F 1 "1k" V 4600 3500 50  0000 C CNN
+F 2 "REInnovationFootprint:TH_Resistor_1" V 4530 3500 50  0001 C CNN
+F 3 "" H 4600 3500 50  0000 C CNN
+	1    4600 3500
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	4750 3300 5100 3300
+Wire Wire Line
+	5100 3300 5100 3450
+Wire Wire Line
+	5100 3450 5350 3450
+Wire Wire Line
+	5350 3550 5000 3550
+Wire Wire Line
+	5000 3550 5000 3500
+Wire Wire Line
+	5000 3500 4750 3500
+Text Label 5100 2300 0    60   ~ 0
+MP3_Tx
+Text Label 3700 2300 0    60   ~ 0
+MP3_Rx
+Wire Wire Line
+	4450 3300 4050 3300
+Wire Wire Line
+	4050 3500 4450 3500
+$Comp
+L CONN_01X04 P6
+U 1 1 58313EDB
+P 1000 1500
+F 0 "P6" H 1000 1750 50  0000 C CNN
+F 1 "IR_FRAME" V 1100 1500 50  0000 C CNN
+F 2 "matts_components:SIL-4_Grove_SIL" H 1000 1500 50  0001 C CNN
+F 3 "" H 1000 1500 50  0000 C CNN
+	1    1000 1500
+	-1   0    0    1   
+$EndComp
+$Comp
+L CONN_01X04 P7
+U 1 1 58314080
+P 1000 2100
+F 0 "P7" H 1000 2350 50  0000 C CNN
+F 1 "IR_MUSIC" V 1100 2100 50  0000 C CNN
+F 2 "matts_components:SIL-4_Grove_SIL" H 1000 2100 50  0001 C CNN
+F 3 "" H 1000 2100 50  0000 C CNN
+	1    1000 2100
+	-1   0    0    1   
+$EndComp
+Text Label 2250 1550 0    60   ~ 0
+IR_FRAME
+Text Label 2300 2150 0    60   ~ 0
+IR_MUSIC
+$Comp
+L GND-RESCUE-HandCrankProjector_PCB #PWR013
+U 1 1 583145D1
+P 1300 2350
+F 0 "#PWR013" H 1300 2350 30  0001 C CNN
+F 1 "GND" H 1300 2280 30  0001 C CNN
+F 2 "" H 1300 2350 60  0000 C CNN
+F 3 "" H 1300 2350 60  0000 C CNN
+	1    1300 2350
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND-RESCUE-HandCrankProjector_PCB #PWR014
+U 1 1 5831462A
+P 1300 1750
+F 0 "#PWR014" H 1300 1750 30  0001 C CNN
+F 1 "GND" H 1300 1680 30  0001 C CNN
+F 2 "" H 1300 1750 60  0000 C CNN
+F 3 "" H 1300 1750 60  0000 C CNN
+	1    1300 1750
+	1    0    0    -1  
+$EndComp
+$Comp
+L R R5
+U 1 1 58314739
+P 1600 1350
+F 0 "R5" V 1680 1350 50  0000 C CNN
+F 1 "1k" V 1600 1350 50  0000 C CNN
+F 2 "REInnovationFootprint:TH_Resistor_1" V 1530 1350 50  0001 C CNN
+F 3 "" H 1600 1350 50  0000 C CNN
+	1    1600 1350
+	0    1    1    0   
+$EndComp
+$Comp
+L R R3
+U 1 1 583147D6
+P 1450 1950
+F 0 "R3" V 1530 1950 50  0000 C CNN
+F 1 "1k" V 1450 1950 50  0000 C CNN
+F 2 "REInnovationFootprint:TH_Resistor_1" V 1380 1950 50  0001 C CNN
+F 3 "" H 1450 1950 50  0000 C CNN
+	1    1450 1950
+	0    1    1    0   
+$EndComp
+Text Label 5050 1600 0    60   ~ 0
+IR_MUSIC
+Text Label 5050 2000 0    60   ~ 0
+MP3_BUSY
+Text Label 5050 1900 0    60   ~ 0
+EXT_V
+Text Label 5050 1800 0    60   ~ 0
+PWR_V
+Text Label 4950 1500 0    60   ~ 0
+SW1
+Text Label 4950 1400 0    60   ~ 0
+SW2
+Text Label 4950 1300 0    60   ~ 0
+SW3
+Wire Wire Line
+	5050 1800 4900 1800
+Wire Wire Line
+	4900 1900 5050 1900
+Wire Wire Line
+	5050 2000 4900 2000
+Text Label 3700 2000 0    60   ~ 0
+LED_R
+Text Label 3700 2100 0    60   ~ 0
+LED_G
+Text Label 3700 2200 0    60   ~ 0
+LED_B
+Wire Wire Line
+	4950 1300 4900 1300
+Wire Wire Line
+	4900 1400 4950 1400
+Wire Wire Line
+	4950 1500 4900 1500
+$Comp
+L GND-RESCUE-HandCrankProjector_PCB #PWR015
+U 1 1 58309B70
+P 1500 1050
+F 0 "#PWR015" H 1500 1050 30  0001 C CNN
+F 1 "GND" H 1500 980 30  0001 C CNN
+F 2 "" H 1500 1050 60  0000 C CNN
+F 3 "" H 1500 1050 60  0000 C CNN
+	1    1500 1050
+	1    0    0    -1  
+$EndComp
+$Comp
+L +5V #PWR016
+U 1 1 58309BCF
+P 5850 1350
+F 0 "#PWR016" H 5850 1440 20  0001 C CNN
+F 1 "+5V" H 5850 1440 30  0000 C CNN
+F 2 "" H 5850 1350 60  0000 C CNN
+F 3 "" H 5850 1350 60  0000 C CNN
+	1    5850 1350
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1350 800  1600 800 
+Wire Wire Line
+	2000 800  2200 800 
+Wire Wire Line
+	1350 1000 1500 1000
+Wire Wire Line
+	1500 1000 1500 1050
+$Comp
+L +5V #PWR017
+U 1 1 58309F79
+P 1900 1250
+F 0 "#PWR017" H 1900 1340 20  0001 C CNN
+F 1 "+5V" H 1900 1340 30  0000 C CNN
+F 2 "" H 1900 1250 60  0000 C CNN
+F 3 "" H 1900 1250 60  0000 C CNN
+	1    1900 1250
+	1    0    0    -1  
+$EndComp
+$Comp
+L +5V #PWR018
+U 1 1 58309FD8
+P 1750 1950
+F 0 "#PWR018" H 1750 2040 20  0001 C CNN
+F 1 "+5V" H 1750 2040 30  0000 C CNN
+F 2 "" H 1750 1950 60  0000 C CNN
+F 3 "" H 1750 1950 60  0000 C CNN
+	1    1750 1950
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1200 2250 1300 2250
+Wire Wire Line
+	1300 2050 1300 2350
+Wire Wire Line
+	1200 2150 2300 2150
+Wire Wire Line
+	1200 2050 1300 2050
+Connection ~ 1300 2250
+Wire Wire Line
+	1600 1950 1850 1950
+Wire Wire Line
+	1300 1950 1200 1950
+Wire Wire Line
+	1200 1650 1300 1650
+Wire Wire Line
+	1300 1450 1300 1750
+Wire Wire Line
+	1200 1550 2250 1550
+Wire Wire Line
+	1200 1350 1450 1350
+Wire Wire Line
+	1750 1350 2000 1350
+Wire Wire Line
+	1900 1350 1900 1250
+Wire Wire Line
+	1200 1450 1300 1450
+Connection ~ 1300 1650
+$Comp
+L +5V #PWR019
+U 1 1 5830AC27
+P 5250 3300
+F 0 "#PWR019" H 5250 3390 20  0001 C CNN
+F 1 "+5V" H 5250 3390 30  0000 C CNN
+F 2 "" H 5250 3300 60  0000 C CNN
+F 3 "" H 5250 3300 60  0000 C CNN
+	1    5250 3300
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5350 3350 5250 3350
+Wire Wire Line
+	5250 3350 5250 3300
+$Comp
+L CONN_01X04 P11
+U 1 1 5830BAA6
+P 10400 2100
+F 0 "P11" H 10400 2350 50  0000 C CNN
+F 1 "LED_CONTROL" V 10500 2100 50  0000 C CNN
+F 2 "REInnovationFootprint:SIL-4_Grove_SCREW" H 10400 2100 50  0001 C CNN
+F 3 "" H 10400 2100 50  0000 C CNN
+	1    10400 2100
+	1    0    0    -1  
+$EndComp
+Text Label 7300 2450 0    60   ~ 0
+LED_R
+Text Label 7300 2550 0    60   ~ 0
+LED_G
+Text Label 7300 2650 0    60   ~ 0
+LED_B
+Wire Wire Line
+	3950 1500 4200 1500
+Wire Wire Line
+	4200 1600 3700 1600
+Wire Wire Line
+	4200 1700 3700 1700
+Text Label 5050 1700 0    60   ~ 0
+IR_FRAME
+Wire Wire Line
+	4200 1800 3700 1800
+Wire Wire Line
+	4200 1900 3700 1900
+Wire Wire Line
+	4900 2300 5100 2300
+Wire Wire Line
+	5000 3950 5000 4500
+Wire Wire Line
+	5000 4450 7300 4450
+Wire Wire Line
+	7000 3950 7000 4450
+Connection ~ 5000 4450
+Wire Wire Line
+	5000 4900 5000 5100
+$Comp
+L R-RESCUE-HandCrankProjector_PCB R11
+U 1 1 5830EB51
+P 4650 5000
+F 0 "R11" V 4730 5000 40  0000 C CNN
+F 1 "100k" V 4657 5001 40  0000 C CNN
+F 2 "REInnovationFootprint:TH_Resistor_1" V 4580 5000 30  0001 C CNN
+F 3 "~" H 4650 5000 30  0000 C CNN
+F 4 "Value" H 4650 5000 60  0001 C CNN "Description"
+F 5 "Value" H 4650 5000 60  0001 C CNN "Notes"
+F 6 "Value" H 4650 5000 60  0001 C CNN "Manufacturer"
+F 7 "Value" H 4650 5000 60  0001 C CNN "Manufacturer Part No"
+F 8 "Value" H 4650 5000 60  0001 C CNN "Supplier 1"
+F 9 "Value" H 4650 5000 60  0001 C CNN "Supplier 1 Part No"
+F 10 "Value" H 4650 5000 60  0001 C CNN "Supplier 2"
+F 11 "Value" H 4650 5000 60  0001 C CNN "Supplier 2 Part No"
+	1    4650 5000
+	0    1    1    0   
+$EndComp
+$Comp
+L R-RESCUE-HandCrankProjector_PCB R8
+U 1 1 5830EC02
+P 4000 4700
+F 0 "R8" V 4080 4700 40  0000 C CNN
+F 1 "10" V 4007 4701 40  0000 C CNN
+F 2 "REInnovationFootprint:TH_Resistor_1" V 3930 4700 30  0001 C CNN
+F 3 "~" H 4000 4700 30  0000 C CNN
+F 4 "Value" H 4000 4700 60  0001 C CNN "Description"
+F 5 "Value" H 4000 4700 60  0001 C CNN "Notes"
+F 6 "Value" H 4000 4700 60  0001 C CNN "Manufacturer"
+F 7 "Value" H 4000 4700 60  0001 C CNN "Manufacturer Part No"
+F 8 "Value" H 4000 4700 60  0001 C CNN "Supplier 1"
+F 9 "Value" H 4000 4700 60  0001 C CNN "Supplier 1 Part No"
+F 10 "Value" H 4000 4700 60  0001 C CNN "Supplier 2"
+F 11 "Value" H 4000 4700 60  0001 C CNN "Supplier 2 Part No"
+	1    4000 4700
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	4250 4700 4700 4700
+Wire Wire Line
+	4400 5000 4400 4700
+Connection ~ 4400 4700
+Wire Wire Line
+	4900 5000 5400 5000
+Connection ~ 5000 5000
+Text Label 3300 4700 0    60   ~ 0
+MP3_PWR
+Wire Wire Line
+	3750 4700 3300 4700
+Text Label 3700 1400 0    60   ~ 0
+MP3_PWR
+Wire Wire Line
+	4900 1700 5050 1700
+Wire Wire Line
+	7300 2450 9700 2450
+Wire Wire Line
+	7300 2550 8800 2550
+Wire Wire Line
+	7300 2650 7950 2650
+Text Notes 9200 1250 0    60   ~ 0
+Stepper Motor\nSpecifications\nNEMA17\n0.9 step\n4-wire BiPolar\n1.2A
+Text Notes 8650 4950 0    60   ~ 0
+Stereo Amplifier\n3W + 3W ?\n10W+10W? 
+$Comp
+L CONN_01X02 P12
+U 1 1 58311E60
+P 9900 5350
+F 0 "P12" H 9900 5500 50  0000 C CNN
+F 1 "SPK_L" V 10000 5350 50  0000 C CNN
+F 2 "REInnovationFootprint:SIL-2_screw_terminal" H 9900 5350 50  0001 C CNN
+F 3 "" H 9900 5350 50  0000 C CNN
+	1    9900 5350
+	1    0    0    -1  
+$EndComp
+$Comp
+L CONN_01X02 P13
+U 1 1 58311F3B
+P 9900 5750
+F 0 "P13" H 9900 5900 50  0000 C CNN
+F 1 "SPK_R" V 10000 5750 50  0000 C CNN
+F 2 "REInnovationFootprint:SIL-2_screw_terminal" H 9900 5750 50  0001 C CNN
+F 3 "" H 9900 5750 50  0000 C CNN
+	1    9900 5750
+	1    0    0    -1  
+$EndComp
+Text Notes 6100 4800 0    60   ~ 0
+Control MP3 Power?\nCan be bypassed
+$Comp
+L CONN_01X02 P9
+U 1 1 58312566
+P 5800 4850
+F 0 "P9" H 5800 5000 50  0000 C CNN
+F 1 "MP3_GND" V 5900 4850 50  0000 C CNN
+F 2 "REInnovationFootprint:SM_2_SLDR_JMP" H 5800 4850 50  0001 C CNN
+F 3 "" H 5800 4850 50  0000 C CNN
+	1    5800 4850
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5600 4800 5600 4450
+Connection ~ 5600 4450
+Wire Wire Line
+	5600 4900 5400 4900
+Wire Wire Line
+	5400 4900 5400 5000
+Text Notes 10650 2200 0    60   ~ 0
+RGB LED or \nWHITE LED\nUp to 1A
+Wire Wire Line
+	4900 1600 5050 1600
+Wire Wire Line
+	4200 1400 3700 1400
+$Comp
+L SW_PUSH SW1
+U 1 1 585689D8
+P 2200 3650
+F 0 "SW1" H 2350 3760 50  0000 C CNN
+F 1 "SW_PUSH" H 2200 3570 50  0000 C CNN
+F 2 "matts_components:SW_PUSH_single_pins" H 2200 3650 50  0001 C CNN
+F 3 "" H 2200 3650 50  0000 C CNN
+	1    2200 3650
+	1    0    0    -1  
+$EndComp
+$Comp
+L SW_PUSH SW2
+U 1 1 58568A79
+P 2200 4050
+F 0 "SW2" H 2350 4160 50  0000 C CNN
+F 1 "SW_PUSH" H 2200 3970 50  0000 C CNN
+F 2 "matts_components:SW_PUSH_single_pins" H 2200 4050 50  0001 C CNN
+F 3 "" H 2200 4050 50  0000 C CNN
+	1    2200 4050
+	1    0    0    -1  
+$EndComp
+$Comp
+L SW_PUSH SW3
+U 1 1 58568B29
+P 2200 4450
+F 0 "SW3" H 2350 4560 50  0000 C CNN
+F 1 "SW_PUSH" H 2200 4370 50  0000 C CNN
+F 2 "matts_components:SW_PUSH_single_pins" H 2200 4450 50  0001 C CNN
+F 3 "" H 2200 4450 50  0000 C CNN
+	1    2200 4450
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2500 3650 2700 3650
+Wire Wire Line
+	2700 3650 2700 4700
+Wire Wire Line
+	2700 4700 1450 4700
+Connection ~ 1450 4700
+Wire Wire Line
+	2500 4450 2700 4450
+Connection ~ 2700 4450
+Wire Wire Line
+	2500 4050 2700 4050
+Connection ~ 2700 4050
+$Comp
+L CONN_01X06 P14
+U 1 1 5856A7CE
+P 8550 1000
+F 0 "P14" H 8550 1350 50  0000 C CNN
+F 1 "STEPPER" V 8650 1000 50  0000 C CNN
+F 2 "REInnovationFootprint:TH_6W_SCREW_TERM" H 8550 1000 50  0001 C CNN
+F 3 "" H 8550 1000 50  0000 C CNN
+	1    8550 1000
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND-RESCUE-HandCrankProjector_PCB #PWR020
+U 1 1 5856AF8B
+P 8350 1350
+F 0 "#PWR020" H 8350 1350 30  0001 C CNN
+F 1 "GND" H 8350 1280 30  0001 C CNN
+F 2 "" H 8350 1350 60  0000 C CNN
+F 3 "" H 8350 1350 60  0000 C CNN
+	1    8350 1350
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8350 1250 8350 1350
+Wire Wire Line
+	8100 1200 8250 1200
+Wire Wire Line
+	8250 1200 8250 1150
+Wire Wire Line
+	8250 1150 8350 1150
+Text Label 5050 3650 0    60   ~ 0
+AN_R
+Text Label 5050 3750 0    60   ~ 0
+AN_L
+Wire Wire Line
+	5050 3650 5350 3650
+Wire Wire Line
+	5050 3750 5350 3750
+Text Label 7950 5600 0    60   ~ 0
+AN_R
+Text Label 7950 5500 0    60   ~ 0
+AN_L
+$Comp
+L Q_NPN_CBE Q2
+U 1 1 5856BECE
+P 8250 3150
+F 0 "Q2" H 8550 3200 50  0000 R CNN
+F 1 "BC639" H 8300 2950 50  0000 R CNN
+F 2 "REInnovationFootprint:TO92-ECB_large_pad_BC639" H 8450 3250 50  0001 C CNN
+F 3 "" H 8250 3150 50  0000 C CNN
+	1    8250 3150
+	1    0    0    -1  
+$EndComp
+$Comp
+L Q_NPN_CBE Q3
+U 1 1 5856C491
+P 9150 3150
+F 0 "Q3" H 9450 3200 50  0000 R CNN
+F 1 "BC639" H 9200 2950 50  0000 R CNN
+F 2 "REInnovationFootprint:TO92-ECB_large_pad_BC639" H 9350 3250 50  0001 C CNN
+F 3 "" H 9150 3150 50  0000 C CNN
+	1    9150 3150
+	1    0    0    -1  
+$EndComp
+$Comp
+L Q_NPN_CBE Q4
+U 1 1 5856C532
+P 10000 3150
+F 0 "Q4" H 10300 3200 50  0000 R CNN
+F 1 "BC639" H 10050 2950 50  0000 R CNN
+F 2 "REInnovationFootprint:TO92-ECB_large_pad_BC639" H 10200 3250 50  0001 C CNN
+F 3 "" H 10000 3150 50  0000 C CNN
+	1    10000 3150
+	1    0    0    -1  
+$EndComp
+$Comp
+L R R13
+U 1 1 5856C59C
+P 7950 3450
+F 0 "R13" V 8030 3450 50  0000 C CNN
+F 1 "100k" V 7950 3450 50  0000 C CNN
+F 2 "REInnovationFootprint:TH_Resistor_1" V 7880 3450 50  0001 C CNN
+F 3 "" H 7950 3450 50  0000 C CNN
+	1    7950 3450
+	1    0    0    -1  
+$EndComp
+$Comp
+L R R15
+U 1 1 5856C6AF
+P 8800 3450
+F 0 "R15" V 8880 3450 50  0000 C CNN
+F 1 "100k" V 8800 3450 50  0000 C CNN
+F 2 "REInnovationFootprint:TH_Resistor_1" V 8730 3450 50  0001 C CNN
+F 3 "" H 8800 3450 50  0000 C CNN
+	1    8800 3450
+	1    0    0    -1  
+$EndComp
+$Comp
+L R R17
+U 1 1 5856C753
+P 9700 3400
+F 0 "R17" V 9780 3400 50  0000 C CNN
+F 1 "100k" V 9700 3400 50  0000 C CNN
+F 2 "REInnovationFootprint:TH_Resistor_1" V 9630 3400 50  0001 C CNN
+F 3 "" H 9700 3400 50  0000 C CNN
+	1    9700 3400
+	1    0    0    -1  
+$EndComp
+$Comp
+L R R12
+U 1 1 5856C7F6
+P 7950 2900
+F 0 "R12" V 8030 2900 50  0000 C CNN
+F 1 "10" V 7950 2900 50  0000 C CNN
+F 2 "REInnovationFootprint:TH_Resistor_1" V 7880 2900 50  0001 C CNN
+F 3 "" H 7950 2900 50  0000 C CNN
+	1    7950 2900
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR021
+U 1 1 5856C915
+P 8350 3850
+F 0 "#PWR021" H 8350 3600 50  0001 C CNN
+F 1 "GND" H 8350 3700 50  0000 C CNN
+F 2 "" H 8350 3850 50  0000 C CNN
+F 3 "" H 8350 3850 50  0000 C CNN
+	1    8350 3850
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7950 3600 7950 3800
+Wire Wire Line
+	7950 3800 10100 3800
+Wire Wire Line
+	10100 3800 10100 3350
+Wire Wire Line
+	9700 3550 9700 3800
+Connection ~ 9700 3800
+Wire Wire Line
+	8800 3600 8800 3800
+Connection ~ 8800 3800
+Wire Wire Line
+	8350 3350 8350 3850
+Connection ~ 8350 3800
+Wire Wire Line
+	9250 3350 9250 3800
+Connection ~ 9250 3800
+Wire Wire Line
+	9800 3150 9700 3150
+Wire Wire Line
+	9700 3050 9700 3250
+Wire Wire Line
+	8950 3150 8800 3150
+Wire Wire Line
+	8800 3050 8800 3300
+Wire Wire Line
+	8050 3150 7950 3150
+Wire Wire Line
+	7950 3050 7950 3300
+Connection ~ 7950 3150
+$Comp
+L +5V #PWR022
+U 1 1 5856D314
+P 10000 1900
+F 0 "#PWR022" H 10000 1990 20  0001 C CNN
+F 1 "+5V" H 10000 1990 30  0000 C CNN
+F 2 "" H 10000 1900 60  0000 C CNN
+F 3 "" H 10000 1900 60  0000 C CNN
+	1    10000 1900
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	10200 1950 10000 1950
+Wire Wire Line
+	10000 1950 10000 1900
+Wire Wire Line
+	7950 2650 7950 2750
+$Comp
+L R R14
+U 1 1 5856D8FE
+P 8800 2900
+F 0 "R14" V 8880 2900 50  0000 C CNN
+F 1 "10" V 8800 2900 50  0000 C CNN
+F 2 "REInnovationFootprint:TH_Resistor_1" V 8730 2900 50  0001 C CNN
+F 3 "" H 8800 2900 50  0000 C CNN
+	1    8800 2900
+	1    0    0    -1  
+$EndComp
+$Comp
+L R R16
+U 1 1 5856D9B3
+P 9700 2900
+F 0 "R16" V 9780 2900 50  0000 C CNN
+F 1 "10" V 9700 2900 50  0000 C CNN
+F 2 "REInnovationFootprint:TH_Resistor_1" V 9630 2900 50  0001 C CNN
+F 3 "" H 9700 2900 50  0000 C CNN
+	1    9700 2900
+	1    0    0    -1  
+$EndComp
+Connection ~ 8800 3150
+Connection ~ 9700 3150
+Wire Wire Line
+	9700 2450 9700 2750
+Wire Wire Line
+	8800 2550 8800 2750
+Wire Wire Line
+	10100 2950 10100 2050
+Wire Wire Line
+	10100 2050 10200 2050
+Wire Wire Line
+	10200 2150 9250 2150
+Wire Wire Line
+	9250 2150 9250 2950
+Wire Wire Line
+	10200 2250 8350 2250
+Wire Wire Line
+	8350 2250 8350 2950
+$Comp
+L +5V #PWR023
+U 1 1 5856ED02
+P 8250 5350
+F 0 "#PWR023" H 8250 5440 20  0001 C CNN
+F 1 "+5V" H 8250 5440 30  0000 C CNN
+F 2 "" H 8250 5350 60  0000 C CNN
+F 3 "" H 8250 5350 60  0000 C CNN
+	1    8250 5350
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND-RESCUE-HandCrankProjector_PCB #PWR024
+U 1 1 58571F12
+P 3350 1500
+F 0 "#PWR024" H 3350 1500 30  0001 C CNN
+F 1 "GND" H 3350 1430 30  0001 C CNN
+F 2 "" H 3350 1500 60  0000 C CNN
+F 3 "" H 3350 1500 60  0000 C CNN
+	1    3350 1500
+	1    0    0    -1  
+$EndComp
+$Comp
+L CONN_01X03 P10
+U 1 1 58571FCC
+P 3100 1300
+F 0 "P10" H 3100 1500 50  0000 C CNN
+F 1 "D2" V 3200 1300 50  0000 C CNN
+F 2 "REInnovationFootprint:Pin_Header_Straight_1x03" H 3100 1300 50  0001 C CNN
+F 3 "" H 3100 1300 50  0000 C CNN
+	1    3100 1300
+	-1   0    0    1   
+$EndComp
+$Comp
+L +5V #PWR025
+U 1 1 585720F6
+P 3350 1150
+F 0 "#PWR025" H 3350 1240 20  0001 C CNN
+F 1 "+5V" H 3350 1240 30  0000 C CNN
+F 2 "" H 3350 1150 60  0000 C CNN
+F 3 "" H 3350 1150 60  0000 C CNN
+	1    3350 1150
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4200 1300 3300 1300
+Wire Wire Line
+	3300 1200 3350 1200
+Wire Wire Line
+	3350 1200 3350 1150
+Wire Wire Line
+	3300 1400 3350 1400
+Wire Wire Line
+	3350 1400 3350 1500
+$Comp
+L AMP_3WST P15
+U 1 1 58575690
+P 8950 5550
+F 0 "P15" H 8950 6000 50  0000 C CNN
+F 1 "AMP_3WST" H 8950 5200 50  0000 C CNN
+F 2 "REInnovationFootprint:TH_PAM8403_Amp" H 9500 5750 50  0001 C CNN
+F 3 "" H 9500 5750 50  0000 C CNN
+	1    8950 5550
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9400 5400 9400 5300
+Wire Wire Line
+	9400 5300 9700 5300
+Wire Wire Line
+	9400 5700 9400 5800
+Wire Wire Line
+	9400 5800 9700 5800
+Wire Wire Line
+	9700 5700 9500 5700
+Wire Wire Line
+	9500 5700 9500 5600
+Wire Wire Line
+	9500 5600 9400 5600
+Wire Wire Line
+	9400 5500 9500 5500
+Wire Wire Line
+	9500 5500 9500 5400
+Wire Wire Line
+	9500 5400 9700 5400
+Wire Wire Line
+	8250 5350 8250 5400
+Wire Wire Line
+	8250 5400 8450 5400
+Wire Wire Line
+	7300 5700 8450 5700
+Wire Wire Line
+	7950 5600 8450 5600
+Wire Wire Line
+	8450 5500 7950 5500
+$Comp
+L Q_NPN_CBE Q1
+U 1 1 58577E03
+P 4900 4700
+F 0 "Q1" H 5200 4750 50  0000 R CNN
+F 1 "BD135" H 4950 4500 50  0000 R CNN
+F 2 "REInnovationFootprint:TO92-ECB_large_pad_BC639" H 5100 4800 50  0001 C CNN
+F 3 "" H 4900 4700 50  0000 C CNN
+F 4 "~" H 4900 4700 60  0000 C CNN "Notes"
+F 5 "~" H 4900 4700 60  0001 C CNN "Description"
+F 6 "~" H 4900 4700 60  0001 C CNN "Manufacturer"
+F 7 "~" H 4900 4700 60  0001 C CNN "Manufacturer Part No"
+F 8 "~" H 4900 4700 60  0001 C CNN "Supplier 1"
+F 9 "~" H 4900 4700 60  0001 C CNN "Supplier 1 Part No"
+F 10 "~" H 4900 4700 60  0001 C CNN "Supplier 1 Cost"
+F 11 "~" H 4900 4700 60  0001 C CNN "Supplier 2"
+F 12 "~" H 4900 4700 60  0001 C CNN "Supplier 2 Part No"
+F 13 "~" H 4900 4700 60  0001 C CNN "Supplier 2 Cost"
+	1    4900 4700
+	1    0    0    -1  
+$EndComp
+NoConn ~ 6350 6900
+Text Notes 6200 7100 0    60   ~ 0
+Logo
+$Comp
+L CONN_1 LG1
+U 1 1 5857CF3C
+P 6500 6900
+F 0 "LG1" H 6580 6900 40  0000 L CNN
+F 1 "CONN_1" H 6500 6955 30  0001 C CNN
+F 2 "matts_components:reinnovation_logo_15mm" H 6500 6900 60  0001 C CNN
+F 3 "" H 6500 6900 60  0001 C CNN
+	1    6500 6900
+	1    0    0    -1  
+$EndComp
+NoConn ~ 4900 1100
+NoConn ~ 4900 900 
+$Comp
+L CONN_01X02 P16
+U 1 1 58594E41
+P 5800 2150
+F 0 "P16" H 5800 2300 50  0000 C CNN
+F 1 "V_REF" V 5900 2150 50  0000 C CNN
+F 2 "REInnovationFootprint:SM_2_SLDR_JMP" H 5800 2150 50  0001 C CNN
+F 3 "" H 5800 2150 50  0000 C CNN
+	1    5800 2150
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4900 2100 5600 2100
+Wire Wire Line
+	4900 2200 5600 2200
+$Comp
+L LED D1
+U 1 1 586F8493
+P 4450 6050
+F 0 "D1" H 4450 6150 50  0000 C CNN
+F 1 "LED" H 4450 5950 50  0000 C CNN
+F 2 "REInnovationFootprint:TH_LED-5MM_larg_pad" H 4450 6050 50  0001 C CNN
+F 3 "" H 4450 6050 50  0000 C CNN
+	1    4450 6050
+	0    -1   -1   0   
+$EndComp
+$Comp
+L R R22
+U 1 1 58E513EC
+P 2100 1400
+F 0 "R22" V 2180 1400 50  0000 C CNN
+F 1 "100k" V 2100 1400 50  0000 C CNN
+F 2 "REInnovationFootprint:TH_Resistor_1" V 2030 1400 50  0001 C CNN
+F 3 "" H 2100 1400 50  0000 C CNN
+F 4 "~" H 2100 1400 60  0000 C CNN "Notes"
+F 5 "~" H 2100 1400 60  0001 C CNN "Description"
+F 6 "~" H 2100 1400 60  0001 C CNN "Manufacturer"
+F 7 "~" H 2100 1400 60  0001 C CNN "Manufacturer Part No"
+F 8 "~" H 2100 1400 60  0001 C CNN "Supplier 1"
+F 9 "~" H 2100 1400 60  0001 C CNN "Supplier 1 Part No"
+F 10 "~" H 2100 1400 60  0001 C CNN "Supplier 1 Cost"
+F 11 "~" H 2100 1400 60  0001 C CNN "Supplier 2"
+F 12 "~" H 2100 1400 60  0001 C CNN "Supplier 2 Part No"
+F 13 "~" H 2100 1400 60  0001 C CNN "Supplier 2 Cost"
+	1    2100 1400
+	-1   0    0    1   
+$EndComp
+$Comp
+L R R21
+U 1 1 58E51C24
+P 2000 2000
+F 0 "R21" V 2080 2000 50  0000 C CNN
+F 1 "100k" V 2000 2000 50  0000 C CNN
+F 2 "REInnovationFootprint:TH_Resistor_1" V 1930 2000 50  0001 C CNN
+F 3 "" H 2000 2000 50  0000 C CNN
+F 4 "~" H 2000 2000 60  0000 C CNN "Notes"
+F 5 "~" H 2000 2000 60  0001 C CNN "Description"
+F 6 "~" H 2000 2000 60  0001 C CNN "Manufacturer"
+F 7 "~" H 2000 2000 60  0001 C CNN "Manufacturer Part No"
+F 8 "~" H 2000 2000 60  0001 C CNN "Supplier 1"
+F 9 "~" H 2000 2000 60  0001 C CNN "Supplier 1 Part No"
+F 10 "~" H 2000 2000 60  0001 C CNN "Supplier 1 Cost"
+F 11 "~" H 2000 2000 60  0001 C CNN "Supplier 2"
+F 12 "~" H 2000 2000 60  0001 C CNN "Supplier 2 Part No"
+F 13 "~" H 2000 2000 60  0001 C CNN "Supplier 2 Cost"
+	1    2000 2000
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	1850 1950 1850 1850
+Wire Wire Line
+	1850 1850 2000 1850
+Connection ~ 1750 1950
+Wire Wire Line
+	2000 1350 2000 1250
+Wire Wire Line
+	2000 1250 2100 1250
+Connection ~ 1900 1350
+Connection ~ 2100 1550
+Connection ~ 2000 2150
+$Comp
+L R R18
+U 1 1 58E52B94
+P 1800 3450
+F 0 "R18" V 1880 3450 50  0000 C CNN
+F 1 "10k" V 1800 3450 50  0000 C CNN
+F 2 "REInnovationFootprint:TH_Resistor_1" V 1730 3450 50  0001 C CNN
+F 3 "" H 1800 3450 50  0000 C CNN
+F 4 "~" H 1800 3450 60  0000 C CNN "Notes"
+F 5 "~" H 1800 3450 60  0001 C CNN "Description"
+F 6 "~" H 1800 3450 60  0001 C CNN "Manufacturer"
+F 7 "~" H 1800 3450 60  0001 C CNN "Manufacturer Part No"
+F 8 "~" H 1800 3450 60  0001 C CNN "Supplier 1"
+F 9 "~" H 1800 3450 60  0001 C CNN "Supplier 1 Part No"
+F 10 "~" H 1800 3450 60  0001 C CNN "Supplier 1 Cost"
+F 11 "~" H 1800 3450 60  0001 C CNN "Supplier 2"
+F 12 "~" H 1800 3450 60  0001 C CNN "Supplier 2 Part No"
+F 13 "~" H 1800 3450 60  0001 C CNN "Supplier 2 Cost"
+	1    1800 3450
+	-1   0    0    1   
+$EndComp
+$Comp
+L R R19
+U 1 1 58E52D6D
+P 1800 3850
+F 0 "R19" V 1880 3850 50  0000 C CNN
+F 1 "10k" V 1800 3850 50  0000 C CNN
+F 2 "REInnovationFootprint:TH_Resistor_1" V 1730 3850 50  0001 C CNN
+F 3 "" H 1800 3850 50  0000 C CNN
+F 4 "~" H 1800 3850 60  0000 C CNN "Notes"
+F 5 "~" H 1800 3850 60  0001 C CNN "Description"
+F 6 "~" H 1800 3850 60  0001 C CNN "Manufacturer"
+F 7 "~" H 1800 3850 60  0001 C CNN "Manufacturer Part No"
+F 8 "~" H 1800 3850 60  0001 C CNN "Supplier 1"
+F 9 "~" H 1800 3850 60  0001 C CNN "Supplier 1 Part No"
+F 10 "~" H 1800 3850 60  0001 C CNN "Supplier 1 Cost"
+F 11 "~" H 1800 3850 60  0001 C CNN "Supplier 2"
+F 12 "~" H 1800 3850 60  0001 C CNN "Supplier 2 Part No"
+F 13 "~" H 1800 3850 60  0001 C CNN "Supplier 2 Cost"
+	1    1800 3850
+	-1   0    0    1   
+$EndComp
+$Comp
+L R R20
+U 1 1 58E52E45
+P 1800 4250
+F 0 "R20" V 1880 4250 50  0000 C CNN
+F 1 "10k" V 1800 4250 50  0000 C CNN
+F 2 "REInnovationFootprint:TH_Resistor_1" V 1730 4250 50  0001 C CNN
+F 3 "" H 1800 4250 50  0000 C CNN
+F 4 "~" H 1800 4250 60  0000 C CNN "Notes"
+F 5 "~" H 1800 4250 60  0001 C CNN "Description"
+F 6 "~" H 1800 4250 60  0001 C CNN "Manufacturer"
+F 7 "~" H 1800 4250 60  0001 C CNN "Manufacturer Part No"
+F 8 "~" H 1800 4250 60  0001 C CNN "Supplier 1"
+F 9 "~" H 1800 4250 60  0001 C CNN "Supplier 1 Part No"
+F 10 "~" H 1800 4250 60  0001 C CNN "Supplier 1 Cost"
+F 11 "~" H 1800 4250 60  0001 C CNN "Supplier 2"
+F 12 "~" H 1800 4250 60  0001 C CNN "Supplier 2 Part No"
+F 13 "~" H 1800 4250 60  0001 C CNN "Supplier 2 Cost"
+	1    1800 4250
+	-1   0    0    1   
+$EndComp
+$Comp
+L +5V #PWR026
+U 1 1 58E52F12
+P 1900 3200
+F 0 "#PWR026" H 1900 3290 20  0001 C CNN
+F 1 "+5V" H 1900 3290 30  0000 C CNN
+F 2 "" H 1900 3200 60  0000 C CNN
+F 3 "" H 1900 3200 60  0000 C CNN
+	1    1900 3200
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1900 3200 1900 4100
+Wire Wire Line
+	1900 4100 1800 4100
+Wire Wire Line
+	1800 3700 1900 3700
+Connection ~ 1900 3700
+Wire Wire Line
+	1800 3300 1900 3300
+Connection ~ 1900 3300
+Wire Wire Line
+	1800 3600 1800 3650
+Connection ~ 1800 3650
+Wire Wire Line
+	1800 4000 1800 4050
+Connection ~ 1800 4050
+Wire Wire Line
+	1800 4400 1800 4450
+Connection ~ 1800 4450
+Wire Wire Line
+	7300 4450 7300 5700
+Connection ~ 7000 4450
+$Comp
+L ZENER D3
+U 1 1 58E52791
+P 2050 6650
+F 0 "D3" H 2050 6750 50  0000 C CNN
+F 1 "5V1" H 2050 6550 50  0000 C CNN
+F 2 "REInnovationFootprint:TH_Diode_1" H 2050 6650 50  0001 C CNN
+F 3 "" H 2050 6650 50  0000 C CNN
+	1    2050 6650
+	0    1    1    0   
+$EndComp
+$Comp
+L ZENER D4
+U 1 1 58E53064
+P 3450 6700
+F 0 "D4" H 3450 6800 50  0000 C CNN
+F 1 "5V1" H 3450 6600 50  0000 C CNN
+F 2 "REInnovationFootprint:TH_Diode_1" H 3450 6700 50  0001 C CNN
+F 3 "" H 3450 6700 50  0000 C CNN
+	1    3450 6700
+	0    1    1    0   
+$EndComp
+$EndSCHEMATC
