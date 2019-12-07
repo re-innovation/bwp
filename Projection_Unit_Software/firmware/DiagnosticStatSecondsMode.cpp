@@ -17,8 +17,8 @@ void DiagnosticStatSecondsMode_::modeStart()
 {
     DBLN(F("DiagnosticStatSecondsMode::modeStart"));
     Mp3Player.appendElement(MP3_TRACK_TOTAL_RUNTIME);
-    uint16_t hours = Settings.getUseSeconds()/3600;
-    uint16_t mins = (Settings.getUseSeconds()-(hours*3600))/60;
+    uint16_t hours = Settings.getUseSeconds() / 3600;
+    uint8_t mins = (Settings.getUseSeconds() / 60) % 60;
     uint8_t secs = Settings.getUseSeconds() % 60;
     if (hours > 0) {
         Mp3Player.readNumber(hours);
