@@ -3,9 +3,9 @@
 // from Mutila library
 #include <Mode.h>  
 
-/*! \brief Diagnostic Mode Control Class
- * This mode responds to button presses to change settings and read
- * out diagnostic information which is stored in EEPROM memory.
+/*! \brief Frame Sync Mode Setting
+ *
+ * Allows for adjustment of the frame sync offset.
  */
 class DiagnosticFrameSyncMode_ : public Mode {
 public:

@@ -3,9 +3,8 @@
 // from Mutila library
 #include <Mode.h>  
 
-/*! \brief Diagnostic Mode Control Class
- * This mode responds to button presses to change settings and read
- * out diagnostic information which is stored in EEPROM memory.
+/*! \brief Setup mode for setting playback volume
+ *
  */
 class DiagnosticVolumeAdjustMode_ : public Mode {
 public:

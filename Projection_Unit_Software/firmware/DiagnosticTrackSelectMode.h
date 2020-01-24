@@ -3,9 +3,9 @@
 // from Mutila library
 #include <Mode.h>  
 
-/*! \brief Diagnostic Mode Control Class
- * This mode responds to button presses to change settings and read
- * out diagnostic information which is stored in EEPROM memory.
+/*! \brief Track Selection Mode
+ *
+ * Allows for selection of the track to be played when the projector is running.
  */
 class DiagnosticTrackSelectMode_ : public Mode {
 public:

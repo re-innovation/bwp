@@ -4,8 +4,8 @@
 #include <Mode.h>  
 
 /*! \brief Manual Feed Mode
- * When the set button is pressed and held, feed the projector without 
- * using the shutter (for loading and unloading film).
+ *
+ * Allows projector feed to be manually moved. For use when loading new film.
  */
 class DiagnosticManualFeedMode_ : public Mode {
 public:

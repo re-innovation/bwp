@@ -24,11 +24,12 @@ DiagnosticMode_::DiagnosticMode_()
 void DiagnosticMode_::modeStart()
 {
     Serial.println(F("DiagnosticMode"));
-    ProjectorHeartbeat.setMode(Heartbeat::Quick);
+    ProjectorHeartbeat.setMode(Heartbeat::Slower);
     Mp3Player.setVolume(VolumeSetting.load());
     subMode = NULL;
     _done = false;
     _startTime = Millis();
+    Settings.dump();
 }
 
 void DiagnosticMode_::modeStop()
