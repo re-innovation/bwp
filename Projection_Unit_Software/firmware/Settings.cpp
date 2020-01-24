@@ -22,7 +22,7 @@ PersistentSetting<uint32_t> UseSecondsStat      (   0,      UINT32_MAX, 0,      
 PersistentSetting<uint16_t> VolumeSetting       (   1,      30,         15,     3);
 PersistentSetting<uint8_t> FrameOffsetSetting   (   0,      25,         0,      3);
 PersistentSetting<uint8_t> AudioTrackSetting    (   1,      10,         1,      3);
-PersistentSetting<uint8_t> CrankSpeedSetting    (   1,      30,         10,     3);
+PersistentSetting<uint8_t> CrankSpeedSetting    (   10,     30,         15,     3);
 
 // This is not a real setting - we use it to determine if the EEPROM has been
 // used before with this set of settings, or if we should load the defaults
