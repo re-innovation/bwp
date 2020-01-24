@@ -19,7 +19,7 @@ void DiagnosticStatAvgSecondsMode_::modeStart()
     Mp3Player.appendElement(MP3_TRACK_AVERAGE_RUNTIME);
     uint8_t secs = Settings.getUseSeconds() / Settings.getUseCount();
     Mp3Player.readNumber(secs);
-    Mp3Player.appendElement(secs == 1 ? MP3_TRACK_SECOND : MP3_TRACK_SECONDS);
+    Mp3Player.appendElement(secs == 1 ? DFPReader::Mp3TrackSecond : DFPReader::Mp3TrackSeconds);
 }
 
 void DiagnosticStatAvgSecondsMode_::modeStop()

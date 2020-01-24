@@ -1,32 +1,33 @@
 To Do
 =====
 
-We have problems because the film is slipping and the sensor position is difficult to fine-tune to
-get good data.  The result is frequent mis-reads of the audio marks.  Probably more than 50% of the
-time the reads are failing, which is a pity, because it was working so well with the prototype
-hardware...
+New version of system will not be powered by hand crank. Instead will be powered 
+by solar/battery power system. 
 
-Anyhow, as a possible fix for this, I propose the following:
+Changes to firmware:
 
-1. The firmware should know the sequence of marks - the constraint will be that the marks are in
-   numeric order, with a known number of marks, set as a setting which can be set and stored in
-   EEPROM.
+* Should enter sleep mode when not active. This means
+  - Arduno in power saving mode, use interrupts to wake up
+  - DFPlayer Mini should be powered off while in sleep mode
+  - Interrupts can come from either of the push buttons or a new crank sensor switch
 
-2. On startup, the firmware waits until it gets a successful read, and then keeps track of the last
-   mark read.  On getting a partial (but failed) read, it plays the next sample in sequence.
+* Crank sensor switch shows the crank is being turned (reed switch) on pin 2 (?)
+  - If crank sensor triggers more than some threshold number of times per second, 
+    system wakes into movie mode.
 
-3. Subsequency successful reads explicitly set the mark counter so it is re-synced.
+* MovieMode
+  - Plays one [long] audio file.
+  - Advances projector at constant rate.
+  - Continues until cranking sensor stops getting regular pulses.
 
-Risks
------
+* Audio marks system will be removed from firmware.
 
-1. No successful reads means we don't know where we are in the sequence
+* When the unit become inactive, Arduino should be put into sleep mode.
+  - DFPlayer Mini should also be powered down when entering sleep mode
 
+* Unit should also come out of sleep when buttons pressed to service
+  diagnostic modes. Stats should also be printed to serial port.
 
-Options / queries
------------------
-
-* Should the sequence nmber we written to EEPROM on brownout? Yes means high EEPROM wear, no means
-  must get a successful read before any audio played
-
+* Require fix for integer overflow bug when reading out minutes of use 
+  statistic.
 

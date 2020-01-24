@@ -17,20 +17,20 @@ void DiagnosticStatSecondsMode_::modeStart()
 {
     DBLN(F("DiagnosticStatSecondsMode::modeStart"));
     Mp3Player.appendElement(MP3_TRACK_TOTAL_RUNTIME);
-    uint16_t hours = Settings.getUseSeconds()/3600;
-    uint16_t mins = (Settings.getUseSeconds()-(hours*3600))/60;
+    uint16_t hours = Settings.getUseSeconds() / 3600;
+    uint8_t mins = (Settings.getUseSeconds() / 60) % 60;
     uint8_t secs = Settings.getUseSeconds() % 60;
     if (hours > 0) {
         Mp3Player.readNumber(hours);
-        Mp3Player.appendElement(hours == 1 ? MP3_TRACK_HOUR : MP3_TRACK_HOURS);
+        Mp3Player.appendElement(hours == 1 ? DFPReader::Mp3TrackHour : DFPReader::Mp3TrackHours);
     }
     if (mins > 0) {
         Mp3Player.readNumber(mins);
-        Mp3Player.appendElement(mins == 1 ? MP3_TRACK_MINUTE : MP3_TRACK_MINUTES);
+        Mp3Player.appendElement(mins == 1 ? DFPReader::Mp3TrackMinute : DFPReader::Mp3TrackMinutes);
     }
     if (secs > 0) {
         Mp3Player.readNumber(secs);
-        Mp3Player.appendElement(secs == 1 ? MP3_TRACK_SECOND : MP3_TRACK_SECONDS);
+        Mp3Player.appendElement(secs == 1 ? DFPReader::Mp3TrackSecond : DFPReader::Mp3TrackSeconds);
     }
 }
 

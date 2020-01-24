@@ -99,6 +99,7 @@ private:
     bool _lastPulseState;               //! State after last update()
     uint8_t _buffer[AUDIO_SYNC_BITS];   //! Accumulated bits read so far
     uint8_t _bufPtr;                    //! Pointer into buffer
+    bool _partialReadFlag;              //! Flag to say we had an aborted read (picked up by get())
 
 };
 
