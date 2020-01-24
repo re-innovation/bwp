@@ -71,12 +71,16 @@ Note: to enter DiagnosticMode, the following procedure is recommended:
 Heartbeat States
 ****************
 
-The indicator LED is used to convey the state of the system by flashing
-one of the following sequences:
+When ENABLE_HEARTBEAT is defined at compile time (in Config.h), the 
+heartbeat LED will flash to indicate the state of the system:
 
 - Quick (25ms on, 25ms off) - the system is in WakeupMode or TiredMode
 - Normal (50ms on, 500ms off) - the projector is in NormalMode
 - Slow (1000ms on, 1000ms off) - the system is in DiagnosticMode
+
+It's a good idea to disable this for solar batter systems because the
+heartbeat LED can stay in an ON state when the Arduino enters deep sleep,
+which may drain battery power.
 
 **************
 Pre-requisites

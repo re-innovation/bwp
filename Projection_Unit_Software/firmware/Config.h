@@ -2,6 +2,8 @@
 
 #include <Arduino.h>
 
+//#define ENABLE_HEARTBEAT            1
+
 // Stepper setup & constants
 #define STEPPER_PIN_1               8
 #define STEPPER_PIN_2               7

@@ -1,14 +1,16 @@
 #include <Arduino.h>
 #include <MutilaDebug.h>
 #include <Millis.h>
+#include "Config.h"
 #include "TiredMode.h"
 #include "NormalMode.h"
 #include "CrankMonitor.h"
+#ifdef ENABLE_HEARTBEAT
 #include "ProjectorHeartbeat.h"
+#endif
 #include "Projector.h"
 #include "Mp3Player.h"
 #include "ModeSwitch.h"
-#include "Config.h"
 
 // Our global instance of the mode...
 TiredMode_ TiredMode;
@@ -23,7 +25,9 @@ TiredMode_::TiredMode_()
 void TiredMode_::modeStart()
 {
     _startTime = Millis();
+#ifdef ENABLE_HEARTBEAT
     ProjectorHeartbeat.setMode(Heartbeat::Quick);
+#endif
     setUpdatePeriod(TIRED_MS / Mp3Player.volume());
     Projector.closeShutter();
 

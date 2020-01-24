@@ -1,15 +1,17 @@
 #include <Arduino.h>
 #include <MutilaDebug.h>
 #include <Millis.h>
+#include "Config.h"
 #include "WakeupMode.h"
 #include "SleepMode.h"
 #include "DiagnosticMode.h"
 #include "CrankMonitor.h"
+#ifdef ENABLE_HEARTBEAT
 #include "ProjectorHeartbeat.h"
+#endif
 #include "ModeSwitch.h"
 #include "SW1.h"
 #include "SW3.h"
-#include "Config.h"
 
 // Our global instance of the mode...
 WakeupMode_ WakeupMode;
@@ -25,7 +27,9 @@ WakeupMode_::WakeupMode_()
 void WakeupMode_::modeStart()
 {
     _startTime = Millis();
+#ifdef ENABLE_HEARTBEAT
     ProjectorHeartbeat.setMode(Heartbeat::Quick);
+#endif
     DBLN("WakeupMode::modeStart()");
 }
 

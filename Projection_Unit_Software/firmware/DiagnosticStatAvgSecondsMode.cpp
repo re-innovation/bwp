@@ -1,10 +1,10 @@
 #include <Arduino.h>
+#include "Config.h"
 #include "DiagnosticStatAvgSecondsMode.h"
 #include "SW1.h"
 #include "MutilaDebug.h"
 #include "Mp3Player.h"
 #include "Settings.h"
-#include "Config.h"
 
 // Our global instance of the mode...
 DiagnosticStatAvgSecondsMode_ DiagnosticStatAvgSecondsMode;

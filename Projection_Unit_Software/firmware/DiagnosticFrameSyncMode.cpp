@@ -1,5 +1,6 @@
 #include <Arduino.h>
 #include "DiagnosticFrameSyncMode.h"
+#include "Config.h"
 #include "SW1.h"
 #include "SW2.h"
 #include "SW3.h"
@@ -7,7 +8,6 @@
 #include "MutilaDebug.h"
 #include "Mp3Player.h"
 #include "Settings.h"
-#include "Config.h"
 
 // Our global instance of the mode...
 DiagnosticFrameSyncMode_ DiagnosticFrameSyncMode;

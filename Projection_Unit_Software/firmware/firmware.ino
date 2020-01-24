@@ -6,15 +6,17 @@
 #include <Mode.h>
 #include <avr/wdt.h>
 
+#include "Config.h"
 #include "SW1.h"
 #include "SW2.h"
 #include "SW3.h"
+#ifdef ENABLE_HEARTBEAT
 #include "ProjectorHeartbeat.h"
+#endif
 #include "Mp3Player.h"
 #include "Projector.h"
 #include "CrankMonitor.h"
 #include "Settings.h"
-#include "Config.h"
 
 #include "SleepMode.h"
 #include "WakeupMode.h"
@@ -51,8 +53,9 @@ void setup()
     SW1.begin();
     SW2.begin();
     SW3.begin();
+#ifdef ENABLE_HEARTBEAT
     ProjectorHeartbeat.begin();
-    ProjectorHeartbeat.setMode(Heartbeat::Slower);
+#endif
     Projector.begin();
 
     CurrentMode->start();
@@ -72,7 +75,9 @@ void loop()
     SW1.update();
     SW2.update();
     SW3.update();
+#ifdef ENABLE_HEARTBEAT
     ProjectorHeartbeat.update();
+#endif
     CurrentMode->update();
     Mp3Player.update();
 

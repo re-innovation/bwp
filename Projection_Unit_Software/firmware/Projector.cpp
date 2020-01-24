@@ -1,8 +1,8 @@
 #include <Arduino.h>
 #include <MutilaDebug.h>
 #include <Millis.h>
-#include "Projector.h"
 #include "Config.h"
+#include "Projector.h"
 #include "Settings.h"
 
 // Arduino library class style global object

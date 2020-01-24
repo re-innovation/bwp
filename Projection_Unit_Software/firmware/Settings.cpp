@@ -2,8 +2,8 @@
 #include <EEPROM.h>
 #include <MutilaDebug.h>
 #include <Millis.h>
-#include "Settings.h"
 #include "Config.h"
+#include "Settings.h"
 
 Settings_ Settings;
 

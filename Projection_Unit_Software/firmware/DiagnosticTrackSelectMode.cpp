@@ -1,12 +1,12 @@
 #include <Arduino.h>
 #include <Millis.h>
+#include "Config.h"
 #include "DiagnosticTrackSelectMode.h"
 #include "SW1.h"
 #include "SW2.h"
 #include "SW3.h"
 #include "MutilaDebug.h"
 #include "Mp3Player.h"
-#include "Config.h"
 #include "Settings.h"
 
 // Our global instance of the mode...

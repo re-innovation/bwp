@@ -1,11 +1,11 @@
 #include <Arduino.h>
 #include "DiagnosticManualFeedMode.h"
+#include "Config.h"
 #include "SW1.h"
 #include "SW3.h"
 #include "Projector.h"
 #include "MutilaDebug.h"
 #include "Mp3Player.h"
-#include "Config.h"
 
 // Our global instance of the mode...
 DiagnosticManualFeedMode_ DiagnosticManualFeedMode;

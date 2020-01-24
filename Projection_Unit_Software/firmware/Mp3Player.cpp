@@ -2,8 +2,8 @@
 #include <SoftwareSerial.h>
 #include <MutilaDebug.h>
 #include <Millis.h>
-#include "Mp3Player.h"
 #include "Config.h"
+#include "Mp3Player.h"
 #include "Settings.h"
 
 // A global object

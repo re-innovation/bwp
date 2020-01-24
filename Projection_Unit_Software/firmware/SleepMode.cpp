@@ -2,13 +2,15 @@
 #include <avr/sleep.h>
 #include <MutilaDebug.h>
 #include <Millis.h>
+#include "Config.h"
 #include "SleepMode.h"
 #include "CrankMonitor.h"
+#ifdef ENABLE_HEARTBEAT
 #include "ProjectorHeartbeat.h"
+#endif
 #include "Projector.h"
 #include "Mp3Player.h"
 #include "Settings.h"
-#include "Config.h"
 
 // Our global instance of the mode...
 SleepMode_ SleepMode;
@@ -27,7 +29,9 @@ void SleepMode_::modeStart()
     Serial.println(F("SleepMode"));
 
     // power down everything we can
+#ifdef ENABLE_HEARTBEAT
     ProjectorHeartbeat.setMode(Heartbeat::Off);
+#endif
     Projector.closeShutter();
     Projector.setStepperEnabled(false);
     Mp3Player.stop();

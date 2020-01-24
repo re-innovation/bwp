@@ -1,6 +1,11 @@
 #include <Arduino.h>
 #include "DiagnosticMode.h"
+
+#include "Config.h"
+
+#ifdef ENABLE_HEARTBEAT
 #include "ProjectorHeartbeat.h"
+#endif
 #include "SW1.h"
 #include "DiagnosticTrackSelectMode.h"
 #include "DiagnosticVolumeAdjustMode.h"
@@ -12,7 +17,6 @@
 #include "DiagnosticStatAvgSecondsMode.h"
 #include "Mp3Player.h"
 #include "Settings.h"
-#include "Config.h"
 
 // Our global instance of the mode...
 DiagnosticMode_ DiagnosticMode;
@@ -24,7 +28,10 @@ DiagnosticMode_::DiagnosticMode_()
 void DiagnosticMode_::modeStart()
 {
     Serial.println(F("DiagnosticMode"));
+
+#ifdef ENABLE_HEARTBEAT
     ProjectorHeartbeat.setMode(Heartbeat::Slower);
+#endif
     Mp3Player.setVolume(VolumeSetting.load());
     subMode = NULL;
     _done = false;

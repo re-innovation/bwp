@@ -1,13 +1,15 @@
 #include <Arduino.h>
 #include <MutilaDebug.h>
+#include "Config.h"
 #include "NormalMode.h"
+#ifdef ENABLE_HEARTBEAT
 #include "ProjectorHeartbeat.h"
+#endif
 #include "SW1.h"
 #include "Projector.h"
 #include "Mp3Player.h"
 #include "Settings.h"
 #include "CrankMonitor.h"
-#include "Config.h"
 
 // Our global mode object
 NormalMode_ NormalMode;
@@ -21,7 +23,9 @@ void NormalMode_::modeStart()
     Serial.println(F("NormalMode"));
     Projector.setMute(false);
     Projector.setShutter(true);
+#ifdef ENABLE_HEARTBEAT
     ProjectorHeartbeat.setMode(Heartbeat::Normal);
+#endif
     Settings.run();
     VolumeSetting.load();
     lastAudioCheck = 0;
