@@ -1,71 +1,64 @@
 #include <Arduino.h>
 #include <MutilaDebug.h>
-#include <EMAVDivSampler.h>
 #include "NormalMode.h"
 #include "ProjectorHeartbeat.h"
 #include "SW1.h"
 #include "Projector.h"
 #include "Mp3Player.h"
 #include "Settings.h"
-
-EMAVDivSampler VoltageSampler(VIN_MONITOR_PIN, VIN_R1, VIN_R2, VIN_REF, VIN_PERIOD_MS, VIN_EMA_ALPHA);
+#include "CrankMonitor.h"
+#include "Config.h"
 
 // Our global mode object
-NormalMode_ NormalMode(VoltageSampler, VIN_THRESH_LOW, VIN_THRESH_HIGH);
+NormalMode_ NormalMode;
 
-NormalMode_::NormalMode_(EMAVDivSampler& vSampler, const float vThreshLow, const float vThreshHigh) : 
-    BrownoutMode(vSampler, vThreshLow, vThreshHigh)
+NormalMode_::NormalMode_() 
 {
 }
 
 void NormalMode_::modeStart()
 {
-    DBLN(F("NormalMode::modeStart"));
+    Serial.println(F("NormalMode"));
     Projector.setMute(false);
     Projector.setShutter(true);
     ProjectorHeartbeat.setMode(Heartbeat::Normal);
+    Settings.run();
+    VolumeSetting.load();
+    lastAudioCheck = 0;
 }
 
 void NormalMode_::modeStop()
 {
-    DBLN(F("NormalMode::modeStop"));
-    Mp3Player.stop();
-    Settings.stop();
-}
-
-void NormalMode_::enterBrownout()
-{
-    // Typical use: save state to EEPROM etc...
-    Serial.println(F("NormalMode::enterBrownout()"));
-    ProjectorHeartbeat.setMode(Heartbeat::Slow);
-    Projector.closeShutter();
-    Projector.setStepperEnabled(false);
-    Mp3Player.stop();
-    Mp3Player.enable(false);
-    Settings.stop();
-    Settings.save();
-}
-
-void NormalMode_::exitBrownout()
-{
-    Serial.println(F("NormalMode::exitBrownout()"));
-    ProjectorHeartbeat.setMode(Heartbeat::Normal);
-    // Typical use: restore state from EEPROM
-    Settings.run();
-    Mp3Player.enable(true);
-    Projector.setStepperEnabled(true);
 }
 
 void NormalMode_::modeUpdate()
 {
-    if (!brownedOut()) {
-        Projector.update();
+    Projector.update();
+
+    if (MillisSince(lastAudioCheck) > NORMAL_MODE_AUDIO_CHECK_MS) {
+        lastAudioCheck = Millis();
+        if (!Mp3Player.busy()) {
+            Serial.print(F("playing track #"));
+            Serial.println(AudioTrackSetting.get());
+            Mp3Player.play(AudioTrackSetting.get());
+        }
+        int8_t volume_adjust = 0;
+        if (Mp3Player.volume() < VolumeSetting.get()) {
+            volume_adjust = 1;
+        } else if (Mp3Player.volume() > VolumeSetting.get()) {
+            volume_adjust = -1;
+        }
+        DB(F("vol fade="));
+        DBLN(volume_adjust);
+        if (volume_adjust != 0) {
+            Mp3Player.setVolume(Mp3Player.volume() + volume_adjust);
+        }
     }
 }
 
 bool NormalMode_::isFinished()
 {
-    return SW1.tapped() != 0 && !brownedOut();
+    return !crankSpeedAboveThreshold();
 }
 
 

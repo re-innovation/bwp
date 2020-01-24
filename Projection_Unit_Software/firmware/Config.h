@@ -22,17 +22,6 @@
 
 #define MANUAL_FEED_STEPS_PER_SEC   200
 
-#define AUDIO_SYNC_PIN              A4
-#define AUDIO_SYNC_THRESH           200
-#define AUDIO_SYNC_ALPHA            1.0
-#define AUDIO_SYNC_MAX_LEN          35
-#define AUDIO_SYNC_ZERO_MIN_LEN     2
-#define AUDIO_SYNC_ONE_MIN_LEN      18
-#define AUDIO_SYNC_ONE_MAX_LEN      100
-#define AUDIO_SYNC_BITS             12
-#define AUDIO_SYNC_INCOMPLETE       -1
-#define AUDIO_SYNC_INVALID          -2
-
 #define HEARTBEAT_LED_PIN           4
 
 #define VIN_MONITOR_PIN             A1
@@ -46,6 +35,10 @@
 
 #define VIN_INTERNAL_PIN            A2
 
+#define CRANK_SENSOR_PIN            2
+#define WAKEUP_MS                   2000
+#define TIRED_MS                    2000
+
 #define MP3_TX_PIN                  12
 #define MP3_RX_PIN                  13
 #define MP3_BUSY_PIN                A0
@@ -58,6 +51,8 @@
 #define MP3_TRACK_FRAME_OFFSET      194
 #define MP3_TRACK_VOLUME_ADJUST     195
 #define MP3_TRACK_AUDIO_MARK_COUNT  196
+#define MP3_TRACK_TRACK_SELECTION   197
+#define MP3_TRACK_CRANK_SPEED       198
 #define MP3_TRACK_VOLUME_TRACK      1
 #define MP3_AUDIO_MARKS_MAX         10
 
@@ -65,14 +60,6 @@
 #define SW2_PIN                     A6
 #define SW3_PIN                     A7
 
-#define EEPROM_ADDRESS_MAGIC        0
-// If we don't see this in the magic address, zero the setting and set magic...
-#define EEPROM_MAGIC                0x00000042
-#define EEPROM_ADDRESS_USE_COUNT    (EEPROM_ADDRESS_MAGIC+sizeof(unsigned long))
-#define EEPROM_ADDRESS_USE_SECONDS  (EEPROM_ADDRESS_USE_COUNT+sizeof(unsigned long))
-#define EEPROM_ADDRESS_VOLUME       (EEPROM_ADDRESS_USE_SECONDS+sizeof(unsigned long))
-#define EEPROM_ADDRESS_FRAME_OFFSET (EEPROM_ADDRESS_VOLUME+sizeof(uint16_t))
-#define EEPROM_ADDRESS_AUDIO_COUNT  (EEPROM_ADDRESS_FRAME_OFFSET+sizeof(uint8_t))
-#define EEPROM_ADDRESS_LAST_AUDIO   (EEPROM_ADDRESS_AUDIO_COUNT+sizeof(uint8_t))
-
+#define NORMAL_MODE_AUDIO_CHECK_MS  150
+#define DIAGNOSTIC_MODE_DELAY       2000
 

@@ -1,26 +1,25 @@
 #pragma once
 
-#include <BrownoutMode.h>
+#include <Mode.h>
 #include "Projector.h"
 
 /*! \brief Normal Mode Control Class
- * In normal operation, the projector runs when powered, but monitors the input
- * voltage for brownout conditions.  When entering brownout, the mode saves 
- * various runtime statistics to EEPROM
+ * In normal operation, the projector runs and plays sound. If the crank turn rate
+ * drops below some threshold, the mode will end and the projector will go into 
+ * TiredMode.
  */
-class NormalMode_ : public BrownoutMode {
+class NormalMode_ : public Mode {
 public:
-    NormalMode_(EMAVDivSampler& vSampler, const float vThreshLow, const float vThreshHigh);
+    NormalMode_();
     void modeStart();
     void modeStop();
-    void enterBrownout();
-    void exitBrownout();
     void modeUpdate();
     bool isFinished();
 
 private:
     uint16_t runCount;
     uint32_t runSeconds;
+    unsigned long lastAudioCheck;
 
 };
 

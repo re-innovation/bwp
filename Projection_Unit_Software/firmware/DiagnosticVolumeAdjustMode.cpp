@@ -1,4 +1,5 @@
 #include <Arduino.h>
+#include <Millis.h>
 #include "DiagnosticVolumeAdjustMode.h"
 #include "SW1.h"
 #include "SW2.h"
@@ -17,35 +18,40 @@ DiagnosticVolumeAdjustMode_::DiagnosticVolumeAdjustMode_()
 
 void DiagnosticVolumeAdjustMode_::modeStart()
 {
+    Serial.print(F("DiagnosticVolumeAdjustMode volume="));
+    Serial.println(Mp3Player.volume());
+    STOP_MP3;
     Mp3Player.play(MP3_TRACK_VOLUME_ADJUST);
-    DB(F("DiagnosticVolumeAdjustMode::modeStart volume="));
-    DBLN(Mp3Player.volume());
+    _startTime = Millis();
 }
 
 void DiagnosticVolumeAdjustMode_::modeStop()
 {
-    DBLN(F("DiagnosticVolumeAdjustMode::modeStop()"));
-    Settings.save();
+    VolumeSetting.set(Mp3Player.volume(), true);
+    Serial.print(F("SAVING volume="));
+    Serial.println(VolumeSetting.get());
 }
 
 void DiagnosticVolumeAdjustMode_::modeUpdate()
 {
+    if (MillisSince(_startTime) > 500 && !Mp3Player.busy()) {
+        Mp3Player.play(AudioTrackSetting.get());
+    }
     uint8_t volume = Mp3Player.volume();
     if (SW3.tapped()) {
-        volume = (volume+1) % 31;
+        volume = (volume % VolumeSetting.getMaximum()) + 1;
     }
     if (SW2.tapped()) {
         volume = (volume-1);
-        // we are using unsigned, so < 0 will cause 255
-        if (volume > 30) {
-            volume = 30;
+        // handle uint8_t underflow wrap-around
+        if (volume > VolumeSetting.getMaximum()) {
+            volume = VolumeSetting.getMaximum();
         }
     }
     if (volume != Mp3Player.volume()) {
-        DB(F("setting volume to "));
-        DBLN(volume);
+        Serial.print(F("volume="));
+        Serial.println(volume);
         Mp3Player.setVolume(volume);
-        Mp3Player.play(MP3_TRACK_VOLUME_TRACK);
     }
 }
 

@@ -15,14 +15,16 @@ DiagnosticStatUsesMode_::DiagnosticStatUsesMode_()
 
 void DiagnosticStatUsesMode_::modeStart()
 {
-    DBLN(F("DiagnosticStatUsesMode::modeStart"));
+    Serial.println(F("DiagnosticStatUsesMode"));
+    STOP_MP3;
     Mp3Player.appendElement(MP3_TRACK_NUMBER_OF_USES);
-    Mp3Player.readNumber(Settings.getUseCount());
+    Serial.print(F("Total Uses: "));
+    Serial.println(UseCountStat.get());
+    Mp3Player.readNumber(UseCountStat.get());
 }
 
 void DiagnosticStatUsesMode_::modeStop()
 {
-    DBLN(F("DiagnosticStatUsesMode::modeStop()"));
     Mp3Player.stop();
 }
 

@@ -1,5 +1,6 @@
 #pragma once
 
+#include <PersistentSetting.h>
 #include <stdint.h>
 
 //! \class Settings
@@ -7,44 +8,36 @@
 //! be stored in EEPROM
 class Settings_ {
 public:
-    Settings_() {;}
+    Settings_();
 
     void begin();  //!< Initialize
-    void run();    //!< Notify we're running
-    void stop();   //!< Notify we're stopping (browning out)
-    void save();   //!< saves values to EEPROM
-
-    // Accessors
-    unsigned long getUseCount() { return _useCount + (_useCounted ? 0 : 1); }
-    unsigned long getUseSecondaThisRun();
-    unsigned long getUseSeconds() { return _useSeconds + getUseSecondaThisRun(); }
-
-    uint16_t volume() { return _volume; }
-    uint8_t frameOffset() { return _frameOffset; }
-    uint8_t audioCount() { return _audioCount; }
-    uint8_t lastAudio() { return _lastAudio; }
-
-    void setVolume(uint16_t volume) { _volume = volume; }
-    void setFrameOffset(uint8_t frameOffset) { _frameOffset = frameOffset; }
-    void setAudioCount(uint8_t count) { _audioCount = count; }
-    void setLastAudio(uint8_t n) { _lastAudio = n; }
+    void run();    //!< Notify we're running (start use timer)
+    void stop();   //!< Notify we're stopping (save use stats)
+    void dump();   //!< dump the values of the settings to Serial
 
 private:
-    void checkMagic(); //!< see if we should reset settings
-    void load();       //!< loads values from EEPROM
+    void checkMagic();      //!< see if we should reset settings
+    void load();            //!< loads values from EEPROM
+    void reset(bool save);  //!< reset default values (and save to EEPROM or not)
 
-    unsigned long _useCount;
-    unsigned long _useSeconds;
-    uint16_t _volume;
-    uint8_t _frameOffset;
-    uint8_t _audioCount;
-    uint8_t _lastAudio;
-    bool _useCounted;
     bool _running;
     unsigned long _runStart;
-    unsigned long _secondsThisRun;
 
 };
 
 extern Settings_ Settings;
+
+extern PersistentSetting<uint32_t> UseCountStat;
+extern PersistentSetting<uint32_t> UseSecondsStat;
+extern PersistentSetting<uint16_t> VolumeSetting;
+extern PersistentSetting<uint8_t> FrameOffsetSetting;
+extern PersistentSetting<uint8_t> AudioTrackSetting;
+extern PersistentSetting<uint8_t> CrankSpeedSetting;
+
+// The first time the device is booted with this firmware, we see if MagicSetting
+// is set to MagicNumber. If it is, we deduce that this device has already been
+// set up with these settings and does not need the defaults set.
+extern PersistentSetting<uint16_t> MagicSetting;
+const uint16_t MagicNumber = 0xFA7E; 
+
 

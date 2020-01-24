@@ -15,16 +15,19 @@ DiagnosticStatAvgSecondsMode_::DiagnosticStatAvgSecondsMode_()
 
 void DiagnosticStatAvgSecondsMode_::modeStart()
 {
-    DBLN(F("DiagnosticStatAvgSecondsMode::modeStart"));
+    Serial.println(F("DiagnosticStatAvgSecondsMode"));
+    STOP_MP3;
     Mp3Player.appendElement(MP3_TRACK_AVERAGE_RUNTIME);
-    uint8_t secs = Settings.getUseSeconds() / Settings.getUseCount();
+    uint8_t secs = UseSecondsStat.get() / UseCountStat.get();
     Mp3Player.readNumber(secs);
     Mp3Player.appendElement(secs == 1 ? DFPReader::Mp3TrackSecond : DFPReader::Mp3TrackSeconds);
+    Serial.print(F("Average Runtime: "));
+    Serial.print(secs);
+    Serial.println(F(" sec"));
 }
 
 void DiagnosticStatAvgSecondsMode_::modeStop()
 {
-    DBLN(F("DiagnosticStatAvgSecondsMode::modeStop()"));
     Mp3Player.stop();
 }
 

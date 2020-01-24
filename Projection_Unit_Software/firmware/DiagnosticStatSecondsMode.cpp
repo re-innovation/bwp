@@ -15,11 +15,12 @@ DiagnosticStatSecondsMode_::DiagnosticStatSecondsMode_()
 
 void DiagnosticStatSecondsMode_::modeStart()
 {
-    DBLN(F("DiagnosticStatSecondsMode::modeStart"));
+    Serial.println(F("DiagnosticStatSecondsMode"));
+    STOP_MP3;
     Mp3Player.appendElement(MP3_TRACK_TOTAL_RUNTIME);
-    uint16_t hours = Settings.getUseSeconds() / 3600;
-    uint8_t mins = (Settings.getUseSeconds() / 60) % 60;
-    uint8_t secs = Settings.getUseSeconds() % 60;
+    uint16_t hours = UseSecondsStat.get() / 3600;
+    uint8_t mins = (UseSecondsStat.get() / 60) % 60;
+    uint8_t secs = UseSecondsStat.get() % 60;
     if (hours > 0) {
         Mp3Player.readNumber(hours);
         Mp3Player.appendElement(hours == 1 ? DFPReader::Mp3TrackHour : DFPReader::Mp3TrackHours);
@@ -32,11 +33,19 @@ void DiagnosticStatSecondsMode_::modeStart()
         Mp3Player.readNumber(secs);
         Mp3Player.appendElement(secs == 1 ? DFPReader::Mp3TrackSecond : DFPReader::Mp3TrackSeconds);
     }
+    Serial.print(F("Total Runtime: "));
+    Serial.print(hours);
+    Serial.print(F(" hr "));
+    Serial.print(mins);
+    Serial.print(F(" min "));
+    Serial.print(secs);
+    Serial.print(F(" sec ("));
+    Serial.print(UseSecondsStat.get());
+    Serial.println(F(" seconds)"));
 }
 
 void DiagnosticStatSecondsMode_::modeStop()
 {
-    DBLN(F("DiagnosticStatSecondsMode::modeStop()"));
     Mp3Player.stop();
 }
 

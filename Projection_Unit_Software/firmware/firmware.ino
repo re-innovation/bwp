@@ -12,21 +12,18 @@
 #include "ProjectorHeartbeat.h"
 #include "Mp3Player.h"
 #include "Projector.h"
+#include "CrankMonitor.h"
 #include "Settings.h"
+#include "Config.h"
 
+#include "SleepMode.h"
+#include "WakeupMode.h"
 #include "NormalMode.h"
+#include "TiredMode.h"
 #include "DiagnosticMode.h"
+#include "ModeSwitch.h"
 
-
-
-Mode* CurrentMode = &NormalMode;
-
-void switchMode(Mode* newMode)
-{
-    CurrentMode->stop();
-    CurrentMode = newMode;
-    CurrentMode->start();
-}
+Mode* CurrentMode = &WakeupMode;
 
 void setup()
 {
@@ -35,14 +32,21 @@ void setup()
     // We use an external reference for the VIN measurements
     analogReference(EXTERNAL);
 
+    // Configure interrupt on crank sensor pin
+    DBLN(F("setting up crank pin"));
+    pinMode(CRANK_SENSOR_PIN, INPUT_PULLUP);
+    noInterrupts();
+    attachInterrupt(digitalPinToInterrupt(CRANK_SENSOR_PIN), onCrankSensor, FALLING);
+    interrupts();
+
     // Settings must be first because Mp3Player takes the volume from it.
     Settings.begin();
+    Settings.dump();
 
     Mp3Player.begin();
     if (!Mp3Player.check()) {
         Serial.println(F("WARNING: Mp3Player.check() failed"));
     }
-
 
     SW1.begin();
     SW2.begin();
@@ -54,15 +58,15 @@ void setup()
     CurrentMode->start();
 
     // Enable watchdog timer
-    wdt_enable(WDTO_500MS);
+    //wdt_enable(WDTO_500MS);
 
-    DBLN(F("E:setup()"));
+    DBLN(F("E:setup"));
 }
 
 void loop()
 {
     // Feed the watchdog
-    wdt_reset();
+    //wdt_reset();
 
     // Give timeslice to various components
     SW1.update();
@@ -74,12 +78,18 @@ void loop()
 
     // Mode selection
     if (CurrentMode->isFinished()) {
-        if (CurrentMode == &NormalMode) {
-            switchMode(&DiagnosticMode);
-        } else if (CurrentMode == &DiagnosticMode) {
+        if (CurrentMode == &SleepMode) {
+            switchMode(&WakeupMode);
+        } else if (CurrentMode == &WakeupMode) {
             switchMode(&NormalMode);
+        } else if (CurrentMode == &NormalMode) {
+            switchMode(&TiredMode);
+        } else if (CurrentMode == &TiredMode) {
+            switchMode(&SleepMode);
+        } else if (CurrentMode == &DiagnosticMode) {
+            switchMode(&SleepMode);
         } else {
-            DBLN(F("ERROR - we're in an unknown mode :s"));
+            Serial.println(F("ERROR: bad mode transition"));
         }
     }
 }

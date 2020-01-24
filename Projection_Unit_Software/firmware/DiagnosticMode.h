@@ -19,6 +19,7 @@ private:
     void switchSubMode(Mode* mode);
     Mode* subMode;
     bool _done;
+    unsigned long _startTime;
 
 };
 

@@ -7,9 +7,9 @@
  * This mode responds to button presses to change settings and read
  * out diagnostic information which is stored in EEPROM memory.
  */
-class DiagnosticNumberOfSamplesMode_ : public Mode {
+class DiagnosticTrackSelectMode_ : public Mode {
 public:
-    DiagnosticNumberOfSamplesMode_();
+    DiagnosticTrackSelectMode_();
     void modeStart();
     void modeStop();
     void modeUpdate();
@@ -18,5 +18,5 @@ public:
 };
 
 // A global object for this class, in the same style as the Arduino Serial object
-extern DiagnosticNumberOfSamplesMode_ DiagnosticNumberOfSamplesMode;
+extern DiagnosticTrackSelectMode_ DiagnosticTrackSelectMode;
 

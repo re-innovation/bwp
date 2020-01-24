@@ -1,7 +1,6 @@
 #pragma once
 
 #include <AccelStepper.h>
-#include "AudioMarkReader.h"
 
 /*! \brief model/control the projector
  * This class, and associated global Projector singleton instance, model the projector.
@@ -9,16 +8,12 @@
  * -# Stepper motor for advancing film
  * -# Shutter (LED controlled via a digital output)
  * -# Optical sensor for reading frame synchronization holes in film
- * -# Optical sensor for reading audio codes
  *
  * The projector class advances the film using the stepper motor until a frame
  * synchronication hole is read by the appropriate sensor. It then halt the stepper,
  * "opens" the shutter for some fixed period of time, "closes" the shutter and 
  * then resumes the stepper.
  *
- * It also monitors the optical sensor for reading audio codes, populating a
- * buffer with code bits as they are read, and triggering audio playback
- * with a global singleton instance, Mp3Player.
  */
 class Projector_ {
 public:
@@ -68,11 +63,6 @@ private:
      */
     void frameStep();
 
-    /*! Call when a stepper [half] step is triggered - updates state relating
-     * to audio mark sensing / playback.
-     */
-    void audioStep();
-
     //////////// Data members
     //! Object to control the stepper motor which moves the film sprocket
     AccelStepper _stepper;
@@ -93,9 +83,6 @@ private:
 
     //! For timing shutter sequence
     unsigned long _shutterStart;
-
-    //! For monitoring the state of the audio mark sensor
-    AudioMarkReader _audioMarkSensor;
 
     int8_t _frameOffsetCounter;
 
