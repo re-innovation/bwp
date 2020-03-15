@@ -39,7 +39,8 @@ void DiagnosticCrankSpeedMode_::modeStop()
 void DiagnosticCrankSpeedMode_::modeUpdate()
 {
     if (SW3.tapped()) {
-        CrankSpeedSetting = (CrankSpeedSetting.get() % CrankSpeedSetting.getMaximum()) + 1;
+        uint8_t next = CrankSpeedSetting.get()+1;
+        CrankSpeedSetting = next > CrankSpeedSetting.getMaximum() ? CrankSpeedSetting.getMinimum() : next;
         Mp3Player.stop();
         Mp3Player.readNumber(CrankSpeedSetting.get());
         Serial.print(F("speed="));
